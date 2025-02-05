@@ -104,7 +104,7 @@ SITE-IMOB/
 
 ## 👥 Créditos
 
-- **Designer & Desenvolvedor Front-end:** [Seu Nome](https://github.com/https://github.com/cesaroeduardo/)
+- **Designer & Desenvolvedor Front-end:** [Eduardo de Cesaro](https://github.com/https://github.com/cesaroeduardo/)
 - **Desenvolvedor Full-Stack:** [Robson Junior](https://github.com/robsongajunior/)
 
 ---
