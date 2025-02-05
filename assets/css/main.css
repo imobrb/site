@@ -1,0 +1,60 @@
+@import 'primeicons/primeicons.css';
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&family=Roboto:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.text-titlebig {
+    @apply text-4xl text-white font-primary
+}
+
+.text-title {
+    @apply text-xl text-white font-primary
+}
+
+.text-support {
+    @apply text-white opacity-70 text-sm leading-relaxed tracking-wide
+}
+
+.text-overline {
+    @apply text-white opacity-70 text-xs font-tertiary tracking-[10px] uppercase
+}
+
+#app {
+    font-family: 'Roboto', sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+}
+
+body {
+    @apply bg-secondary-500 text-white;
+    background-image: url('/bg-image.png');
+    background-size: cover;
+    background-position: start;
+    min-height: 100vh;
+}
+
+::selection {
+    @apply bg-primary-500 text-blue-950;
+}
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    @apply bg-secondary-500;
+}
+
+::-webkit-scrollbar
+{
+    width: 2px;
+    @apply bg-secondary-500;
+}
+
+::-webkit-scrollbar-thumb
+{
+    @apply bg-white;
+}

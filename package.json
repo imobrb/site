@@ -1,0 +1,28 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "concurrently \"nuxt dev\" \"cd sanity && npm run dev\"",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare && cd sanity && npm install"
+  },
+  "dependencies": {
+    "@nuxtjs/sanity": "^1.11.3",
+    "@vercel/speed-insights": "^1.1.0",
+    "nuxt": "^3.11.2",
+    "primeicons": "^7.0.0",
+    "primevue": "^3.52.0",
+    "vue": "^3.4.27",
+    "vue-router": "^4.3.2"
+  },
+  "devDependencies": {
+    "@nuxtjs/sanity": "^1.13.3",
+    "@nuxtjs/tailwindcss": "^6.12.0",
+    "concurrently": "^9.1.2",
+    "nuxt-gtag": "^3.0.2",
+    "nuxt-primevue": "^0.3.1"
+  }
+}
