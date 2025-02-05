@@ -22,14 +22,14 @@ export default defineNuxtConfig({
   },
 
   gtag: {
-    id: 'G-8Y56LLEWZX',
+    id: '',
     enabled: false
   },
 
   runtimeConfig: {
     public: {
       gtag: {
-        id: 'G-8Y56LLEWZX'
+        id: ''
       }
     }
   },
