@@ -1,0 +1,39 @@
+{
+  "name": "site",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "check": "astro check",
+    "astro": "astro",
+    "astro:sync": "astro sync",
+    "ogimage:disable": "export SKIP_OG=true",
+    "ogimage:enable": "export SKIP_OG=false",
+    "build": "astro build",
+    "build:local": "cp ./env/consts.local.ts ./src/consts.ts && astro build",
+    "build:dev": "cp ./env/consts.dev.ts ./src/consts.ts && cp public/robots-no-prod.txt public/robots.txt && astro build",
+    "build:stage": "cp ./env/consts.stage.ts ./src/consts.ts && cp public/robots-no-prod.txt public/robots.txt && astro build",
+    "build:prod": "cp ./env/consts.prod.ts ./src/consts.ts && cp public/robots-prod.txt public/robots.txt && astro build",
+    "preview": "astro preview",
+    "preview:local": "cp ./env/consts.local.ts ./src/consts.ts && astro build:local && astro preview",
+    "preview:dev": "cp ./env/consts.dev.ts ./src/consts.ts && astro build:dev && astro preview",
+    "preview:stage": "cp ./env/consts.stage ./src/consts.ts && astro build:stage && astro preview",
+    "preview:prod": "cp ./env/consts.prod.ts ./src/consts.ts && astro build:prod && astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.2.5",
+    "primeflex": "^3.3.1",
+    "primeicons": "^7.0.0",
+    "primevue": "^4.2.5"
+  },
+  "devDependencies": {
+    "@astrojs/mdx": "^4.0.8",
+    "@astrojs/tailwind": "^6.0.0",
+    "@astrojs/vue": "^5.0.6",
+    "cssnano": "^7.0.6"
+  },
+  "engines": {
+    "node": ">=23.7.0"
+  }
+}
