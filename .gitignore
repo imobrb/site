@@ -30,3 +30,6 @@ sftp-config.json
 *.pem
 .old_yml_products
 public/robots.txt
+#Paths added by Azion CLI
+.edge/
+.vulcan

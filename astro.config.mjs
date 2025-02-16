@@ -11,7 +11,7 @@ export default defineConfig({
   site: 'https://www.imobiliariariobranco.com.br/',
   build: {
     inlineStylesheets: 'always',
-    assets: '_astro_site',
+    assets: '_astro',
   },
   integrations: [
     mdx(),
