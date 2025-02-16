@@ -1,7 +1,7 @@
 <template>
   <div class="w-full">
     <!-- Cabeçalho com Menubar -->
-    <Menubar class="bg-transparent border-none w-full" client:load>
+    <Menubar class="bg-transparent border-none w-full">
       <!-- Lado esquerdo: Logo da empresa -->
       <template #start>
         <img src="/logo-white.svg" alt="Logo Imobiliaria Rio Branco" class="h-10" />
@@ -43,7 +43,6 @@
 
       <!-- Drawer para conteúdo do menu -->
       <Drawer
-      client:load
         v-model:visible="menuOpen"
         position="right"
         :baseZIndex="1000"
