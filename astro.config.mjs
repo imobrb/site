@@ -16,7 +16,7 @@ export default defineConfig({
   integrations: [
     mdx(),
     tailwind({ applyBaseStyles: false }),
-    vue({ appEntrypoint: './src/_vue.config.js' })
+    vue({ appEntrypoint: 'vue.config.js' })
   ],
   markdown: {},
   compressHTML: productionBuild ? false : false,
