@@ -8,19 +8,9 @@ module.exports = {
   ],
   important: true,
   theme: {
-    extend: {
-      fontFamily: {
-        primary: ['Roboto', 'sans-serif'],
-        secondary: ['Roboto', 'sans-serif'],
-        tertiary: ['Gruppo', 'cursive'],
-      },
-      colors: {
-        'primary-500': 'rgb(57, 139, 225)',
-        'secondary-500': 'rgb(217, 94, 58)',
-      },
-    },
   },
   plugins: [
+	require('tailwindcss-primeui'),
     // Plugin para os componentes de texto (headings, body e overline)
     plugin(function ({ addComponents, theme }) {
       addComponents({
