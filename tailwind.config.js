@@ -5,7 +5,7 @@ module.exports = {
 		'node_modules/**/*.{html,vue}'
 	],
 	plugins: [
-		require('@tailwindcss/typography'),
+		// require('@tailwindcss/typography'),
 		function ({ addUtilities }) { },
 	],
 	important: true,

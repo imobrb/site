@@ -22,6 +22,7 @@
     "preview:prod": "cp ./env/consts.prod.ts ./src/consts.ts && astro build:prod && astro preview"
   },
   "dependencies": {
+    "@primevue/themes": "^4.2.5",
     "astro": "^5.2.5",
     "primeflex": "^3.3.1",
     "primeicons": "^7.0.0",
