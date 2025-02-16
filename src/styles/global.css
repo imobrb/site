@@ -27,6 +27,17 @@ DELETEDE WITH CONFLICT WITH NEW VERSION
     --p-primary-800: #1e488e;
     --p-primary-900: #16366d;
     --p-primary-950: #11254e;
+    --p-secondary-50:  #FFF8F5;
+    --p-secondary-100: #FEEFE7;
+    --p-secondary-200: #FDDCCF;
+    --p-secondary-300: #FCBBA7;
+    --p-secondary-400: #F99A7F;
+    --p-secondary-500: #D95E3A;
+    --p-secondary-600: #C24F32;
+    --p-secondary-700: #A9452B;
+    --p-secondary-800: #8E3B23;
+    --p-secondary-900: #75321C;
+    --p-secondary-950: #5D2917
     --p-surface-0: #ffffff;
     --p-surface-50: #fafafa;
     --p-surface-100: #f4f4f5;
