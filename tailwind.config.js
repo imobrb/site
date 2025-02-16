@@ -1,79 +1,162 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin')
+
 module.exports = {
-	content: [
-		'src/**/*.{astro,html,md,mdx,js,vue}',
-		'node_modules/**/*.{html,vue}'
-	],
-	plugins: [
-		// require('@tailwindcss/typography'),
-		function ({ addUtilities }) { },
-	],
-	important: true,
-	// darkMode: 'class',
-	theme: {
-		extend: {}
-	}
+  content: [
+    'src/**/*.{astro,html,md,mdx,js,vue}',
+    'node_modules/**/*.{html,vue}',
+  ],
+  important: true,
+  theme: {
+    extend: {
+      fontFamily: {
+        primary: ['Roboto', 'sans-serif'],
+        secondary: ['Roboto', 'sans-serif'],
+        tertiary: ['Gruppo', 'cursive'],
+      },
+      colors: {
+        'primary-500': 'rgb(57, 139, 225)',
+        'secondary-500': 'rgb(217, 94, 58)',
+      },
+    },
+  },
+  plugins: [
+    // Plugin para os componentes de texto (headings, body e overline)
+    plugin(function ({ addComponents, theme }) {
+      addComponents({
+        /* Headings */
+        '.text-heading-1': {
+          fontSize: theme('fontSize.base'),
+          fontWeight: theme('fontWeight.medium'),
+          lineHeight: '100%',
+          '@screen sm': {
+            fontSize: theme('fontSize.lg'),
+          },
+          '@screen lg': {
+            fontSize: theme('fontSize.xl'),
+          },
+        },
+        '.text-heading-2': {
+          fontSize: theme('fontSize.xl'),
+          fontWeight: theme('fontWeight.medium'),
+          lineHeight: '100%',
+          '@screen sm': {
+            fontSize: theme('fontSize.2xl'),
+          },
+          '@screen lg': {
+            fontSize: theme('fontSize.3xl'),
+          },
+        },
+        '.text-heading-3': {
+          fontSize: theme('fontSize.2xl'),
+          fontWeight: theme('fontWeight.medium'),
+          lineHeight: '100%',
+          '@screen sm': {
+            fontSize: theme('fontSize.3xl'),
+          },
+          '@screen lg': {
+            fontSize: theme('fontSize.4xl'),
+          },
+        },
+        '.text-heading-4': {
+          fontSize: theme('fontSize.3xl'),
+          fontWeight: theme('fontWeight.medium'),
+          lineHeight: '100%',
+          '@screen sm': {
+            fontSize: theme('fontSize.4xl'),
+          },
+          '@screen lg': {
+            fontSize: theme('fontSize.5xl'),
+          },
+        },
+        '.text-heading-5': {
+          fontSize: theme('fontSize.4xl'),
+          fontWeight: theme('fontWeight.medium'),
+          lineHeight: '100%',
+          '@screen sm': {
+            fontSize: theme('fontSize.5xl'),
+          },
+          '@screen lg': {
+            fontSize: theme('fontSize.6xl'),
+          },
+        },
+
+        /* Body's */
+        '.text-body-1': {
+          fontSize: theme('fontSize.xs'),
+          lineHeight: '150%',
+          '@screen sm': {
+            fontSize: theme('fontSize.xs'),
+            lineHeight: '150%',
+          },
+        },
+        '.text-body-2': {
+          fontSize: theme('fontSize.xs'),
+          lineHeight: '150%',
+          '@screen sm': {
+            fontSize: theme('fontSize.sm'),
+            lineHeight: '150%',
+          },
+        },
+        '.text-body-3': {
+          fontSize: theme('fontSize.sm'),
+          lineHeight: '150%',
+          '@screen sm': {
+            fontSize: theme('fontSize.base'),
+            lineHeight: '150%',
+          },
+        },
+        '.text-body-4': {
+          fontSize: theme('fontSize.base'),
+          lineHeight: '150%',
+          '@screen sm': {
+            fontSize: theme('fontSize.lg'),
+            lineHeight: '150%',
+          },
+        },
+        '.text-body-5': {
+          fontSize: theme('fontSize.lg'),
+          lineHeight: '150%',
+          '@screen sm': {
+            fontSize: theme('fontSize.xl'),
+            lineHeight: '150%',
+          },
+        },
+
+        /* Others */
+        '.text-overline': {
+          fontSize: '.625rem',
+          textTransform: 'uppercase',
+          letterSpacing: theme('letterSpacing.widest'),
+          '@screen sm': {
+            fontSize: theme('fontSize.xs'),
+          },
+        },
+      })
+    }),
+    // Plugin para a utility do container responsivo (.px-container)
+    plugin(function ({ addUtilities }) {
+      const newUtilities = {
+        '.px-container': {
+          maxWidth: '1366px',
+          margin: '0 auto',
+          paddingLeft: 'clamp(0.75rem, 0.7484rem + 2.6076vw, 2rem)',
+          paddingRight: 'clamp(0.75rem, 0.7484rem + 2.6076vw, 2rem)',
+        },
+        '@media (min-width: 768px)': {
+          '.px-container': {
+            paddingLeft: '2rem',
+            paddingRight: '2rem',
+          },
+        },
+        '@media (min-width: 1024px)': {
+          '.px-container': {
+            paddingLeft: 'clamp(2rem, -3.3683rem + 8.3879vw, 10rem)',
+            paddingRight: 'clamp(2rem, -3.3683rem + 8.3879vw, 10rem)',
+          },
+        },
+      }
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    }),
+  ],
 }
-
-
-// export default {\
-// https://github.com/imobrb/site/blob/main/tailwind.config.js
-//   content: [
-//     './assets/theme/**/*.{js,vue,ts}'
-// ],
-//   theme: {
-//     extend: {
-//       fontFamily: {
-//         primary: ['Roboto', 'sans-serif'],
-//         secondary: ['Roboto', 'sans-serif'],
-//         tertiary: ['Gruppo', 'cursive'],
-//       },
-//       colors: {
-//         'primary-500': 'rgb(255, 255, 255)',
-//         'primary-600': 'rgb(230, 230, 230)',
-//         'secondary-500': 'rgb(10, 10, 10)',
-//         'support-500': 'rgb(46, 53, 69)',
-//         'surface-0': 'rgb(255, 255, 255)',
-//         'surface-50': 'rgb(250, 250, 250)',
-//         'surface-100': 'rgb(244, 244, 245)',
-//         'surface-200': 'rgb(228, 228, 231)',
-//         'surface-300': 'rgb(212, 212, 216)',
-//         'surface-400': 'rgb(161, 161, 170)',
-//         'surface-500': 'rgb(113, 113, 122)',
-//         'surface-600': 'rgb(82, 82, 91)',
-//         'surface-700': 'rgb(63, 63, 70)',
-//         'surface-800': 'rgb(39, 39, 42)',
-//         'surface-900': 'rgb(24, 24, 27)',
-//         'surface-950': 'rgb(9, 9, 11)',
-//       }
-//     }
-//   },
-//   plugins: [
-//     function ({ addUtilities, variants }) {
-//       const newUtilities = {};
-      
-//       newUtilities['.px-container'] = {
-//         maxWidth: '1366px',
-//         margin: '0 auto',
-//         paddingLeft: 'clamp(0.75rem, 0.7484rem + 2.6076vw, 2rem);',
-//         paddingRight: 'clamp(0.75rem, 0.7484rem + 2.6076vw, 2rem);',
-//       };
-
-//       newUtilities['@media (min-width: 768px)'] = {
-//         '.px-container': {
-//           paddingLeft: '2rem',
-//           paddingRight: '2rem',
-//         }
-//       };
-
-//       newUtilities['@media (min-width: 1024px)'] = {
-//         '.px-container': {
-//           paddingLeft: 'clamp(2rem, -3.3683rem + 8.3879vw, 10rem);',
-//           paddingRight: 'clamp(2rem, -3.3683rem + 8.3879vw, 10rem);',
-//         }
-//       };
-  
-//       addUtilities(newUtilities, ['responsive', 'hover']);
-//     },
-//   ]
-// }
