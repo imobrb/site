@@ -1,11 +1,47 @@
 ---
-import Welcome from '../components/astro/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import type { loadRenderers } from "astro:container";
+// import Welcome from "../components/astro/Welcome.astro";
+import Layout from "../layouts/Layout.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+
+import Card from "primevue/card";
+import Button from "primevue/button";
 ---
 
 <Layout>
-	<Welcome />
+	<Card style="width: 25rem; overflow: hidden" client:load>
+		<template #header>
+			<img
+				alt="user header"
+				src="https://primefaces.org/cdn/primevue/images/card-vue.jpg"
+			/>
+		</template>
+		<Fragment slot="title">Advanced Card</Fragment>
+		<Fragment slot="subtitle">Card subtitle</Fragment>
+		
+		<Fragment slot="content">
+			<p class="m-0">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed
+				consequuntur error repudiandae numquam deserunt quisquam repellat libero
+				asperiores earum nam nobis, culpa ratione quam perferendis esse,
+				cupiditate neque quas!
+			</p>
+		</Fragment>
+
+		<Fragment slot="footer">
+			<div class="flex gap-4 mt-1">
+				
+				<Button
+					label="Cancel"
+					severity="secondary"
+					outlined
+					class="w-full"
+					client:load
+				/>
+				<Button label="Save" class="w-full" client:load />
+			</div>
+		</Fragment>
+	</Card>
 </Layout>

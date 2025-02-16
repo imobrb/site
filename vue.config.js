@@ -9,3 +9,5 @@ export default (app) => {
 		}
 	});
 }
+
+// para carregar que nem o site da Azion precisamos ter nosso tema

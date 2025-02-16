@@ -1,0 +1,11 @@
+/*
+DELETEDE WITH CONFLICT WITH NEW VERSION
+@import 'tailwindcss';
+*/
+
+@import 'primeflex/primeflex.css';
+@import 'primeicons/primeicons.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
