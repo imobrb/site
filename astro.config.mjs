@@ -22,28 +22,30 @@ export default defineConfig({
   compressHTML: productionBuild ? false : false,
   trailingSlash: 'always',
   vite: {
-    ssrBuild: true,
+    build: {
+      ssr: true
+    },
     server: {
       fs: {
         allow: ['..']
       }
     },
     plugins: [
-      cssnano({
-        preset: [
-          'default', {
-            discardComments: { removeAll: true },
-            minifyFontValues: { removeQuotes: false }
-          }
-        ]
-      })
+      {
+        name: 'cssnano',
+        ...cssnano({
+          preset: [
+            'default', {
+              discardComments: { removeAll: true },
+              minifyFontValues: { removeQuotes: false }
+            }
+          ]
+        })
+      }
     ],
     ssr: {
       noExternal: ['@astrojs/vue'],
       external: ['vue']
-    },
-    optimizeDeps: {
-      include: ['vue', 'primevue/config']
     }
   }
 })
