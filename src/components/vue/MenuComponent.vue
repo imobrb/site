@@ -39,33 +39,33 @@
           </div>
         </div>
       </template>
-      </Menubar>
+    </Menubar>
 
-      <!-- Drawer para conteúdo do menu -->
-      <Drawer
-        v-model:visible="menuOpen"
-        position="right"
-        :baseZIndex="1000"
-        modal
-        :showCloseIcon="false"
-        appendTo="body"
-      >
-        <template #header>
-          <div class="p-d-flex p-ai-center p-jc-between">
-            <h3 class="m-0">Menu</h3>
-            <Button icon="pi pi-times" class="p-button-text" @click="toggleMenu" />
-          </div>
-        </template>
-        <!-- Conteúdo do menu -->
-        <div class="p-mt-3">
-          <ul class="p-0" style="list-style: none;">
-            <li class="p-my-2"><a href="#item1">Item 1</a></li>
-            <li class="p-my-2"><a href="#item2">Item 2</a></li>
-            <li class="p-my-2"><a href="#item3">Item 3</a></li>
-          </ul>
+    <!-- Drawer para conteúdo do menu -->
+    <Drawer
+      v-model:visible="menuOpen"
+      position="right"
+      :baseZIndex="1000"
+      modal
+      :showCloseIcon="false"
+      appendTo="body"
+    >
+      <template #header>
+        <div class="p-d-flex p-ai-center p-jc-between">
+          <h3 class="m-0">Menu</h3>
+          <Button icon="pi pi-times" class="p-button-text" @click="toggleMenu" />
         </div>
-      </Drawer>
-    </div>
+      </template>
+      <!-- Conteúdo do menu -->
+      <div class="p-mt-3">
+        <ul class="p-0" style="list-style: none;">
+          <li class="p-my-2"><a href="#item1">Item 1</a></li>
+          <li class="p-my-2"><a href="#item2">Item 2</a></li>
+          <li class="p-my-2"><a href="#item3">Item 3</a></li>
+        </ul>
+      </div>
+    </Drawer>
+  </div>
 </template>
 
 <script>
