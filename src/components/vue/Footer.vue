@@ -6,6 +6,7 @@
             <Button
                 outline
                 rounded
+                size="small"
                 label="Voltar ao topo"
                 icon="pi pi-arrow-up"
                 class="text-white border-white"
