@@ -34,7 +34,7 @@
 }
 
 .p-button-icon-only.p-button-rounded {
-    @apply rounded-full h-10
+    @apply rounded-full h-10 w-10 px-0
 }
 
 .p-button-icon-only .p-button-label {
