@@ -16,17 +16,28 @@ module.exports = {
       addComponents({
         /* Headings */
         '.text-heading-1': {
-          fontSize: theme('fontSize.base'),
+          fontSize: theme('fontSize.sm'),
           fontWeight: theme('fontWeight.medium'),
           lineHeight: '100%',
           '@screen sm': {
-            fontSize: theme('fontSize.lg'),
+            fontSize: theme('fontSize.base'),
           },
           '@screen lg': {
-            fontSize: theme('fontSize.xl'),
+            fontSize: theme('fontSize.lg'),
           },
         },
         '.text-heading-2': {
+          fontSize: theme('fontSize.lg'),
+          fontWeight: theme('fontWeight.medium'),
+          lineHeight: '100%',
+          '@screen sm': {
+            fontSize: theme('fontSize.xl'),
+          },
+          '@screen lg': {
+            fontSize: theme('fontSize.2xl'),
+          },
+        },
+        '.text-heading-3': {
           fontSize: theme('fontSize.xl'),
           fontWeight: theme('fontWeight.medium'),
           lineHeight: '100%',
@@ -37,7 +48,7 @@ module.exports = {
             fontSize: theme('fontSize.3xl'),
           },
         },
-        '.text-heading-3': {
+        '.text-heading-4': {
           fontSize: theme('fontSize.2xl'),
           fontWeight: theme('fontWeight.medium'),
           lineHeight: '100%',
@@ -48,7 +59,7 @@ module.exports = {
             fontSize: theme('fontSize.4xl'),
           },
         },
-        '.text-heading-4': {
+        '.text-heading-5': {
           fontSize: theme('fontSize.3xl'),
           fontWeight: theme('fontWeight.medium'),
           lineHeight: '100%',
@@ -57,17 +68,6 @@ module.exports = {
           },
           '@screen lg': {
             fontSize: theme('fontSize.5xl'),
-          },
-        },
-        '.text-heading-5': {
-          fontSize: theme('fontSize.4xl'),
-          fontWeight: theme('fontWeight.medium'),
-          lineHeight: '100%',
-          '@screen sm': {
-            fontSize: theme('fontSize.5xl'),
-          },
-          '@screen lg': {
-            fontSize: theme('fontSize.6xl'),
           },
         },
 
