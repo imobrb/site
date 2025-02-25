@@ -4,9 +4,7 @@ import Aura from '@primevue/themes/aura';
 export default (app) => {
 	app.use(PrimeVue, {
 		ripple: false,
-		theme: {
-			preset: Aura
-		}
+		theme: 'none'
 	});
 }
 

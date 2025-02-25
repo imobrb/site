@@ -1,47 +1,59 @@
 ---
-import type { loadRenderers } from "astro:container";
-// import Welcome from "../components/astro/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
-
-import Card from "primevue/card";
-import Button from "primevue/button";
+import MenuComponent from "@/components/vue/MenuComponent.vue";
+import SearchBar from "@/components/vue/SearchBar.vue";
+import CardImovel from "@/components/vue/CardImovel.vue";
+import Button from 'primevue/button';
 ---
 
 <Layout>
-	<Card style="width: 25rem; overflow: hidden" client:load>
-		<template #header>
-			<img
-				alt="user header"
-				src="https://primefaces.org/cdn/primevue/images/card-vue.jpg"
-			/>
-		</template>
-		<Fragment slot="title">Advanced Card</Fragment>
-		<Fragment slot="subtitle">Card subtitle</Fragment>
-		
-		<Fragment slot="content">
-			<p class="m-0">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed
-				consequuntur error repudiandae numquam deserunt quisquam repellat libero
-				asperiores earum nam nobis, culpa ratione quam perferendis esse,
-				cupiditate neque quas!
-			</p>
-		</Fragment>
-
-		<Fragment slot="footer">
-			<div class="flex gap-4 mt-1">
-				
-				<Button
-					label="Cancel"
-					severity="secondary"
-					outlined
-					class="w-full"
-					client:load
-				/>
-				<Button label="Save" class="w-full" client:load />
+	<!-- Hero -->
+	<div class="flex w-full h-[calc(100vh-90px)] bg-primary-500 justify-center overflow-hidden">
+		<div class="flex flex-col w-full h-full items-center z-20 justify-between py-8 px-container">
+			<MenuComponent/>
+			<div class="flex flex-col w-full justify-center items-center h-full">
+				<span class="text-heading-5 text-white text-center font-bold max-w-2xl">
+					Há 50 anos reimaginando vidas.
+				</span>
 			</div>
-		</Fragment>
-	</Card>
+			<SearchBar/>
+		</div>
+		<div class="absolute z-0 h-[calc(100vh-90px)] w-full">
+			<video
+				class="object-cover opacity-10 pointer-events-none h-[calc(100vh-90px)] w-full"
+				src="/video-home.mp4"
+				autoplay
+				loop
+				muted
+				playsinline
+			/>
+		</div>
+	</div>
+	
+	<div class="flex flex-col gap-5 md:gap-10 py-4 md:py-16 px-container w-full">
+		<section class="flex flex-col gap-8 md:gap-16 w-full">
+			<!-- Title Section -->
+			<div class="flex w-full justify-between h-fit">
+				<h3 class="text-heading-3 font-bold">Imóveis Exclusivos para Alugar</h3>
+				<Button
+					rounded
+					outlined
+					size="small"
+					label="Ver todos os imóveis exclusivos para alugar"
+					icon="pi pi-arrow-right"
+					icon-pos="right"
+				/>
+			</div>
+			<!-- Card Grid -->
+			<div class="w-full !m-0!p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-x-14 md:gap-y-20">
+				<CardImovel/>
+				<CardImovel/>
+				<CardImovel/>
+				<CardImovel/>
+				<CardImovel/>
+				<CardImovel/>
+				<CardImovel/>
+			</div>
+		</section>
+	</div>
 </Layout>
