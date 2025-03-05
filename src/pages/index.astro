@@ -9,7 +9,13 @@ import Button from "primevue/button"
 const page = await getEntry('institutional', 'home');
 ---
 
-<Layout>
+<Layout
+	draft={page.data.draft}
+	noindex={page.data.noindex}
+	title={page.data.title}
+	description={page.data.description}
+	image={page.data.image}
+>
 	<!-- Hero -->
 	<div
 		class="flex w-full h-[calc(100vh-90px)] bg-primary-500 justify-center overflow-hidden"

@@ -1,7 +1,14 @@
 ---
+interface Props {
+  noindex: boolean;
+	title: string;
+	description: string;
+	image: string;
+}
+
 import Head from '@/components/seo/head.astro'
 import BaseLayout from './BaseLayout.astro';
-const { title, description, noindex } = Astro.props
+const { title, description, noindex, image } = Astro.props
 ---
 <BaseLayout>
 	<Fragment slot="head">
@@ -9,7 +16,7 @@ const { title, description, noindex } = Astro.props
       noindex={noindex}
       title={title}
       description={description}
-			lang='pt-br'
+			image={image}
     />
   </Fragment>
 

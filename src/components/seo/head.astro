@@ -3,7 +3,7 @@ interface Props {
   noindex: boolean;
 	title: string;
 	description: string;
-	lang: string;
+	image: string;
 }
 
 import { SITE_TITLE } from "@/consts";
@@ -12,7 +12,7 @@ import Robots from '@components/seo/robots.astro'
 import X from '@components/seo/x.astro'
 import OpenGraph from '@components/seo/opengraph.astro'
 
-const { noindex, title, description, lang } = Astro.props
+const { noindex, title, description, image } = Astro.props
 const fullTitle = `${title} | ${SITE_TITLE}`
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -30,8 +30,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <meta name="generator" content={Astro.generator} />
 <link rel="canonical" href={canonicalURL} />
 
-<OpenGraph title={fullTitle} description={description} image="" ogtype="" lang={lang}/>
-<X title={fullTitle} description={description} image="" />
+<OpenGraph title={fullTitle} description={description} image={image} ogtype="" />
+<X title={fullTitle} description={description} image={image} />
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" />
 
