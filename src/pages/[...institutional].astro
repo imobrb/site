@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 	return data.map((page) => {
 		return {
 			params: {
-				slugInstitutional: page.data.slug
+				institutional: page.data.slug
 			},
 			props: {
 				page: page.data,
@@ -24,9 +24,8 @@ export async function getStaticPaths() {
 }
 
 const { page } = Astro.props
-
-console.log('page: ', page)
 ---
+
 <Layout>
 	<!-- Hero -->
 	<div
