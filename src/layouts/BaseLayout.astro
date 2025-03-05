@@ -1,6 +1,8 @@
 ---
 import '@styles/global.css';
 
+import MenuComponent from '@components/vue/MenuComponent.vue'
+import Header from '@components/vue/Header.vue'
 import Footer from '@components/vue/Footer.vue'
 ---
 
@@ -10,14 +12,11 @@ import Footer from '@components/vue/Footer.vue'
   </head>
 
   <body id="app">
-    <header>
-      <!--
-			<Fragment slot="navigation">
-        <HeaderNavigation client:idle menuData={menuData} />
+    <Header>
+			<Fragment slot="menuright">
+        <MenuComponent client:load />
       </Fragment>
-			-->
-			tag header
-		</header>
+		</Header>
 
     <main>
       <slot />

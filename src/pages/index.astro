@@ -1,12 +1,19 @@
 ---
+interface Props {
+	draft: boolean;
+  noindex: boolean;
+	title: string;
+	description: string;
+	image: string;
+}
+
 import { getEntry } from 'astro:content'
 import Layout from '@layouts/Default.astro'
-import MenuComponent from '@components/vue/MenuComponent.vue'
-import SearchBar from "@components/vue/SearchBar.vue"
-import CardImovel from "@components/vue/CardImovel.vue"
-import Button from "primevue/button"
+import SearchBar from '@components/vue/SearchBar.vue'
+import CardImovel from '@components/vue/CardImovel.vue'
+import Button from 'primevue/button'
 
-const page = await getEntry('institutional', 'home');
+const page = await getEntry('institutional', 'home')
 ---
 
 <Layout
@@ -18,12 +25,11 @@ const page = await getEntry('institutional', 'home');
 >
 	<!-- Hero -->
 	<div
-		class="flex w-full h-[calc(100vh-90px)] bg-primary-500 justify-center overflow-hidden"
+		class="flex w-full h-[calc(100vh-90px)] bg-primary-500 justify-center overflow-hidden relative z-0"
 	>
 		<div
 			class="flex flex-col w-full h-full items-center z-20 justify-between py-8 px-container"
 		>
-			<MenuComponent client:load />
 			<div class="flex flex-col w-full justify-center items-center h-full">
 				<span class="text-heading-5 text-white text-center font-bold max-w-2xl">
 					Há 50 anos reimaginando vidas.
