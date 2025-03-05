@@ -1,0 +1,28 @@
+---
+import '@styles/global.css';
+
+import Footer from '@components/vue/Footer.vue'
+---
+
+<html lang="pt-br">
+  <head>
+    <slot name="head" />
+  </head>
+
+  <body id="app">
+    <header>
+      <!--
+			<Fragment slot="navigation">
+        <HeaderNavigation client:idle menuData={menuData} />
+      </Fragment>
+			-->
+			tag header
+		</header>
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

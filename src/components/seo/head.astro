@@ -1,0 +1,49 @@
+---
+interface Props {
+  noindex: boolean;
+	title: string;
+	description: string;
+	lang: string;
+}
+
+import { SITE_TITLE } from "@/consts";
+import Favicon from '@components/seo/favicon.astro'
+import Robots from '@components/seo/robots.astro'
+import X from '@components/seo/x.astro'
+import OpenGraph from '@components/seo/opengraph.astro'
+
+const { noindex, title, description, lang } = Astro.props
+const fullTitle = `${title} | ${SITE_TITLE}`
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<meta charset="utf-8" />
+<title>{fullTitle}</title>
+<meta name="title" content={fullTitle} />
+<meta name="description" content={description} />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#1e88e5" />
+
+<Favicon />
+<Robots noindex={noindex} />
+
+<meta name="generator" content={Astro.generator} />
+<link rel="canonical" href={canonicalURL} />
+
+<OpenGraph title={fullTitle} description={description} image="" ogtype="" lang={lang}/>
+<X title={fullTitle} description={description} image="" />
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" />
+
+<style>
+	html,
+	body {
+		font-family: 'DM Sans', sans-serif;
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+<!-- 
+<meta name="google-site-verification" content="6xTfBA-yo5PKxWAp1RxNypA618zn7VUcsB4aI-mt_r0" />
+<meta name="facebook-domain-verification" content="rn46fbva2sqwdlh39gqym0wg0vwy9x" /> -->

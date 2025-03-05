@@ -1,0 +1,11 @@
+---
+interface Props {
+  noindex: boolean;
+}
+
+import { SITE_URL } from "@/consts";
+const { noindex } = Astro.props
+const isToNoIndex = /https:\/\/www.imobiliariariobranco.com.br/.test(SITE_URL) && !noindex ? false : true
+---
+
+<meta name="robots" content={isToNoIndex ? "noindex" : "all"} />

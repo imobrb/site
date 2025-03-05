@@ -1,0 +1,17 @@
+---
+import Head from '@/components/seo/head.astro'
+import BaseLayout from './BaseLayout.astro';
+const { title, description, noindex } = Astro.props
+---
+<BaseLayout>
+	<Fragment slot="head">
+    <Head
+      noindex={noindex}
+      title={title}
+      description={description}
+			lang='pt-br'
+    />
+  </Fragment>
+
+  <slot />
+</BaseLayout>

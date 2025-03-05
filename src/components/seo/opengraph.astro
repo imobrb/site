@@ -1,0 +1,22 @@
+---
+interface Props {
+  lang: string;
+	title: string;
+  description: string;
+  image: string;
+	ogtype: string;
+}
+
+import { SITE_TITLE } from "@/consts";
+const { lang, title, description, ogtype, image } = Astro.props
+---
+
+<meta property="og:site_name" content={SITE_TITLE} />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:type" content={ogtype} />
+<meta property="og:locale" content={lang} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={image} />
+<meta property="og:image:secure_url" content={image} />
+<meta property="og:image:type" content="image/png" />
