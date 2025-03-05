@@ -7,13 +7,9 @@ import CardImovel from "@components/vue/CardImovel.vue"
 import Button from "primevue/button"
 
 export async function getStaticPaths() {
-	console.log("pages/index.astro");
-
 	const data = await getCollection(
 		'institutional', ({ data }) => data.draft !== true
 	);
-
-	console.log("data: ", data);
 
 	return data.map((page) => {
 		return {
