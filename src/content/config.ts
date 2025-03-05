@@ -5,7 +5,7 @@ const base = z.object({
 	description: z.string(),
 	draft: z.boolean().optional().default(false),
 	noindex: z.boolean().optional().default(false),
-	image: z.string().default(''),
+	image: z.string().default('')
 })
 
 const institutional = defineCollection({
