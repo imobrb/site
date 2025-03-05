@@ -1,29 +1,13 @@
 ---
-import { getCollection } from 'astro:content'
+import { getEntry } from 'astro:content'
 import Layout from '@layouts/Default.astro'
 import MenuComponent from '@components/vue/MenuComponent.vue'
 import SearchBar from "@components/vue/SearchBar.vue"
 import CardImovel from "@components/vue/CardImovel.vue"
 import Button from "primevue/button"
 
-export async function getStaticPaths() {
-	const data = await getCollection(
-		'institutional', ({ data }) => data.draft !== true
-	);
-
-	return data.map((page) => {
-		return {
-			params: {
-				institutional: page.data.slug
-			},
-			props: {
-				page: page.data,
-			}
-		}
-	})
-}
-
-const { page } = Astro.props
+const page = await getEntry('institutional', 'home');
+console.log('page: ', page)
 ---
 
 <Layout>
