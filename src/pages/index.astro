@@ -10,9 +10,10 @@ interface Props {
 import { getEntry } from 'astro:content'
 
 import Layout from '@layouts/Default.astro'
+
+import Divider from 'primevue/divider';
 import SearchBar from '@components/vue/SearchBar.vue'
 import SectionCardList from '@components/vue/SectionCardList.vue'
-
 import { SITE_URL } from '@/consts';
 
 const page = await getEntry('institutional', 'home')
@@ -25,7 +26,7 @@ const page = await getEntry('institutional', 'home')
 	description={page.data.description}
 	image={page.data.image}
 >
-	<!-- Hero -->
+
 	<div
 		class="flex w-full h-[calc(100vh-90px)] bg-primary-500 justify-center overflow-hidden relative z-0"
 	>
@@ -52,12 +53,23 @@ const page = await getEntry('institutional', 'home')
 		</div>
 	</div>
 
-	<div class="flex flex-col gap-5 md:gap-10 py-4 md:py-16 px-container w-full">
+	<div class="flex flex-col gap-8 md:gap-16 py-4 md:py-16 px-container w-full">
 		<SectionCardList
-			title="Imóveis Exclusivos para Alugar"
+			title="Exclusivos para Alugar"
 			link={{
 				href: `${SITE_URL}/exclusivo-locacao/`,
 				label: 'Ver todos os imóveis exclusivos para alugar'
+			}}
+			items={[]}
+		/>
+
+		<Divider />
+
+		<SectionCardList
+			title="Exclusivos para Comprar"
+			link={{
+				href: `${SITE_URL}/exclusivo-venda/`,
+				label: 'Ver todos os imóveis exclusivos para comprar'
 			}}
 			items={[]}
 		/>

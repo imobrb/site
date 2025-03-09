@@ -42,7 +42,7 @@
 		},
 		items: {
 			type: Array,
-			default(rawProps) {
+			default(value) {
 				return []
 			}
 			// required: true
