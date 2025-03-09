@@ -26,7 +26,7 @@ jobs:
     #   - name: syntax checking
     #     run: npm run check
       - name: build
-        run: npm run build
+        run: npm run build:prod
       - name: initial prepare to publish
         run: rm -rf .nvmrc .npmrc pnpm-lock.yaml .astro .github node_modules src .editorconfig .gitignore astro.config.ts LICENSE package-lock.json package.json README.md tsconfig.json public
       - name: moving prepared files to publish
