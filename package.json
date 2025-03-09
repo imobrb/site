@@ -25,7 +25,7 @@
   "dependencies": {
     "@primevue/themes": "^4.2.5",
     "@tailwindcss/postcss": "^4.0.6",
-    "astro": "^5.2.5",
+    "astro": "^5.4.2",
     "primeflex": "^3.3.1",
     "primeicons": "^7.0.0",
     "primevue": "^4.2.5",
@@ -34,9 +34,9 @@
     "vue": "^3.5.13"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^4.0.8",
+    "@astrojs/mdx": "^4.1.0",
     "@astrojs/tailwind": "^6.0.0",
-    "@astrojs/vue": "^5.0.6",
+    "@astrojs/vue": "^5.0.7",
     "cssnano": "^7.0.6",
     "postcss-import": "^16.1.0",
     "prettier": "^3.5.3"
