@@ -5,8 +5,8 @@ on:
       - main
 jobs:
   deploy:
-    name: Production
-    runs-on: ubuntu:latest
+    name: GCP Production
+    runs-on: ubuntu-latest
     steps:
       - name: CHECKOUT project
         uses: actions/checkout@v4
