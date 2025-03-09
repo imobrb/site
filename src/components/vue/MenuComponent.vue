@@ -28,7 +28,7 @@
 							class="bg-white text-black"
 							rounded
 							icon="pi pi-heart"
-							:label="favoritesCount"
+							:label="String(favoritesCount)"
 							@click="openFavorites"
 						/>
 						<!-- Botão de menu que alterna o ícone -->
@@ -79,45 +79,27 @@
 	</div>
 </template>
 
-<script>
+<script setup>
 	import { ref } from 'vue'
 	import Menubar from 'primevue/menubar'
 	import Button from 'primevue/button'
 	import Drawer from 'primevue/drawer'
 
-	export default {
-		name: 'MenuComponent',
-		components: {
-			Menubar,
-			Button,
-			Drawer
-		},
-		setup() {
-			const menuOpen = ref(false)
-			const favoritesCount = ref(12) // Exemplo de contador
+	// Define reactive state
+	const menuOpen = ref(false)
+	const favoritesCount = ref(12) // Exemplo de contador
 
-			const toggleMenu = () => {
-				menuOpen.value = !menuOpen.value
-				console.log('toggleMenu executed, menuOpen:', menuOpen.value)
-			}
+	// Methods
+	const toggleMenu = () => {
+		menuOpen.value = !menuOpen.value
+	}
 
-			const openWhatsapp = () => {
-				console.log('openWhatsapp executed')
-				window.open('https://wa.me/5518999999999', '_blank')
-			}
+	const openWhatsapp = () => {
+		window.open('https://wa.me/5518999999999', '_blank')
+	}
 
-			const openFavorites = () => {
-				console.log('openFavorites executed')
-			}
-
-			return {
-				menuOpen,
-				favoritesCount,
-				toggleMenu,
-				openWhatsapp,
-				openFavorites
-			}
-		}
+	const openFavorites = () => {
+		console.log('openFavorites executed')
 	}
 </script>
 
