@@ -1,7 +1,9 @@
+import { API_URL } from 'env/consts'
+
 class Imovel {
 	constructor() {
-		this.url = 'https://o2u4kwbklg.map.azionedge.net'
-		this.urlPhoto = 'https://o2u4kwbklg.map.azionedge.net'
+		this.url = API_URL
+		this.urlPhoto = API_URL
 		
 		this.operationType = 2 // RENTAL
 		this.propertyType = 1 // HOUSE
