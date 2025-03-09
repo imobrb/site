@@ -39,7 +39,8 @@
     "@astrojs/vue": "^5.0.7",
     "cssnano": "^7.0.6",
     "postcss-import": "^16.1.0",
-    "prettier": "^3.5.3"
+    "prettier": "^3.5.3",
+    "vite": "^6.2.1"
   },
   "engines": {
     "node": ">=23.7.0"
