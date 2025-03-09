@@ -38,7 +38,8 @@ jobs:
           version: '>= 363.0.0'
       - name: PUBLISHING
         run: |
-          gcloud storage rsync -r dist gs://imobrb-site
+          gsutil -m rsync -r dist gs://imobrb-site
+#          gcloud storage rsync -r dist gs://imobrb-site
       - name: UPDATING Google Cloud Storage files Cache-Control header
         run: |
           gcloud storage objects update -r gs://imobrb-site --cache-control="public, max-age=120"
