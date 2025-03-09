@@ -6,9 +6,7 @@ on:
 jobs:
   deploy:
     name: Production
-    runs-on: self-hosted
-    container:
-      image: ubuntu:latest
+    runs-on: ubuntu:latest
     steps:
       - name: CHECKOUT project
         uses: actions/checkout@v4
