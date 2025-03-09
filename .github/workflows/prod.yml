@@ -1,48 +1,48 @@
-name: www.imobiliariariobranco.com.br
-on:
-  push:
-    branches:
-      - main
-jobs:
-  deploy:
-    name: GCP Production
-    runs-on: ubuntu-latest
-    steps:
-      - name: CHECKOUT project
-        uses: actions/checkout@v4
-        with:
-          repository: imobrb/site
-          ref: main
-          path: '.'
-          clean: true
-          fetch-depth: '0'
-          lfs: 'false'
-      - name: SETTING Node[JS]
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.8.1
-      - name: INSTALLING BUILD DEPENDENCIES
-        run: |
-          npm install
-          cp ./env/consts.prod.ts ./src/consts.ts
-          npm run astro:sync
-      - name: BUILD
-        run: |
-          npm run build:prod
-      - name: 'AUTH Google Cloud'
-        uses: 'google-github-actions/auth@v2'
-        with:
-          credentials_json: ${{ secrets.GCP_AUTH }}
-      - uses: 'google-github-actions/setup-gcloud@v2'
-        with:
-          version: '>= 363.0.0'
-      - name: PUBLISHING
-        run: |
-          gcloud storage rsync -r dist gs://imobrb-site
-      - name: UPDATING Google Cloud Storage files Cache-Control header
-        run: |
-          gcloud storage objects update -r gs://imobrb-site --cache-control="public, max-age=120"
-      # - name: PURGE Edge Cache
-      #   run: |
-      #     npm install axios
-      #     node ./cicd/cdn-purge.js basic_token=${{ secrets.AZION_BASE64_TOKEN }}
+# name: www.imobiliariariobranco.com.br
+# on:
+#   push:
+#     branches:
+#       - main
+# jobs:
+#   deploy:
+#     name: GCP Production
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: CHECKOUT project
+#         uses: actions/checkout@v4
+#         with:
+#           repository: imobrb/site
+#           ref: main
+#           path: '.'
+#           clean: true
+#           fetch-depth: '0'
+#           lfs: 'false'
+#       - name: SETTING Node[JS]
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 20.8.1
+#       - name: INSTALLING BUILD DEPENDENCIES
+#         run: |
+#           npm install
+#           cp ./env/consts.prod.ts ./src/consts.ts
+#           npm run astro:sync
+#       - name: BUILD
+#         run: |
+#           npm run build:prod
+#       - name: 'AUTH Google Cloud'
+#         uses: 'google-github-actions/auth@v2'
+#         with:
+#           credentials_json: ${{ secrets.GCP_AUTH }}
+#       - uses: 'google-github-actions/setup-gcloud@v2'
+#         with:
+#           version: '>= 363.0.0'
+#       - name: PUBLISHING
+#         run: |
+#           gcloud storage rsync -r dist gs://imobrb-site
+#       - name: UPDATING Google Cloud Storage files Cache-Control header
+#         run: |
+#           gcloud storage objects update -r gs://imobrb-site --cache-control="public, max-age=120"
+#       # - name: PURGE Edge Cache
+#       #   run: |
+#       #     npm install axios
+#       #     node ./cicd/cdn-purge.js basic_token=${{ secrets.AZION_BASE64_TOKEN }}
