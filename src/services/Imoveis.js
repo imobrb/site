@@ -3,28 +3,28 @@ class Imovel {
 		this.url = 'https://o2u4kwbklg.map.azionedge.net'
 		this.urlPhoto = 'https://o2u4kwbklg.map.azionedge.net'
 		
-		this.operationType = '2' // RENTAL
-		this.propertyType = '1' // HOUSE
+		this.operationType = 2 // RENTAL
+		this.propertyType = 1 // HOUSE
 
 		this.maxValue = 99999999999
 		this.minValue = 0.0
-		this.page = '1'
-		this.purpose = 'null'
-		this.city = 'null'
-		this.neighborhood = 'null'
-		this.numBedrooms = 'null'
-		this.numSuites = 'null'
-		this.numGarageSpaces = 'null'
-		this.numBathrooms = 'null'
-		this.livableArea = 'null'
-		this.condoResidential = 'null'
-		this.propertyCode = 'null'
-		this.tradeIn = 'null'
-		this.launch = 'null'
-		this.video = 'null'
-		this.pageQuantity = 'null'
-		this.sortOrder = '1'
-		this.exclusives = 'null'
+		this.page = 1
+		this.purpose = null
+		this.city = null
+		this.neighborhood = null
+		this.numBedrooms = null
+		this.numSuites = null
+		this.numGarageSpaces = null
+		this.numBathrooms = null
+		this.livableArea = null
+		this.condoResidential = null
+		this.propertyCode = null
+		this.tradeIn = null
+		this.launch = null
+		this.video = null
+		this.pageQuantity = null
+		this.sortOrder = 1
+		this.exclusives = null
 	}
 
 	getImage(property, image, size = '888x500') {
@@ -123,36 +123,36 @@ class Imovel {
 	}
 
 	setData(data) {
-		this.operationType = data.operationType || '1'
-		this.purpose = data.purpose || 'null'
-		this.propertyType = data.propertyType || 'null'
-		this.city = data.city || 'null'
-		this.neighborhood = data.neighborhood ? data.neighborhood.replace(' ', '%').toUpperCase() : 'null'
-		this.numBedrooms = data.bedrooms || 'null'
-		this.numSuites = data.suites || 'null'
-		this.numGarageSpaces = data.garageSpaces || 'null'
-		this.numBathrooms = data.bathrooms || 'null'
-		this.livableArea = data.livableArea || 'null'
-		this.condoResidential = data.condoResidential || 'null'
-		this.maxValue = data.maxValue || '99999999999'
-		this.minValue = data.minValue || '0.00'
-		this.propertyCode = data.propertyCode || 'null'
-		this.tradeIn = data.tradeIn || 'null'
-		this.launch = data.launch || 'null'
-		this.video = data.video || 'null'
-		this.page = data.page || 'null'
-		this.pageQuantity = data.pageQuantity || '20'
-		this.sortOrder = data.sortOrder || '2'
-		this.exclusives = data.exclusives || 'null'
+		this.operationType = data.operationType || 1
+		this.purpose = data.purpose || null
+		this.propertyType = data.propertyType || null
+		this.city = data.city || null
+		this.neighborhood = data.neighborhood ? data.neighborhood.replace(' ', '%').toUpperCase() : null
+		this.numBedrooms = data.bedrooms || null
+		this.numSuites = data.suites || null
+		this.numGarageSpaces = data.garageSpaces || null
+		this.numBathrooms = data.bathrooms || null
+		this.livableArea = data.livableArea || null
+		this.condoResidential = data.condoResidential || null
+		this.maxValue = data.maxValue || 99999999999
+		this.minValue = data.minValue || 0.00
+		this.propertyCode = data.propertyCode || null
+		this.tradeIn = data.tradeIn || null
+		this.launch = data.launch || null
+		this.video = data.video || null
+		this.page = data.page || null
+		this.pageQuantity = data.pageQuantity || 20
+		this.sortOrder = data.sortOrder || 2
+		this.exclusives = data.exclusives || null
 		return this
 	}
 
-	async featuredProperties(limit = 1, sortOrder = '2') {
+	async featuredProperties(limit = 1, sortOrder = 2) {
 		const url = this.buildUrl(`/imoveis/destaques?limite=${limit}&ordenacao=${sortOrder}`)
 		return await this.request('GET', url)
 	}
 
-	async exclusiveProperties(limit = 1, sortOrder = '2') {
+	async exclusiveProperties(limit = 1, sortOrder = 2) {
 		const url = this.buildUrl(`/imoveis/exclusivos?limite=${limit}&ordenacao=${sortOrder}`)
 		const request = await this.request('GET', url)
 		request.sale = this.setExclusiveSingle(request.sale)
