@@ -9,14 +9,17 @@ interface Props {
 
 import { getEntry } from 'astro:content'
 
+import { SITE_URL } from '@/consts'
 import Layout from '@layouts/Default.astro'
-
 import Divider from 'primevue/divider';
 import SearchBar from '@components/vue/SearchBar.vue'
 import SectionCardList from '@components/vue/SectionCardList.vue'
-import { SITE_URL } from '@/consts';
+import ServiceImoveis from '@services/Imoveis'
 
 const page = await getEntry('institutional', 'home')
+const serviceImoveis = new ServiceImoveis()
+
+const featuredProperties = await serviceImoveis.featuredProperties(6, 2)
 ---
 
 <Layout
@@ -60,7 +63,7 @@ const page = await getEntry('institutional', 'home')
 				href: `${SITE_URL}/exclusivo-locacao/`,
 				label: 'Ver todos os imóveis exclusivos para alugar'
 			}}
-			items={[]}
+			items={featuredProperties.locacao}
 		/>
 
 		<Divider />
@@ -71,7 +74,7 @@ const page = await getEntry('institutional', 'home')
 				href: `${SITE_URL}/exclusivo-venda/`,
 				label: 'Ver todos os imóveis exclusivos para comprar'
 			}}
-			items={[]}
+			items={featuredProperties.venda}
 		/>
 	</div>
 </Layout>

@@ -1,0 +1,66 @@
+{
+  "dadosBasicos": {
+    "codigo": "3066",
+    "idtipoimovel": 3,
+    "tipoimovel": "APARTAMENTO",
+    "idfinalidade": "R",
+    "finalidade": "RESIDENCIAL",
+    "idpadrao": null,
+    "padrao": null,
+    "tiponegocio": "LOCA\u00c7\u00c3O",
+    "endereco": "RUA JOAQUIM NABUCO",
+    "numero": "623",
+    "complemento": "APTO. 103",
+    "bairro": "CENTRO",
+    "cidade": "PRESIDENTE PRUDENTE",
+    "uf": "SP",
+    "idcondominioresidencialedificio": 7,
+    "condominioresidencialedificio": "COND ED ALEXANDRE FERNANDES",
+    "divulgasitelocacao": "S",
+    "destaquelocacao": "S",
+    "divulgavalorlocacao": "S",
+    "anunciolocacao": "<p>Apartamento Edificio Alexandre Fernandes (alvenaria - laje) contendo 02 quartos, 02 armarios embutidos, sala visita, cozinha, banheiro social, quarto e banheiro empregada, area servico, sem garagem. OBS: ALUGUEL\u00a0 ENCARGOS. OBS: PARA VISITAR ESTE IMOVEL ENTRAR EM CONTATO (18)2104-6944 \/ 99604-1075 E AGENDAR HORARIO.\u00a0<\/p>",
+    "divulgasitevenda": "S",
+    "destaquevenda": "S",
+    "divulgavalorvenda": "N",
+    "anunciovenda": null,
+    "areaterreno": "108.000",
+    "permuta": "N",
+    "financiamento": null,
+    "lancamento": "N",
+    "valoriptu": "167.73",
+    "valorcondominio": "660.00",
+    "video": null
+  },
+  "comodos": [
+    {
+      "id": 1,
+      "nome": "DORMIT\u00d3RIO(S)",
+      "quantidade": "2"
+    },
+    {
+      "id": 10,
+      "nome": "COZINHA",
+      "quantidade": "1"
+    },
+    {
+      "id": 16,
+      "nome": "BANHEIRO",
+      "quantidade": "1"
+    },
+    {
+      "id": 24,
+      "nome": "SALA DE VISITA",
+      "quantidade": "1"
+    },
+    {
+      "id": 26,
+      "nome": "\u00c1REA DE SERVI\u00c7O",
+      "quantidade": "1"
+    }
+  ],
+  "areasDeLazer": [],
+  "valorLocacao": "750.00",
+  "valorVenda": 0,
+  "fotos": "230224-1.JPG"
+},

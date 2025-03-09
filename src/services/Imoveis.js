@@ -1,10 +1,10 @@
-import { API_URL } from 'env/consts'
+import { API_URL } from '@/consts'
 
 class Imovel {
 	constructor() {
 		this.url = API_URL
 		this.urlPhoto = API_URL
-		
+
 		this.operationType = 2 // RENTAL
 		this.propertyType = 1 // HOUSE
 
@@ -137,7 +137,7 @@ class Imovel {
 		this.livableArea = data.livableArea || null
 		this.condoResidential = data.condoResidential || null
 		this.maxValue = data.maxValue || 99999999999
-		this.minValue = data.minValue || 0.00
+		this.minValue = data.minValue || 0.0
 		this.propertyCode = data.propertyCode || null
 		this.tradeIn = data.tradeIn || null
 		this.launch = data.launch || null
