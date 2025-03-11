@@ -1,21 +1,23 @@
 ---
 import '@styles/global.css';
-import Footer from '@components/vue/Footer.vue'
-import Header from '@components/vue/Header.vue'
-import MenuComponent from '@components/vue/MenuComponent.vue'
----
+import MenuComponent from '@components/vue/MenuComponent.vue';
+import Header from '@components/vue/Header.vue';
+import Footer from '@components/vue/Footer.vue';
 
+// Determina se a rota atual é a home
+const isHome = Astro.url.pathname === '/';
+---
 <html lang="pt-br">
   <head>
     <slot name="head" />
   </head>
 
   <body id="app">
-    <Header>
-			<Fragment slot="menuright">
+    <Header isHome={isHome}>
+      <Fragment slot="menuright">
         <MenuComponent client:load />
       </Fragment>
-		</Header>
+    </Header>
 
     <main>
       <slot />
