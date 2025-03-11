@@ -1,0 +1,33 @@
+---
+import Layout from '@layouts/BaseLayout.astro'
+import ImovelPage from '@/components/vue/ImovelPage.vue'
+
+// Exporta a função getStaticPaths sem depender de variáveis externas
+export async function getStaticPaths() {
+  const propertyData = await import('../../mock/get-exclusives.js')
+  const allProperties = propertyData.default.venda || []
+  return allProperties.map((property) => ({
+    params: { id: String(property.dadosBasicos.codigo) }
+  }))
+}
+
+// Carrega os dados para a página atual
+const propertyData = await import('../../mock/get-exclusives.js')
+const allProperties = propertyData.default.venda || []
+
+// Obtém o id da rota
+const { id } = Astro.params
+
+// Filtra o imóvel correspondente
+const property = allProperties.find(
+  (prop) => String(prop.dadosBasicos.codigo) === id
+)
+
+if (!property) {
+  throw new Error(`Imóvel com código ${id} não encontrado.`)
+}
+---
+<Layout>
+  <!-- Passe os dados do imóvel para o componente ImovelPage -->
+  <ImovelPage client:load :property="property" />
+</Layout>
