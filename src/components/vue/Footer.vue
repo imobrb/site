@@ -9,6 +9,7 @@
 					label="Voltar ao topo"
 					icon="pi pi-arrow-up"
 					class="text-white border-white"
+					@click="scrollToTop"
 				/>
 			</div>
 
@@ -232,6 +233,16 @@
 </template>
 
 <script setup>
-	import Button from 'primevue/button'
-	import Divider from 'primevue/divider'
+import Button from 'primevue/button'
+import Divider from 'primevue/divider'
+
+function scrollToTop() {
+  const topElement = document.getElementById('app')
+  if (topElement) {
+    topElement.scrollIntoView({ behavior: 'smooth' })
+  } else {
+    // Fallback, caso não encontre o elemento:
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+}
 </script>
