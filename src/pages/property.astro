@@ -1,0 +1,8 @@
+---
+import Layout from '@layouts/BaseLayout.astro'
+import PropertyPage from '@/components/vue/PropertyPage.vue'
+---
+<Layout>
+  <!-- O componente PropertyPage será renderizado dentro do slot <main> do layout -->
+  <PropertyPage client:load />
+</Layout>
