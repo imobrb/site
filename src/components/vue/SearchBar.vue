@@ -21,24 +21,26 @@
 			}
 		}">
 			<template #header>
-				<div class="flex w-full items-center">
-					<Button
-						rounded
-						:label="selectMode"
-						icon="pi pi-chevron-down"
-						icon-pos="right"
-						severity="primary"
-						class="h-12 px-8"
-					/>
-					<InputText
-						placeholder="Buscar imóveis..."
-						class="w-full bg-transparent text-black border-none px-4"
-					/>
+				<div class="flex flex-col md:flex-row w-full items-center gap-2">
+					<div class="flex w-full">
+						<Button
+							rounded
+							:label="selectMode"
+							icon="pi pi-chevron-down"
+							icon-pos="right"
+							severity="primary"
+							class="h-12 px-8"
+						/>
+						<InputText
+							placeholder="Buscar imóveis..."
+							class="w-full bg-transparent text-black border-none px-4"
+						/>
+					</div>
 					<Button
 						text
 						rounded
 						@click.prevent="togglePanel"
-						class="flex items-center gap-2 px-4 h-12"
+						class="flex items-center gap-2 px-4 h-12 w-full md:w-auto"
 					>
 						<i :class="['pi', expanded ? 'pi-minus' : 'pi-plus']"></i>
 						<span>Filtros</span>
