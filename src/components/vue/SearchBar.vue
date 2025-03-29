@@ -3,6 +3,7 @@
 		<Panel
 		ref="panel"
 		:toggleable="true"
+		:collapsed="true"
 		@toggle="onToggle"
 		class="w-full"
 		:pt="{
@@ -27,7 +28,7 @@
 						icon="pi pi-chevron-down"
 						icon-pos="right"
 						severity="primary"
-						class="h-12"
+						class="h-12 px-8"
 					/>
 					<InputText
 						placeholder="Buscar imóveis..."
