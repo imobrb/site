@@ -104,17 +104,17 @@ export default {
 
 		// Arrays com os links
 		const section1Items = [
-			{ label: 'Alugar Imóveis', href: '#item1' },
-			{ label: 'Comprar Imóveis', href: '#item1' },
-			{ label: 'Anunciar Imóveis', href: '#item1' }
+			{ label: 'Alugar Imóveis', href: '/alugar-imovel' },
+			{ label: 'Comprar Imóveis', href: '/comprar-imovel' },
+			{ label: 'Anunciar Imóveis', href: '/cadastre-seu-imovel' }
 		]
 
 		const section2Items = [
-			{ label: 'Home', href: '#item1', icon: 'pi pi-arrow-right' },
-			{ label: 'Área do Cliente', href: '#item1', icon: 'pi pi-arrow-right' },
-			{ label: 'Contato', href: '#item1', icon: 'pi pi-arrow-right' },
-			{ label: 'Blog', href: '#item1', icon: 'pi pi-arrow-right' },
-			{ label: 'Empresa', href: '#item1', icon: 'pi pi-arrow-right' }
+			{ label: 'Home', href: '/', icon: 'pi pi-arrow-right' },
+			{ label: 'Área do Cliente', href: 'https://riobranco.immobilissistemas.com.br/immobilis/portal/login.php', icon: 'pi pi-arrow-right' },
+			{ label: 'Contato', href: '/contato', icon: 'pi pi-arrow-right' },
+			{ label: 'Blog', href: '/blog', icon: 'pi pi-arrow-right' },
+			{ label: 'Empresa', href: '/empresa', icon: 'pi pi-arrow-right' }
 		]
 
 		// Watcher para adicionar ou remover a classe do body

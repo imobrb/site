@@ -60,7 +60,7 @@ const featuredProperties = await serviceImoveis.featuredProperties(6, 2)
 		<SectionCardList
 			title="Exclusivos para Alugar"
 			link={{
-				href: `${SITE_URL}/exclusivo-locacao/`,
+				href: `${SITE_URL}/exclusivo-locacao`,
 				label: 'Ver todos os imóveis exclusivos para alugar'
 			}}
 			items={featuredProperties.locacao}
@@ -71,7 +71,7 @@ const featuredProperties = await serviceImoveis.featuredProperties(6, 2)
 		<SectionCardList
 			title="Exclusivos para Comprar"
 			link={{
-				href: `${SITE_URL}/exclusivo-venda/`,
+				href: `${SITE_URL}/exclusivo-venda`,
 				label: 'Ver todos os imóveis exclusivos para comprar'
 			}}
 			items={featuredProperties.venda}
