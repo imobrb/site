@@ -13,12 +13,95 @@
 				/>
 			</div>
 
+			<Panel
+		ref="panel"
+		:toggleable="true"
+		@toggle="onToggle"
+		class="w-full"
+		:pt="{
+			root: { 
+				class: 'bg-white border-none rounded-[2rem] gap-2 flex flex-col'
+			},
+			header: {
+				class: 'bg-transparent border-none'
+			},
+			content: {
+				class: 'pt-0'
+			}
+		}">
+			<template #header>
+				<div class="flex w-full items-center">
+					<Button
+						rounded
+						:label="selectMode"
+						icon="pi pi-chevron-down"
+						icon-pos="right"
+						severity="primary"
+						class="h-12"
+					/>
+					<InputText
+						placeholder="Buscar imóveis..."
+						class="w-full bg-transparent text-black border-none px-4"
+					/>
+					<Button
+						text
+						rounded
+						@click="togglePanel"
+						class="flex items-center gap-1 px-4 h-12"
+					>
+						<span>Filtros</span>
+						<i :class="['pi', isExpanded ? 'pi-chevron-up' : 'pi-chevron-down']"></i>
+					</Button>
+				</div>
+			</template>
+			<div class="flex flex-wrap gap-2">
+				<Button
+					outlined
+					size="small"
+					rounded="full"
+					severity="secondary"
+					label="Tipo de Negócio"
+					icon="pi pi-chevron-down"
+					icon-pos="right"
+				/>
+				<Button
+					outlined
+					rounded="full"
+					size="small"
+					severity="secondary"
+					label="Tipo de Imóvel"
+					icon="pi pi-chevron-down"
+					icon-pos="right"
+				/>
+				<Button
+					outlined
+					rounded="full"
+					size="small"
+					severity="secondary"
+					label="Cidade"
+					icon="pi pi-chevron-down"
+					icon-pos="right"
+				/>
+				<Button
+					outlined
+					rounded="full"
+					size="small"
+					severity="secondary"
+					label="Detalhes"
+					icon="pi pi-chevron-down"
+					icon-pos="right"
+				/>
+			</div>
+		</Panel>
+
 			<!-- Nav -->
 			<div class="flex flex-wrap md:flex-row gap-4 justify-between w-full">
 				<div class="flex flex-col gap-4">
 					<h3 class="text-heading-2 text-left">Institucional</h3>
 					<div class="flex flex-col gap-1 items-start">
 						<Button
+							as="a"
+							href="/empresa"
 							text
 							label="Empresa"
 							icon="pi pi-arrow-right"
@@ -26,6 +109,8 @@
 							size="small"
 						/>
 						<Button
+							as="a"
+							href="/contato"
 							text
 							label="Contato"
 							icon="pi pi-arrow-right"
@@ -33,6 +118,8 @@
 							size="small"
 						/>
 						<Button
+							as="a"
+							href="/duvidas-frequentes"
 							text
 							label="Duvidas Frequentes"
 							icon="pi pi-arrow-right"
@@ -40,6 +127,8 @@
 							size="small"
 						/>
 						<Button
+							as="a"
+							href="/servicos-prestados"
 							text
 							label="Serviços prestados"
 							icon="pi pi-arrow-right"
@@ -53,6 +142,9 @@
 					<h3 class="text-heading-2 text-left">Ferramentas</h3>
 					<div class="flex flex-col gap-1 items-start">
 						<Button
+							as="a"
+							href="https://riobranco.immobilissistemas.com.br/immobilis/portal/login.php"
+							target="_blank"
 							text
 							label="Área do cliente"
 							icon="pi pi-arrow-right"
@@ -60,6 +152,8 @@
 							size="small"
 						/>
 						<Button
+							as="a"
+							href="/cadastre-seu-imovel"
 							text
 							label="Cadastre seu imóvel"
 							icon="pi pi-arrow-right"
@@ -67,6 +161,8 @@
 							size="small"
 						/>
 						<Button
+							as="a"
+							href="/financiamento"
 							text
 							label="Financiamento"
 							icon="pi pi-arrow-right"
@@ -80,6 +176,8 @@
 					<h3 class="text-heading-2 text-left">Aluguel</h3>
 					<div class="flex flex-col gap-1 items-start">
 						<Button
+							as="a"
+							href="/alugar-imovel/?tipo_imovel=3"
 							text
 							label="Apartamentos"
 							icon="pi pi-arrow-right"
@@ -87,6 +185,8 @@
 							size="small"
 						/>
 						<Button
+							as="a"
+							href="/alugar-imovel/?tipo_imovel=1"
 							text
 							label="Casas"
 							icon="pi pi-arrow-right"
@@ -94,6 +194,8 @@
 							size="small"
 						/>
 						<Button
+							as="a"
+							href="/alugar-imovel/?tipo_imovel=18"
 							text
 							label="Salões comerciais"
 							icon="pi pi-arrow-right"
@@ -101,6 +203,8 @@
 							size="small"
 						/>
 						<Button
+							as="a"
+							href="/alugar-imovel/?tipo_imovel=2"
 							text
 							label="Sobrados"
 							icon="pi pi-arrow-right"
@@ -114,6 +218,8 @@
 					<h3 class="text-heading-2 text-left">Vendas</h3>
 					<div class="flex flex-col gap-1 items-start">
 						<Button
+							as="a"
+							href="/comprar-imovel/?tipo_imovel=3"
 							text
 							label="Apartamentos"
 							icon="pi pi-arrow-right"
@@ -121,6 +227,8 @@
 							size="small"
 						/>
 						<Button
+							as="a"
+							href="/comprar-imovel/?tipo_imovel=1"
 							text
 							label="Casas"
 							icon="pi pi-arrow-right"
@@ -128,6 +236,8 @@
 							size="small"
 						/>
 						<Button
+							as="a"
+							href="/comprar-imovel/?tipo_imovel=18"
 							text
 							label="Salões comerciais"
 							icon="pi pi-arrow-right"
@@ -135,6 +245,8 @@
 							size="small"
 						/>
 						<Button
+							as="a"
+							href="/comprar-imovel/?tipo_imovel=2"
 							text
 							label="Sobrados"
 							icon="pi pi-arrow-right"
@@ -142,6 +254,8 @@
 							size="small"
 						/>
 						<Button
+							as="a"
+							href="/comprar-imovel/?tipo_imovel=7"
 							text
 							label="Terrenos"
 							icon="pi pi-arrow-right"
@@ -235,6 +349,7 @@
 <script setup>
 import Button from 'primevue/button'
 import Divider from 'primevue/divider'
+import Panel from 'primevue/panel'
 
 function scrollToTop() {
   const topElement = document.getElementById('app')

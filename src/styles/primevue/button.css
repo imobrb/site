@@ -185,10 +185,10 @@
 .p-button-outlined.p-button-secondary {
 	@apply bg-transparent enabled:hover:bg-surface-50 enabled:active:bg-surface-100
         border-surface-200 enabled:hover:border-surface-200 enabled:active:border-surface-200
-        text-surface-500 enabled:hover:text-surface-500 enabled:active:text-surface-500
+        text-surface-900 enabled:hover:text-surface-900 enabled:active:text-surface-900
         dark:bg-transparent dark:enabled:hover:bg-white/5 dark:enabled:active:bg-white/15
-        dark:border-surface-700 dark:enabled:hover:border-surface-700 dark:enabled:active:border-surface-700
-        dark:text-surface-400 dark:enabled:hover:text-surface-400 dark:enabled:active:text-surface-400;
+        dark:border-surface-400 dark:enabled:hover:border-surface-400 dark:enabled:active:border-surface-400
+        dark:text-surface-600 dark:enabled:hover:text-surface-600 dark:enabled:active:text-surface-700 px-3;
 }
 
 .p-button-outlined.p-button-success {
