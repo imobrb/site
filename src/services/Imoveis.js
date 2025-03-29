@@ -84,14 +84,26 @@ class Imovel {
 		const url = this.buildUrl(`/imoveis-id/${id}`)
 		const request = await this.request('GET', url)
 
-		const totalProperties = request && !request.message ? 1 : 0
-		const result = { totalProperties }
-
-		if (request && !request.message) {
-			result.data = request
+		if (!request) {
+			return {
+				totalProperties: 0,
+				data: null,
+				error: 'Falha ao buscar imóvel'
+			}
 		}
 
-		return result
+		if (request.message) {
+			return {
+				totalProperties: 0,
+				data: null,
+				error: request.message
+			}
+		}
+
+		return {
+			totalProperties: 1,
+			data: request
+		}
 	}
 
 	async initialInfo() {
@@ -118,6 +130,7 @@ class Imovel {
 	}
 
 	setExclusiveSingle(data) {
+		if (!Array.isArray(data)) return []
 		data.forEach((exclusiveItem) => {
 			exclusiveItem.exclusive = true
 		})

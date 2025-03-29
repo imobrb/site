@@ -1,33 +1,46 @@
 ---
 import Layout from '@layouts/BaseLayout.astro'
 import ImovelPage from '@/components/vue/ImovelPage.vue'
+import ServiceImoveis from '@/services/Imoveis'
 
 // Exporta a função getStaticPaths sem depender de variáveis externas
 export async function getStaticPaths() {
-  const propertyData = await import('../../mock/get-exclusives.js')
-  const allProperties = propertyData.default.venda || []
-  return allProperties.map((property) => ({
+  const serviceImoveis = new ServiceImoveis()
+  
+  // Busca imóveis exclusivos
+  const exclusives = await serviceImoveis.exclusiveProperties(999, 2)
+  const exclusiveProperties = [...(exclusives.sale || []), ...(exclusives.rental || [])]
+  
+  // Busca imóveis em destaque
+  const featured = await serviceImoveis.featuredProperties(999, 2)
+  const featuredProperties = [...(featured.venda || []), ...(featured.locacao || [])]
+  
+  // Combina todos os imóveis e remove duplicatas baseado no código
+  const allProperties = [...exclusiveProperties, ...featuredProperties]
+  const uniqueProperties = allProperties.filter((property, index, self) =>
+    index === self.findIndex((p) => p.dadosBasicos.codigo === property.dadosBasicos.codigo)
+  )
+  
+  return uniqueProperties.map((property) => ({
     params: { id: String(property.dadosBasicos.codigo) }
   }))
 }
 
 // Carrega os dados para a página atual
-const propertyData = await import('../../mock/get-exclusives.js')
-const allProperties = propertyData.default.venda || []
-
-// Obtém o id da rota
+const serviceImoveis = new ServiceImoveis()
 const { id } = Astro.params
 
-// Filtra o imóvel correspondente
-const property = allProperties.find(
-  (prop) => String(prop.dadosBasicos.codigo) === id
-)
+// Obtém o imóvel correspondente
+const propertyResult = await serviceImoveis.getPropertyByCode(id)
 
-if (!property) {
-  throw new Error(`Imóvel com código ${id} não encontrado.`)
+// Verifica se houve erro na busca do imóvel
+if (!propertyResult.data) {
+  return Astro.redirect('/404')
 }
+
+const property = propertyResult.data
 ---
 <Layout>
   <!-- Passe os dados do imóvel para o componente ImovelPage -->
-  <ImovelPage client:load :property="property" />
+  <ImovelPage client:load property={property} />
 </Layout>

@@ -19,7 +19,7 @@ export default defineConfig({
   ],
   markdown: {},
   compressHTML: productionBuild ? false : false,
-  trailingSlash: 'always',
+  trailingSlash: 'never',
   vite: {
     ssrBuild: true,
     server: {
