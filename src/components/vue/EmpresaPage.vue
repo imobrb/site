@@ -2,7 +2,9 @@
     <div class="flex flex-col gap-10 md:gap-20 px-container w-full py-8 md:pb-24 pb-12">
       <!-- Header Section -->
       <div class="flex flex-col gap-6">
-        <Breadcrumb :model="breadcrumbItems" class="border-none p-0" />
+        <Breadcrumb
+            :current-page="currentPage"
+        />
         <div class="flex justify-between items-start">
           <div class="max-w-2xl">
             <h1 class="text-heading-4 mb-4">Empresa</h1>
@@ -165,10 +167,10 @@
   
   import { ref } from 'vue';
   
-  const breadcrumbItems = ref([
-    { label: 'HOME', to: '/' },
-    { label: 'EMPRESA' }
-  ]);
+  const currentPage = {
+    label: 'Empresa',
+    url: '/empresa'
+}
   
   const selectedYear = ref('1970');
   
