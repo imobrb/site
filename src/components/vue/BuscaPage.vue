@@ -65,10 +65,35 @@
                 <h1 class="text-heading-3 text-surface-800">Rio Branco</h1>
             </div>
             <span class="text-body-1 text-surface-500 md:hidden flex">271 Imóveis encontrados nessa região.</span>
-            <Select :options="ordem" optionLabel="name" optionValue="code" placeholder="Ordenar por" class="rounded-full md:w-56 p-variant-secondary" />
+            <div class="flex gap-2 items-center">
+                <div class="flex border rounded-full p-1 gap-1">
+                    <Button
+                        icon="pi pi-th-large"
+                        :class="[
+                            'rounded-full w-8 h-8',
+                            !isListMode ? 'p-button-primary' : 'p-button-text'
+                        ]"
+                        @click="isListMode = false"
+                    />
+                    <Button
+                        icon="pi pi-list"
+                        :class="[
+                            'rounded-full w-8 h-8',
+                            isListMode ? 'p-button-primary' : 'p-button-text'
+                        ]"
+                        @click="isListMode = true"
+                    />
+                </div>
+                <Select :options="ordem" optionLabel="name" optionValue="code" placeholder="Ordenar por" class="rounded-full md:w-56 p-variant-secondary" />
+            </div>
         </div>
 
-            <div class="grid m-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-x-14 md:gap-y-20 mb-16">
+            <div :class="[
+                'm-0 mb-16',
+                isListMode 
+                    ? 'flex flex-col gap-4 md:gap-y-12' 
+                    : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-x-14 md:gap-y-20'
+            ]">
                 <CardImovel 
                     v-for="imovel in imoveis" 
                     :key="imovel.id"
@@ -78,6 +103,7 @@
                     :image="imovel.image"
                     :price="imovel.price"
                     :link="imovel.link"
+                    :list-mode="isListMode"
                 />
             </div>
         </div>
@@ -98,6 +124,7 @@ import { ref } from 'vue'
 import { json as highlightsData } from '../../mock/get-highlights.js'
 
 const showFilters = ref(false)
+const isListMode = ref(false)
 const currentPage = {
     label: 'Busca de Imóveis',
     url: '/busca'
