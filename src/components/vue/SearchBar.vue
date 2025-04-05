@@ -1,5 +1,5 @@
 <template>
-	<div class="flex flex-col md:flex-row w-full gap-2">
+	<div class="flex flex-col md:flex-row w-full gap-4 md:gap-2">
 		<Panel
 		ref="panel"
 		:toggleable="true"
@@ -21,7 +21,7 @@
 			}
 		}">
 			<template #header>
-				<div class="flex flex-col md:flex-row md:justify-between w-full items-center gap-2">
+				<div class="flex flex-col md:flex-row md:justify-between w-full items-center gap-2 py-1.5 md:py-0.5">
 					<div class="flex w-full">
 						<Select
 							optionLabel="name"
@@ -30,9 +30,12 @@
 							class="w-fit hidden md:flex"
 							v-model:model-value="selectedOption"
 						/>
-						<InputText placeholder="Busca por nome, código ou bairro... " class="w-full border-none shadow-none" />
+						<IconField class="w-full border-none shadow-none">
+							<InputIcon class="pi pi-search" />
+							<InputText placeholder="Busca por nome, código ou bairro... " class="w-full md:border-none shadow-none" />
+						</IconField>
 					</div>
-					<div class="flex items-center gap-3 md:w-fit w-full">
+					<div class="flex items-center gap-2 md:w-fit w-full">
 						<Select
 								optionLabel="name"
 								optionValue="code"
@@ -82,7 +85,8 @@
 			severity="secondary"
 			icon="pi pi-search"
 			rounded-full
-			class="w-full md:w-[440px]"		/>
+			class="w-full md:w-[440px] h-16 md:h-auto"
+		/>
 	</div>
 </template>
 
