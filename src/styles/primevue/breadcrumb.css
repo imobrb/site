@@ -1,5 +1,5 @@
 .p-breadcrumb {
-	@apply bg-surface-0 dark:bg-surface-0 p-4 overflow-x-auto;
+	@apply bg-surface-0 dark:bg-surface-0 -ml-4 p-4 overflow-x-auto text-xs uppercase;
 }
 
 .p-breadcrumb-list {
@@ -7,7 +7,7 @@
 }
 
 .p-breadcrumb-separator {
-	@apply flex items-center text-surface-400 dark:text-surface-500;
+	@apply flex items-center text-surface-500 dark:text-surface-400;
 }
 
 .p-breadcrumb-separator-icon:dir(rtl) {

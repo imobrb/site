@@ -1,7 +1,9 @@
 <template>
   <div class="px-container flex flex-col gap-8 py-8">
     <!-- Breadcrumb inteligente -->
-    <Breadcrumb :home="home" :model="breadcrumbItems" />
+    <Breadcrumb 
+      :property="property"
+    />
 
     <!-- Carrossel de Imagens com PrimeVue Galleria -->
     <Galleria
@@ -142,7 +144,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import Galleria from 'primevue/galleria'
-import Breadcrumb from 'primevue/breadcrumb'
+import Breadcrumb from '@/components/vue/Breadcrumb.vue'
 import Dialog from 'primevue/dialog'
 import Button from 'primevue/button'
 
@@ -151,17 +153,6 @@ const props = defineProps({
     type: Object,
     required: true
   }
-})
-
-// Breadcrumb inteligente
-const home = { label: 'Início', url: '/' }
-const breadcrumbItems = computed(() => {
-  const categoryLabel = props.property?.dadosBasicos?.tiponegocio === 'VENDA' ? 'Venda' : 'Locação'
-  const categoryUrl = props.property?.dadosBasicos?.tiponegocio === 'VENDA' ? '/exclusivo-venda' : '/exclusivo-locacao'
-  return [
-    { label: categoryLabel, url: categoryUrl },
-    { label: `${props.property?.dadosBasicos?.tipoimovel} - ${props.property?.dadosBasicos?.endereco}` }
-  ]
 })
 
 // Formatação de valores monetários
@@ -200,11 +191,9 @@ const propertyValue = computed(() => {
 })
 
 const totalValue = computed(() => {
-  const baseValue = props.property?.dadosBasicos?.tiponegocio === 'VENDA' 
+  const value = props.property?.dadosBasicos?.tiponegocio === 'VENDA' 
     ? props.property?.valorVenda 
     : props.property?.valorLocacao
-  const iptu = Number(props.property?.dadosBasicos?.valoriptu || 0)
-  const condominio = Number(props.property?.dadosBasicos?.valorcondominio || 0)
-  return formatCurrency(baseValue + iptu + condominio)
+  return formatCurrency(value)
 })
 </script>
