@@ -1,6 +1,6 @@
 // https://o2u4kwbklg.map.azionedge.net/imoveis/destaques?&limite=6&ordenacao=2
 
-const json = {
+export const json = {
 	lancamentos: [],
 	venda: [
 		{
@@ -793,5 +793,3 @@ const json = {
 		}
 	]
 }
-
-export default json

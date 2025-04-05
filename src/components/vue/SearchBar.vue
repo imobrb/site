@@ -72,6 +72,8 @@
 
 		<Button
 			rounded
+			as="a"
+			href="/busca"
 			label="Buscar"
 			severity="secondary"
 			icon="pi pi-search"

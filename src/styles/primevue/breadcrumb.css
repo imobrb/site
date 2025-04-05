@@ -1,5 +1,5 @@
 .p-breadcrumb {
-	@apply bg-surface-0 dark:bg-surface-0 -ml-4 p-4 overflow-x-auto text-xs uppercase;
+	@apply bg-surface-0 dark:bg-surface-0 text-xs uppercase;
 }
 
 .p-breadcrumb-list {

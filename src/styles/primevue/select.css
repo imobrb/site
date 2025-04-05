@@ -12,8 +12,9 @@
 /* Secondary variant */
 .p-select.p-variant-secondary {
     @apply bg-surface-900 dark:bg-surface-0
-        border border-surface-500 dark:border-surface-500
-        text-surface-300 dark:text-surface-600 text-sm;
+	border border-surface-300
+	enabled:hover:border-surface-400
+	text-surface-300 dark:text-surface-600;
 }
 
 .p-select.p-variant-secondary:not(.p-disabled):hover {
@@ -21,7 +22,7 @@
 }
 
 .p-select.p-variant-secondary .p-select-label {
-    @apply text-surface-700 dark:text-surface-300;
+    @apply text-surface-900;
 }
 
 .p-select.p-variant-secondary .p-select-dropdown  {
