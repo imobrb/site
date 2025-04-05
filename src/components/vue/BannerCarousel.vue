@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="2xl:-ml-[10%] 2xl:w-[120%] my-4 md:my-8">
         <Galleria
             :value="banners"
             :showThumbnails="false"
@@ -10,12 +10,6 @@
             :showItemNavigators="true"
             :activeIndex="activeIndex"
             @update:activeIndex="onActiveIndexChange"
-            :pt="{
-                'root': '2xl:-ml-[10%] 2xl:w-[120%] my-4 md:my-8',
-                'itemNavigators': {
-                    class: 'bg-white/50 hover:bg-white/80 text-black p-2 rounded-full'
-                }
-            }"
         >
             <template #item="slotProps">
                 <img :src="slotProps.item.url" :alt="slotProps.item.alt" class="2xl:w-[120%]">
