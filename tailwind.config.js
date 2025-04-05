@@ -22,7 +22,7 @@ module.exports = {
         /* Headings */
         '.text-heading-1': {
           fontSize: theme('fontSize.sm'),
-          fontWeight: theme('fontWeight.semibold'),
+          fontWeight: theme('fontWeight.bold'),
           lineHeight: '115%',
           '@screen sm': {
             fontSize: theme('fontSize.base'),
@@ -33,7 +33,7 @@ module.exports = {
         },
         '.text-heading-2': {
           fontSize: theme('fontSize.lg'),
-          fontWeight: theme('fontWeight.semibold'),
+          fontWeight: theme('fontWeight.bold'),
           lineHeight: '115%',
           '@screen sm': {
             fontSize: theme('fontSize.xl'),
@@ -44,7 +44,7 @@ module.exports = {
         },
         '.text-heading-3': {
           fontSize: theme('fontSize.xl'),
-          fontWeight: theme('fontWeight.semibold'),
+          fontWeight: theme('fontWeight.bold'),
           lineHeight: '115%',
           '@screen sm': {
             fontSize: theme('fontSize.2xl'),
@@ -55,7 +55,7 @@ module.exports = {
         },
         '.text-heading-4': {
           fontSize: theme('fontSize.2xl'),
-          fontWeight: theme('fontWeight.semibold'),
+          fontWeight: theme('fontWeight.bold'),
           lineHeight: '115%',
           '@screen sm': {
             fontSize: theme('fontSize.3xl'),
@@ -66,7 +66,7 @@ module.exports = {
         },
         '.text-heading-5': {
           fontSize: theme('fontSize.3xl'),
-          fontWeight: theme('fontWeight.semibold'),
+          fontWeight: theme('fontWeight.bold'),
           lineHeight: '115%',
           '@screen sm': {
             fontSize: theme('fontSize.4xl'),
