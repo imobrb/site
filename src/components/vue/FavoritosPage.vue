@@ -1,68 +1,12 @@
 <template>
-    <div class="w-full px-container flex flex-col gap-4 md:gap-6 p-8">
-        <Breadcrumb
-                :current-page="currentPage"
-            />
-        <div class="w-full flex flex-col gap-4">
-            <div class="flex flex-col gap-4 md:flex-row md:justify-between md:items-end">
-                <div class="flex md:flex-row flex-col gap-2">
-                    <IconField>
-                        <InputIcon class="pi pi-search" />
-                        <InputText placeholder="Busca por nome, código ou bairro... " class="md:w-96 w-full" />
-                    </IconField>
-                    <Button 
-                        :icon="showFilters ? 'pi pi-minus' : 'pi pi-plus'" 
-                        :label="showFilters ? 'Filtros' : 'Filtros'" 
-                        class="rounded-full" 
-                        outlined 
-                        @click="showFilters = !showFilters"
-                    />
-                </div>
-
-                <span class="text-body-1 text-surface-500 md:flex hidden">271 Imóveis encontrados nessa região.</span>
-            </div>
-
-            <!-- Filtros -->
-            <Transition
-                enter-active-class="transition-all duration-300 ease-in-out"
-                enter-from-class="opacity-0 max-h-0 translate-y-2"
-                enter-to-class="opacity-100 max-h-[1000px] translate-y-0"
-                leave-active-class="transition-all duration-300 ease-in-out"
-                leave-from-class="opacity-100 max-h-[1000px] translate-y-0"
-                leave-to-class="opacity-0 max-h-0 translate-y-2"
-            >
-                <div v-if="showFilters" class="flex flex-wrap gap-2 w-full">
-                    <Select
-                        placeholder="Tipo de Negócio"
-                        :options="[]"
-                        class="w-auto p-variant-secondary"
-                    />
-                    <Select
-                        placeholder="Tipo de Imóvel"
-                        :options="[]"
-                        class="w-auto p-variant-secondary"
-                    />
-                    <Select
-                        placeholder="Cidade"
-                        :options="[]"
-                        class="w-auto p-variant-secondary"
-                    />
-                    <Select
-                        placeholder="Detalhes"
-                        :options="[]"
-                        class="w-auto p-variant-secondary"
-                    />
-                </div>
-            </Transition>
-        </div>
-    </div>
-    <Divider class="m-0 p-0" />
     <div class="flex flex-col gap-8">
         <div class="px-container w-full py-8 min-h-full md:gap-8 gap-4 flex flex-col">
             <div class="flex md:flex-row flex-col gap-4 md:justify-between md:items-end">
-            <div class="flex flex-col gap-1">
-                <span class="text-body-3 text-surface-600">Imóveis para comprar em</span>
-                <h1 class="text-heading-3 text-surface-800">Rio Branco</h1>
+            <div class="flex flex-col gap-2">
+                <Breadcrumb
+                    :current-page="currentPage"
+                />
+                <h1 class="text-heading-3 text-surface-800">Meus Favoritos</h1>
             </div>
             <span class="text-body-1 text-surface-500 md:hidden flex">271 Imóveis encontrados nessa região.</span>
             <div class="flex gap-2 items-center">
@@ -113,21 +57,16 @@
 <script setup>
 import Breadcrumb from '@components/vue/Breadcrumb.vue'
 import CardImovel from '@components/vue/CardImovel.vue'
-import Divider from 'primevue/divider'
 import Select from 'primevue/select'
 import Button from 'primevue/button'
-import InputText from 'primevue/inputtext'
-import IconField from 'primevue/iconfield'
-import InputIcon from 'primevue/inputicon'
 
 import { ref } from 'vue'
 import { json as highlightsData } from '../../mock/get-highlights.js'
 
-const showFilters = ref(false)
 const isListMode = ref(true)
 const currentPage = {
-    label: 'Busca de Imóveis',
-    url: '/busca'
+    label: 'Favoritos',
+    url: '/favoritos'
 }
 
 const imoveis = ref(highlightsData.venda.map(imovel => ({
