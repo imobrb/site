@@ -23,13 +23,12 @@
 			<template #header>
 				<div class="flex flex-col md:flex-row w-full items-center gap-2">
 					<div class="flex w-full">
-						<Button
-							rounded
-							:label="selectMode"
-							icon="pi pi-chevron-down"
-							icon-pos="right"
-							severity="primary"
-							class="h-12 px-8"
+						<Select
+							optionLabel="name"
+							optionValue="code"
+							:options="options"
+							class="w-56"
+							v-model:model-value="selectedOption"
 						/>
 						<InputText
 							placeholder="Buscar imóveis..."
@@ -48,41 +47,25 @@
 				</div>
 			</template>
 			<div class="flex flex-wrap gap-2">
-				<Button
-					outlined
-					size="small"
-					rounded="full"
-					severity="secondary"
-					label="Tipo de Negócio"
-					icon="pi pi-chevron-down"
-					icon-pos="right"
+				<Select
+					placeholder="Tipo de Negócio"
+					:options="[]"
+					class="w-auto p-variant-secondary"
 				/>
-				<Button
-					outlined
-					rounded="full"
-					size="small"
-					severity="secondary"
-					label="Tipo de Imóvel"
-					icon="pi pi-chevron-down"
-					icon-pos="right"
+				<Select
+					placeholder="Tipo de Imóvel"
+					:options="[]"
+					class="w-auto p-variant-secondary"
 				/>
-				<Button
-					outlined
-					rounded="full"
-					size="small"
-					severity="secondary"
-					label="Cidade"
-					icon="pi pi-chevron-down"
-					icon-pos="right"
+				<Select
+					placeholder="Cidade"
+					:options="[]"
+					class="w-auto p-variant-secondary"
 				/>
-				<Button
-					outlined
-					rounded="full"
-					size="small"
-					severity="secondary"
-					label="Detalhes"
-					icon="pi pi-chevron-down"
-					icon-pos="right"
+				<Select
+					placeholder="Detalhes"
+					:options="[]"
+					class="w-auto p-variant-secondary"
 				/>
 			</div>
 		</Panel>
@@ -101,10 +84,18 @@
 	import InputText from 'primevue/inputtext'
 	import Button from 'primevue/button'
 	import Panel from 'primevue/panel'
+	import Select from 'primevue/select'
 
 	const panel = ref(null)
-	const selectMode = ref('Locação')
 	const expanded = ref(false)
+
+	const selectedOption = ref('locacao')
+	const options = ref([
+		{ name: 'Locação', code: 'locacao' },
+		{ name: 'Venda', code: 'venda' },
+		{ name: 'Exclusivo Locação', code: 'exclusivo-locacao' },
+		{ name: 'Exclusivo Venda', code: 'exclusivo-venda' },
+	])
 
 	const onToggle = (e) => {
 		expanded.value = !expanded.value
