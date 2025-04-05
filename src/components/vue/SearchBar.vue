@@ -73,9 +73,10 @@
 		<Button
 			rounded
 			label="Buscar"
-			severity="primary"
+			severity="secondary"
 			icon="pi pi-search"
-			class="w-full md:w-[440px] h-16 rounded-full bg-secondary hover:bg-[#C24F32] active:bg-[#C24F32] text-white border-none px-6 py-3 font-bold cursor-pointer ring-offset-2 ring-offset-surface-0 dark:ring-offset-surface-900 ring-primary transition-all"		/>
+			rounded-full
+			class="w-full md:w-[440px]"		/>
 	</div>
 </template>
 
