@@ -33,7 +33,6 @@
 						href="/favoritos"
 						icon="pi pi-heart"
 						:label="favoritesCount"
-						@click="$emit('openFavorites')"
 					/>
 					<!-- Botão de menu que alterna o ícone -->
 					<Button
