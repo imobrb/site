@@ -30,7 +30,7 @@
 }
 
 .p-radiobutton-checked .p-radiobutton-box {
-	@apply border-primary bg-primary;
+	@apply border-secondary bg-primary;
 }
 
 .p-radiobutton-checked .p-radiobutton-box .p-radiobutton-icon {
@@ -52,7 +52,7 @@
 }
 
 .p-radiobutton:not(.p-disabled):has(.p-radiobutton-input:focus-visible) .p-radiobutton-box {
-	@apply outline outline-1 outline-offset-2 outline-primary;
+	@apply outline outline-2 outline-offset-2 outline-secondary;
 }
 
 .p-radiobutton.p-invalid > .p-radiobutton-box {

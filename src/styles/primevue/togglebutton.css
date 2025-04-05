@@ -4,7 +4,7 @@
         bg-surface-100 dark:bg-surface-950
         text-surface-500 dark:text-surface-400 text-base font-medium
         px-4 py-2
-        focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-primary
+        focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary
         disabled:opacity-100 disabled:cursor-default
         disabled:bg-surface-200 disabled:border-surface-200 disabled:text-surface-500
         disabled:dark:bg-surface-700 disabled:dark:border-surface-700 disabled:dark:text-surface-400

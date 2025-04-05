@@ -11,7 +11,7 @@
 }
 
 .p-cascadeselect:not(.p-disabled).p-focus {
-	@apply border-primary;
+	@apply border-secondary;
 }
 
 .p-cascadeselect.p-variant-filled {

@@ -14,7 +14,7 @@
 }
 
 .p-treeselect:not(.p-disabled).p-focus {
-	@apply border-primary;
+	@apply border-secondary;
 }
 
 .p-treeselect.p-variant-filled {

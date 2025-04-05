@@ -7,7 +7,7 @@
 }
 
 .p-rating-option.p-focus-visible {
-	@apply outline outline-1 outline-offset-2 outline-primary;
+	@apply outline outline-2 outline-offset-2 outline-secondary;
 }
 
 .p-rating-icon {

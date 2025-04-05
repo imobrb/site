@@ -26,7 +26,7 @@
 }
 
 .p-checkbox-checked .p-checkbox-box {
-	@apply border-primary bg-primary;
+	@apply border-secondary bg-primary;
 }
 
 .p-checkbox-checked .p-checkbox-icon {
@@ -42,7 +42,7 @@
 }
 
 .p-checkbox:not(.p-disabled):has(.p-checkbox-input:focus-visible) .p-checkbox-box {
-	@apply outline outline-1 outline-offset-2 outline-primary;
+	@apply outline outline-2 outline-offset-2 outline-secondary;
 }
 
 .p-checkbox.p-invalid > .p-checkbox-box {

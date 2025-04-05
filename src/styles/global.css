@@ -13,7 +13,7 @@ DELETEDE WITH CONFLICT WITH NEW VERSION
 @tailwind utilities;
 
 ::selection {
-	@apply bg-secondary-500/90 text-white;
+	@apply bg-secondary/90 text-white;
 }
 
 /* Primary and Surface Palettes */

@@ -113,7 +113,7 @@
 	@apply hidden justify-center items-center cursor-pointer w-7 h-7 relative border-none rounded-full
         text-surface-500 dark:text-surface-400 hover:text-surface-600 dark:hover:text-surface-300
         bg-transparent hover:bg-surface-100 dark:hover:bg-surface-800
-        focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-primary
+        focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary
         transition-colors duration-200;
 }
 

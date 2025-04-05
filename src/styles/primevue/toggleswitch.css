@@ -48,7 +48,7 @@
 }
 
 .p-toggleswitch:not(.p-disabled):has(.p-toggleswitch-input:focus-visible) .p-toggleswitch-slider {
-	@apply outline outline-1 outline-offset-2 outline-primary;
+	@apply outline outline-2 outline-offset-2 outline-secondary;
 }
 
 .p-toggleswitch.p-invalid > .p-toggleswitch-slider {

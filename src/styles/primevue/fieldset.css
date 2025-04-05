@@ -23,7 +23,7 @@
         hover:bg-surface-100 dark:hover:bg-surface-800
         text-surface-700 dark:text-surface-0
         hover:text-surface-800 dark:hover:text-surface-0
-        focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-primary
+        focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary
         transition-colors duration-200;
 }
 

@@ -16,7 +16,7 @@
 }
 
 .p-multiselect:not(.p-disabled).p-focus {
-	@apply border-primary;
+	@apply border-secondary;
 }
 
 .p-multiselect.p-variant-filled {

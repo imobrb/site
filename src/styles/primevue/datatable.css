@@ -253,7 +253,7 @@
 
 .p-datatable-tbody > tr:focus-visible,
 .p-datatable-tbody > tr.p-datatable-contextmenu-row-selected {
-	@apply outline outline-1 -outline-offset-1 outline-primary;
+	@apply outline outline-2 -outline-offset-1 outline-secondary;
 }
 
 .p-datatable-tfoot > tr > td {
@@ -267,7 +267,7 @@
 }
 
 .p-datatable-sortable-column {
-	@apply cursor-pointer select-none focus-visible:outline focus-visible:outline-1 focus-visible:-outline-offset-1 focus-visible:outline-primary;
+	@apply cursor-pointer select-none focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-secondary;
 }
 
 .p-datatable-column-title,
@@ -415,7 +415,7 @@
         transition-colors duration-200 rounded-full border-none bg-transparent
         text-surface-500 enabled:hover:bg-surface-100 enabled:hover:text-surface-700
         dark:text-surface-400 dark:enabled:hover:bg-surface-800 dark:enabled:hover:text-surface-0
-        focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-primary;
+        focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary;
 }
 
 .p-datatable-tbody > tr.p-datatable-row-selected .p-datatable-row-toggle-button:hover {

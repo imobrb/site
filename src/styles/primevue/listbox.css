@@ -9,7 +9,7 @@
 }
 
 .p-listbox.p-focus {
-	@apply border-primary;
+	@apply border-secondary;
 }
 
 .p-listbox.p-disabled {
