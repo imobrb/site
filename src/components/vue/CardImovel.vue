@@ -62,7 +62,6 @@
 
 <script setup>
 	import Button from 'primevue/button'
-	import LinkButton from '@components/vue/LinkButton.vue'
 
 	const props = defineProps({
 		transactionType: {
@@ -88,7 +87,6 @@
 			default() {
 				return {
 					label: 'Ver imóvel',
-					href: '#'
 				}
 			}
 		},
