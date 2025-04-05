@@ -27,13 +27,10 @@
 							optionLabel="name"
 							optionValue="code"
 							:options="options"
-							class="w-56"
+							class="w-fit"
 							v-model:model-value="selectedOption"
 						/>
-						<InputText
-							placeholder="Buscar imóveis..."
-							class="w-full bg-transparent text-black border-none px-4"
-						/>
+						<InputText placeholder="Busca por nome, código ou bairro... " class="md:w-96 w-full border-none shadow-none" />
 					</div>
 					<Button
 						text
@@ -88,6 +85,8 @@
 	import Button from 'primevue/button'
 	import Panel from 'primevue/panel'
 	import Select from 'primevue/select'
+	import IconField from 'primevue/iconfield'
+	import InputIcon from 'primevue/inputicon'
 
 	const panel = ref(null)
 	const expanded = ref(false)
