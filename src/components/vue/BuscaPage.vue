@@ -1,27 +1,28 @@
 <template>
-    <div class="w-full px-container flex flex-col gap-4 p-8">
+    <div class="w-full px-container flex flex-col gap-4 md:gap-6 p-8">
         <Breadcrumb
                 :current-page="currentPage"
             />
         <div class="w-full flex flex-col gap-4">
-            <div class="flex flex-row md:justify-between">
-            <div class="flex gap-2">
-                <IconField>
-                    <InputIcon class="pi pi-search" />
-                    <InputText placeholder="Busca por nome, código ou bairro... " class="md:w-96" />
-                </IconField>
-                <Button 
-                    :icon="showFilters ? 'pi pi-minus' : 'pi pi-plus'" 
-                    :label="showFilters ? 'Filtros' : 'Filtros'" 
-                    class="rounded-full" 
-                    outlined 
-                    @click="showFilters = !showFilters"
-                />
+            <div class="flex flex-col gap-4 md:flex-row md:justify-between md:items-end">
+                <div class="flex md:flex-row flex-col gap-2">
+                    <IconField>
+                        <InputIcon class="pi pi-search" />
+                        <InputText placeholder="Busca por nome, código ou bairro... " class="md:w-96 w-full" />
+                    </IconField>
+                    <Button 
+                        :icon="showFilters ? 'pi pi-minus' : 'pi pi-plus'" 
+                        :label="showFilters ? 'Filtros' : 'Filtros'" 
+                        class="rounded-full" 
+                        outlined 
+                        @click="showFilters = !showFilters"
+                    />
+                </div>
+
+                <span class="text-body-1 text-surface-500 md:flex hidden">271 Imóveis encontrados nessa região.</span>
             </div>
 
-            <Select :options="ordem" optionLabel="name" optionValue="code" placeholder="Ordenar por" class="rounded-full md:w-56 p-variant-secondary" />
-                
-            </div><!-- Filtros -->
+            <!-- Filtros -->
             <Transition
                 enter-active-class="transition-all duration-300 ease-in-out"
                 enter-from-class="opacity-0 max-h-0 translate-y-2"
@@ -63,9 +64,8 @@
                 <span class="text-body-3 text-surface-600">Imóveis para comprar em</span>
                 <h1 class="text-heading-3 text-surface-800">Rio Branco</h1>
             </div>
-            <div class="flex flex-col">
-                <span class="text-body-1 text-surface-500">271 Imóveis encontrados nessa região.</span>
-            </div>
+            <span class="text-body-1 text-surface-500 md:hidden flex">271 Imóveis encontrados nessa região.</span>
+            <Select :options="ordem" optionLabel="name" optionValue="code" placeholder="Ordenar por" class="rounded-full md:w-56 p-variant-secondary" />
         </div>
 
             <div class="grid m-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-x-14 md:gap-y-20 mb-16">
