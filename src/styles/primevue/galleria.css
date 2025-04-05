@@ -17,9 +17,9 @@
 .p-galleria-nav-button {
 	@apply absolute top-1/2 inline-flex justify-center items-center overflow-hidden select-none border-none cursor-pointer
         transition-colors duration-200 p-2 -mt-12 mx-2 mb-0 rounded-full
-        bg-white/80 text-surface-900 enabled:hover:bg-white/60 enabled:hover:text-surface-900
+        bg-white/80 text-surface-900 hover:bg-white/60 hover:text-surface-900
         focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary
-		z-50;
+		z-50 opacity-100 pointer-events-auto;
 }
 
 .p-galleria-next-icon,
@@ -47,7 +47,7 @@
 }
 
 .p-galleria-hover-navigators .p-galleria-nav-button {
-	@apply pointer-events-none opacity-0 transition-opacity duration-200 ease-in-out;
+	@apply pointer-events-auto opacity-100 transition-opacity duration-200 ease-in-out;
 }
 
 .p-galleria-hover-navigators .p-galleria-items-container:hover .p-galleria-nav-button {
