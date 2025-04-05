@@ -96,14 +96,14 @@
 }
 
 .p-button-success {
-	@apply bg-green-500 enabled:hover:bg-green-600 enabled:active:bg-green-700
-        border-green-500 enabled:hover:border-green-600 enabled:active:border-green-700
+	@apply bg-green-600 enabled:hover:bg-green-700 enabled:active:bg-green-800
+        border-green-600 enabled:hover:border-green-700 enabled:active:border-green-800
         text-white enabled:hover:text-white enabled:active:text-white
-        dark:bg-green-400 dark:enabled:hover:bg-green-300 dark:enabled:active:bg-green-200
-        dark:border-green-400 dark:enabled:hover:border-green-300 dark:enabled:active:border-green-200
+        dark:bg-green-500 dark:enabled:hover:bg-green-400 dark:enabled:active:bg-green-300
+        dark:border-green-500 dark:enabled:hover:border-green-400 dark:enabled:active:border-green-300
         dark:text-green-950 dark:enabled:hover:text-green-950 dark:enabled:active:text-green-950
         focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
-        focus-visible:outline-green-500 dark:focus-visible:outline-green-400;
+        focus-visible:outline-green-600 dark:focus-visible:outline-green-500;
 }
 
 .p-button-info {

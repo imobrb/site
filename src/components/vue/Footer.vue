@@ -38,36 +38,58 @@
 
 			<!-- Logo & Social -->
 			<div
-				class="w-full flex flex-col-reverse items-start md:flex-row gap-8 justify-between md:items-center"
+				class="w-full flex flex-row items-start md:flex-row gap-8 justify-between md:items-end"
 			>
-				<div class="flex gap-2">
+				<div class="flex flex-col md:flex-row gap-2 w-fit">
 					<img
 						src="/logo-vertical-white.svg"
 						alt="Logotipo Imobiliaria Rio Branco"
-						width="150"
-						height="50"
 					/>
 					<img
+						class="hidden md:flex"
 						src="/selo-unimob.png"
 						alt="Selo Associada Unimob"
 					/>
 				</div>
-				<div class="w-auto flex gap-2">
+				<div class="w-auto flex flex-col md:flex-row gap-3">
 					<Button
-						v-for="social in socialLinks"
-						:key="social.icon"
-						outline
+						as="a"
+						href="tel:1821046944"
+						class="bg-white text-surface-900 w-fit text-sm rounded-full"
+						icon="pi pi-phone"
+						label="(18) 2104-6944"
+						text
+					/>
+					<Button
+						severity="success"
 						rounded
 						size="small"
-						:label="social.label"
-						:icon="social.icon"
-						:as="social.as"
-						:href="social.href"
-						:target="social.target"
-						class="text-white border-white hover:bg-primary-800/50"
-						:class="social.class"
-						:aria-label="social.ariaLabel"
+						label="+55 18 99604-1075"
+						icon="pi pi-whatsapp"
+						as="a"
+						href="https://wa.me/5518996041075"
+						target="_blank"
+						class="text-white h-10 text-sm"
+						aria-label="WhatsApp"
 					/>
+					<div class="flex gap-2">
+						<a 
+							v-for="social in socialLinks"
+							:key="social.icon"
+							:href="social.href"
+							:target="social.target"
+							class="flex justify-center"
+						>
+							<div 
+								:class="[
+									'w-10 h-10 rounded-full flex items-center justify-center',
+									social.class
+								]"
+							>
+								<i :class="social.icon + ' text-white text-xl'"></i>
+							</div>
+						</a>
+					</div>
 				</div>
 			</div>
 
@@ -126,10 +148,8 @@ interface NavigationSection {
 
 interface SocialLink {
 	icon: string
-	label?: string
 	href?: string
 	target?: string
-	as?: string
 	class?: string
 	ariaLabel: string
 }
@@ -180,28 +200,25 @@ const navigationSections = ref<NavigationSection[]>([
 
 const socialLinks = ref<SocialLink[]>([
 	{
-		icon: 'pi pi-whatsapp',
-		label: '+55 18 99604-1075',
-		href: 'https://wa.me/5518996041075',
-		target: '_blank',
-		as: 'a',
-		class: 'h-10',
-		ariaLabel: 'WhatsApp',
-	},
-	{
 		icon: 'pi pi-facebook',
-		class: 'w-10',
+		href: 'https://www.facebook.com/imobiliariariobranco/',
+		target: '_blank',
+		class: 'bg-[#1976D2]',
 		ariaLabel: 'Facebook',
 	},
 	{
 		icon: 'pi pi-instagram',
-		class: 'w-10',
+		href: 'https://www.instagram.com/imobiliariariobranco/',
+		target: '_blank',
+		class: 'bg-gradient-to-r from-[#F99B4A] to-[#DA5CA1]',
 		ariaLabel: 'Instagram',
 	},
 	{
-		icon: 'pi pi-linkedin',
-		class: 'w-10',
-		ariaLabel: 'LinkedIn',
+		icon: 'pi pi-youtube',
+		href: 'https://www.youtube.com/user/imoRioBranco',
+		target: '_blank',
+		class: 'bg-[#FF2D2D]',
+		ariaLabel: 'YouTube',
 	},
 ])
 

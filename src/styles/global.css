@@ -16,6 +16,10 @@ DELETEDE WITH CONFLICT WITH NEW VERSION
 	@apply bg-secondary/90 text-white;
 }
 
+label {
+	@apply text-sm text-surface-500;
+}
+
 /* Primary and Surface Palettes */
 :root {
 	--p-primary-50: #eff6ff;
