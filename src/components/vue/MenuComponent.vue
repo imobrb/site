@@ -6,7 +6,6 @@
 			:favoritesCount="favoritesCount" 
 			:menuOpen="menuOpen" 
 			@toggleMenu="toggleMenu" 
-			@openFavorites="openFavorites" 
 		/>
 
 		<!-- Drawer para conteúdo do menu -->
@@ -104,10 +103,6 @@ export default {
 			menuOpen.value = !menuOpen.value
 		}
 
-		const openFavorites = () => {
-			// lógica para abrir os favoritos
-		}
-
 		// Arrays com os links
 		const section1Items = [
 			{ label: 'Alugar Imóveis', href: '/alugar-imovel' },
@@ -136,7 +131,6 @@ export default {
 			menuOpen,
 			favoritesCount,
 			toggleMenu,
-			openFavorites,
 			section1Items,
 			section2Items
 		}

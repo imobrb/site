@@ -29,6 +29,8 @@
 					<Button
 						class="bg-white text-black"
 						rounded
+						as="a"
+						href="/favoritos"
 						icon="pi pi-heart"
 						:label="favoritesCount"
 						@click="$emit('openFavorites')"
