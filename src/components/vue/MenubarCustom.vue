@@ -6,14 +6,14 @@
 			<img
 				src="/logo-white.svg"
 				alt="Logo Imobiliaria Rio Branco"
-				class="h-14 cursor-pointer"
+				class="h-14 cursor-pointer -ml-4"
 				@click="handleLogoClick"
 			/>
 		</template>
 
 		<!-- Lado direito: Botões -->
 		<template #end>
-			<div class="flex gap-2">
+			<div class="flex gap-2 -mr-4">
 				<!-- Botão do WhatsApp -->
 				<Button
 					class="font-bold text-white md:flex hidden"

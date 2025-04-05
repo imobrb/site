@@ -170,7 +170,7 @@
   const currentPage = {
     label: 'Empresa',
     url: '/empresa'
-}
+  }
   
   const selectedYear = ref('1970');
   
