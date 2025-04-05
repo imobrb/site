@@ -2,7 +2,7 @@
     <PrimeBreadcrumb :home="home" :model="breadcrumbItems">
         <template #separator> / </template>
     </PrimeBreadcrumb>
-</template> 
+</template>
 
 <script setup lang="ts">
 import PrimeBreadcrumb from 'primevue/breadcrumb'
