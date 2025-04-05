@@ -14,6 +14,7 @@ import Layout from '@layouts/Default.astro'
 import Divider from 'primevue/divider';
 import SearchBar from '@components/vue/SearchBar.vue'
 import SectionCardList from '@components/vue/SectionCardList.vue'
+import BannerCarousel from '@components/vue/BannerCarousel.vue'
 import ServiceImoveis from '@services/Imoveis'
 
 const page = await getEntry('institutional', 'home')
@@ -57,6 +58,28 @@ const featuredProperties = await serviceImoveis.featuredProperties(6, 2)
 	</div>
 
 	<div class="flex flex-col gap-8 md:gap-16 py-4 md:py-16 px-container w-full">
+		<SectionCardList
+			title="Exclusivos para Alugar"
+			link={{
+				href: `${SITE_URL}/exclusivo-locacao`,
+				label: 'Ver todos os imóveis exclusivos para alugar'
+			}}
+			items={featuredProperties.locacao}
+		/>
+
+		<Divider />
+
+		<SectionCardList
+			title="Exclusivos para Comprar"
+			link={{
+				href: `${SITE_URL}/exclusivo-venda`,
+				label: 'Ver todos os imóveis exclusivos para comprar'
+			}}
+			items={featuredProperties.venda}
+		/>
+
+		<BannerCarousel client:load />
+
 		<SectionCardList
 			title="Exclusivos para Alugar"
 			link={{
