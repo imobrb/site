@@ -39,13 +39,25 @@
 				</div>
 				<div class="w-full mt-24 px-4">
 					<div class="px-container w-full h-full">
-						<div class="pt-12 flex flex-col gap-8 h-full w-full justify-start">
+						<div class="pt-8 md:pt-12 flex flex-col gap-4 md:gap-8 h-full w-full justify-start">
+							<Button
+								label="+55 18 99604-1075"
+								icon="pi pi-whatsapp"
+								class="w-fit text-white mb-2 flex md:hidden"
+								severity="secondary"
+								outlined
+								as="a"
+								rounded="full"
+								size="small"
+								target="_blank"
+								href="https://wa.me/5518996041075"
+							/>
 							<!-- Seção 1: Links em destaque -->
 							<div class="text-heading-2 flex flex-col">
 								<a
 									v-for="(item, index) in section1Items"
 									:key="index"
-									class="py-4 flex items-center hover:underline"
+									class="py-3 md:py-4 flex items-center hover:underline w-full"
 									:href="item.href"
 								>
 									{{ item.label }}
@@ -57,23 +69,11 @@
 									v-for="(item, index) in section2Items"
 									:key="index"
 									:href="item.href"
-									class="flex gap-2 py-2 items-center group"
+									class="flex gap-2 py-2 items-center group w-full"
 								>
 									<i :class="item.icon" />
 									<span class="group-hover:underline">{{ item.label }}</span>
 								</a>
-								<Button
-									label="+55 18 99604-1075"
-									icon="pi pi-whatsapp"
-									class="w-fit text-white mt-12"
-									severity="secondary"
-									outlined
-									as="a"
-									rounded="full"
-									size="small"
-									target="_blank"
-									href="https://wa.me/5518996041075"
-								/>
 							</div>
 						</div>
 					</div>
