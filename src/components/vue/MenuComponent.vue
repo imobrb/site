@@ -6,7 +6,6 @@
 			:favoritesCount="favoritesCount" 
 			:menuOpen="menuOpen" 
 			@toggleMenu="toggleMenu" 
-			@openWhatsapp="openWhatsapp" 
 			@openFavorites="openFavorites" 
 		/>
 
@@ -31,7 +30,6 @@
 							:favoritesCount="favoritesCount" 
 							:menuOpen="menuOpen" 
 							@toggleMenu="toggleMenu" 
-							@openWhatsapp="openWhatsapp" 
 							@openFavorites="openFavorites"
 						/>
 					</div>
@@ -64,6 +62,18 @@
 									<i :class="item.icon" />
 									<span class="group-hover:underline">{{ item.label }}</span>
 								</a>
+								<Button
+									label="+55 18 99604-1075"
+									icon="pi pi-whatsapp"
+									class="w-fit text-white mt-12"
+									severity="secondary"
+									outlined
+									as="a"
+									rounded="full"
+									size="small"
+									target="_blank"
+									href="https://wa.me/5518996041075"
+								/>
 							</div>
 						</div>
 					</div>
@@ -92,10 +102,6 @@ export default {
 
 		const toggleMenu = () => {
 			menuOpen.value = !menuOpen.value
-		}
-
-		const openWhatsapp = () => {
-			window.open('https://wa.me/5518999999999', '_blank')
 		}
 
 		const openFavorites = () => {
@@ -130,7 +136,6 @@ export default {
 			menuOpen,
 			favoritesCount,
 			toggleMenu,
-			openWhatsapp,
 			openFavorites,
 			section1Items,
 			section2Items

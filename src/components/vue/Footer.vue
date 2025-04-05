@@ -205,6 +205,9 @@
 						rounded
 						size="small"
 						label="+55 18 99604-1075"
+						as="a"
+						target="_blank"
+						href="https://wa.me/5518996041075"
 						icon="pi pi-whatsapp"
 						class="text-white border-white h-10"
 					/>

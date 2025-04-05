@@ -16,10 +16,12 @@
 			<div class="flex gap-2">
 				<!-- Botão do WhatsApp -->
 				<Button
-					class="font-bold text-white"
+					class="font-bold text-white md:flex hidden"
 					label="+55 18 99604-1075"
 					icon="pi pi-whatsapp"
-					@click="$emit('openWhatsapp')"
+					as="a"
+					target="_blank"
+					href="https://wa.me/5518996041075"
 					text
 				/>
 				<div class="flex gap-1 bg-black p-2 w-fit rounded-full">
