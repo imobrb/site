@@ -6,14 +6,15 @@
         :circular="true"
         :transition-interval="5000"
         :auto-play="true"
-        :numVisible="5"
         :showItemNavigators="true"
         :activeIndex="activeIndex"
         @update:activeIndex="onActiveIndexChange"
-        class="w-full"
+        :pt="{
+            'root': '2xl:-ml-[10%] 2xl:w-[120%]'
+        }"
     >
         <template #item="slotProps">
-            <img :src="slotProps.item.url" :alt="slotProps.item.alt" class="w-full h-auto object-cover">
+            <img :src="slotProps.item.url" :alt="slotProps.item.alt" class="2xl:w-[120%]">
         </template>
     </Galleria>
 </template>
