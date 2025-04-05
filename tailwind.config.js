@@ -8,6 +8,13 @@ module.exports = {
   ],
   important: true,
   theme: {
+    extend: {
+      colors: {
+        secondary: {
+          500: '#D95E3A'
+        }
+      }
+    }
   },
   plugins: [
 	require('tailwindcss-primeui'),

@@ -36,7 +36,7 @@
 						/>
 					</div>
 				</div>
-				<div class="bg-[#D95E3A] w-full h-full hidden lg:flex z-0">
+				<div class="bg-secondary-500 w-full h-full hidden lg:flex z-0">
 					<div class="bg-[url('/bg-menu.jpg')] bg-cover bg-center opacity-25 grayscale w-full h-full"></div>
 				</div>
 				<div class="w-full mt-24 px-4">

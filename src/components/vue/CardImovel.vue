@@ -8,7 +8,7 @@
 						label="Favoritar"
 						size="small"
 						icon="pi pi-heart"
-						class="w-fit absolute bg-[#D95E3A] border-none mt-2 ml-2 text-white"
+						class="w-fit absolute bg-secondary-500 border-none mt-2 ml-2 text-white"
 						@click.stop
 					/>
 					<img
