@@ -21,26 +21,33 @@
 			}
 		}">
 			<template #header>
-				<div class="flex flex-col md:flex-row w-full items-center gap-2">
+				<div class="flex flex-col md:flex-row md:justify-between w-full items-center gap-2">
 					<div class="flex w-full">
 						<Select
 							optionLabel="name"
 							optionValue="code"
 							:options="options"
-							class="w-fit"
+							class="w-fit hidden md:flex"
 							v-model:model-value="selectedOption"
 						/>
-						<InputText placeholder="Busca por nome, código ou bairro... " class="md:w-96 w-full border-none shadow-none" />
+						<InputText placeholder="Busca por nome, código ou bairro... " class="w-full border-none shadow-none" />
 					</div>
-					<Button
-						text
-						rounded
-						@click.prevent="togglePanel"
-						class="flex items-center gap-2 px-4 h-12 w-full md:w-auto"
-					>
-						<i :class="['pi', expanded ? 'pi-minus' : 'pi-plus']"></i>
-						<span>Filtros</span>
-					</Button>
+					<div class="flex items-center gap-3 md:w-fit w-full">
+						<Select
+								optionLabel="name"
+								optionValue="code"
+								:options="options"
+								class="w-fit flex md:hidden"
+								v-model:model-value="selectedOption"
+							/>
+						<Button
+							:icon="expanded ? 'pi pi-minus' : 'pi pi-plus'"
+							:label="expanded ? 'Filtros' : 'Filtros'"
+							class="rounded-full w-full md:w-fit"
+							outlined
+							@click.prevent="togglePanel"
+						/>
+					</div>
 				</div>
 			</template>
 			<div class="flex flex-wrap gap-2">
