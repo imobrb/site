@@ -1,11 +1,11 @@
 .p-accordionpanel {
-	@apply flex flex-col border-b border-surface-200 dark:border-surface-700;
+	@apply flex flex-col border-b border-surface-200;
 }
 
 .p-accordionheader {
-	@apply cursor-pointer disabled:cursor-auto flex items-center justify-between p-[1.125rem] font-semibold
-        bg-surface-0 dark:bg-surface-900
-        text-surface-500 dark:text-surface-400
+	@apply cursor-pointer disabled:cursor-auto flex items-center gap-4 py-[1.125rem] font-semibold
+        bg-surface-0
+        !text-primary-500 font-semibold text-lg
         transition-colors duration-200;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .p-accordionheader-toggle-icon {
-	@apply text-surface-500 dark:text-surface-400;
+	@apply !text-primary-500 order-first w-fit outline outline-2 outline-offset-4 outline-primary-500 w-4 h-4 rounded-full;
 }
 
 .p-accordionpanel:not(.p-disabled) .p-accordionheader:focus-visible {
@@ -30,35 +30,35 @@
 }
 
 .p-accordionpanel:not(.p-accordionpanel-active):not(.p-disabled) > .p-accordionheader:hover {
-	@apply bg-surface-0 dark:bg-surface-900 text-surface-700 dark:text-surface-0;
+	@apply bg-surface-0 text-surface-700;
 }
 
 .p-accordionpanel:not(.p-accordionpanel-active):not(.p-disabled)
 	.p-accordionheader:hover
 	.p-accordionheader-toggle-icon {
-	@apply text-surface-700 dark:text-surface-0;
+	@apply text-surface-700;
 }
 
 .p-accordionpanel:not(.p-disabled).p-accordionpanel-active > .p-accordionheader {
-	@apply bg-surface-0 dark:bg-surface-900 text-surface-700 dark:text-surface-0;
+	@apply bg-surface-0 text-surface-700;
 }
 
 .p-accordionpanel:not(.p-disabled).p-accordionpanel-active
 	> .p-accordionheader
 	.p-accordionheader-toggle-icon {
-	@apply text-surface-700 dark:text-surface-0;
+	@apply text-surface-700;
 }
 
 .p-accordionpanel:not(.p-disabled).p-accordionpanel-active > .p-accordionheader:hover {
-	@apply bg-surface-0 dark:bg-surface-900 text-surface-700 dark:text-surface-0;
+	@apply bg-surface-0 text-surface-700;
 }
 
 .p-accordionpanel:not(.p-disabled).p-accordionpanel-active
 	> .p-accordionheader:hover
 	.p-accordionheader-toggle-icon {
-	@apply text-surface-700 dark:text-surface-0;
+	@apply text-surface-700;
 }
 
 .p-accordioncontent-content {
-	@apply bg-surface-0 dark:bg-surface-900 text-surface-700 dark:text-surface-0 pt-0 px-[1.125rem] pb-[1.125rem];
+	@apply bg-surface-0 text-surface-600 !text-body-3 pt-0 pl-10 px-[1.125rem] pb-[1.125rem];
 }
