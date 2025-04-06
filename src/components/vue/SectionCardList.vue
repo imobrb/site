@@ -28,7 +28,7 @@
 					<CardImovel
 						:title="`${card.dadosBasicos.tipoimovel} ${card.dadosBasicos.condominioresidencialedificio ? `- ` + card.dadosBasicos.condominioresidencialedificio : ''}`"
 						:subtitle="`${card.dadosBasicos.cidade} - ${card.dadosBasicos.bairro} ${card.valorLocacao ? ` - ` + card.dadosBasicos.endereco : ''}`"
-						:price="card.valorLocacao ? card.valorLocacao : card.valorVenda"
+						:price="Number(card.valorLocacao ? card.valorLocacao : card.valorVenda)"
 						:transactionType="card.valorLocacao ? 'Aluguel' : (card.valorVenda ? 'Venda' : '')"
 						:image="{
 							alt:`${card.dadosBasicos.tipoimovel} ${card.dadosBasicos.condominioresidencialedificio ? `- ` + card.dadosBasicos.condominioresidencialedificio : ''}`,

@@ -32,7 +32,7 @@
 						as="a"
 						href="/favoritos"
 						icon="pi pi-heart"
-						:label="favoritesCount"
+						:label="String(favoritesCount)"
 					/>
 					<!-- Botão de menu que alterna o ícone -->
 					<Button
