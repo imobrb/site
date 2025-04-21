@@ -11,7 +11,9 @@
 			role="presentation"
 		/>
 
-		<a :href="props.link?.href" :class="[
+		<a
+			:href="props.link?.href"
+			:class="[
 			'flex rounded-2xl group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary',
 			listMode ? 'flex-row gap-6' : 'flex-col gap-4'
 		]">
@@ -19,7 +21,7 @@
 				'group-hover:ring-4 group-hover:ring-primary-500 rounded-2xl',
 				listMode ? 'w-1/3' : ''
 			]">
-				<div class="overflow-hidden rounded-2xl">
+				<picture class="overflow-hidden rounded-2xl">
 					<img
 						loading="lazy"
 						alt="user header"
@@ -30,7 +32,7 @@
 						]"
 						role="presentation"
 					/>
-				</div>
+				</picture>
 			</div>
 			
 			<div :class="[
@@ -51,11 +53,14 @@
 						{{ props.subtitle }}
 					</span>
 					<ul class="m-0 p-0 flex gap-4" role="presentation">
-						<li class="flex flex-col gap-2 p-2 text-center justify-center items-center max-w-20" role="presentation">
-							<i class="pi pi-car text-surface-500 text-sm"></i>
-							<span class="text-sm text-surface-500 font-medium leading-none">
-								2 vagas
-							</span>
+						<li
+							 v-for="room in rooms.slice(0,4)"
+							class="flex flex-col gap-2 p-2 text-center justify-center items-center max-w-20" role="presentation"
+						>
+							<i class="pi pi-check text-surface-500 text-sm"></i>
+							<p class="text-xs text-surface-500 font-medium leading-none">
+								{{ room.quantidade }} {{ replaceRoomsName(room.nome) }}
+							</p>
 						</li>
 					</ul>
 				</div>
@@ -96,9 +101,6 @@
 		price: {
 			type: Number
 		},
-		note: {
-			type: String
-		},
 		link: {
 			type: Object,
 			default() {
@@ -107,12 +109,24 @@
 				}
 			}
 		},
-		items: {
-			type: Object
-		},
 		listMode: {
 			type: Boolean,
 			default: false
+		},
+		rooms: {
+			type: Array,
+			default : () => []
 		}
 	})
+
+	function replaceRoomsName (name='')  {
+		name = name.replace('ITÓRIO(S)', '.')
+		// name = name.replace('INHA', '.')
+		name = name.replace('HEIRO', '.')
+		name = name.replace('HEIRO', '.')
+		name = name.replace('ENDÊNCIA', '.')
+		name = name.replace('GARAGEM', 'VAGA(s)')
+
+		return name.toLocaleLowerCase()
+	}
 </script>

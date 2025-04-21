@@ -38,6 +38,7 @@
 							label: 'Ver imóvel',
 							href: `/imoveis/${card.dadosBasicos.codigo}`
 						}"
+						:rooms="card.comodos || []"
 					/>
 				</div>
 			</template>

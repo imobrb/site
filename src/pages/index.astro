@@ -20,7 +20,13 @@ import ServiceImoveis from '@services/Imoveis'
 const page = await getEntry('institutional', 'home')
 const serviceImoveis = new ServiceImoveis()
 
-const featuredProperties = await serviceImoveis.featuredProperties(6, 2)
+// const featuredProperties = await serviceImoveis.featuredProperties(6, 2)
+
+const  exclusiveRentedProperties = await serviceImoveis.exclusiveRentedProperties(6, 2)
+const exclusiveSaleProperties = await serviceImoveis.exclusiveSaleProperties(6, 2)
+
+const rentedFeaturedProperties = await serviceImoveis.rentedFeaturedProperties(6, 2)
+const featuredSaleProperties = await serviceImoveis.featuredSaleProperties(6, 2)
 ---
 
 <Layout
@@ -30,7 +36,6 @@ const featuredProperties = await serviceImoveis.featuredProperties(6, 2)
 	description={page.data.description}
 	image={page.data.image}
 >
-
 	<div
 		class="flex w-full h-[calc(100vh-90px)] bg-primary-500 justify-center overflow-hidden relative z-0"
 	>
@@ -59,45 +64,45 @@ const featuredProperties = await serviceImoveis.featuredProperties(6, 2)
 
 	<div class="flex flex-col gap-8 md:gap-16 py-4 md:py-16 px-container w-full">
 		<SectionCardList
-			title="Exclusivos para Alugar"
+			title="Imóveis Exclusivos para Alugar"
 			link={{
 				href: `${SITE_URL}/exclusivo-locacao/`,
 				label: 'Ver todos os imóveis exclusivos para alugar'
 			}}
-			items={featuredProperties.locacao}
+			items={exclusiveRentedProperties}
 		/>
 
 		<Divider />
 
 		<SectionCardList
-			title="Exclusivos para Comprar"
+			title="Imóveis Exclusivos para Comprar"
 			link={{
 				href: `${SITE_URL}/exclusivo-venda/`,
 				label: 'Ver todos os imóveis exclusivos para comprar'
 			}}
-			items={featuredProperties.venda}
+			items={exclusiveSaleProperties}
 		/>
 
 		<BannerCarousel client:load />
 
 		<SectionCardList
-			title="Exclusivos para Alugar"
+			title="Imóveis para Alugar"
 			link={{
-				href: `${SITE_URL}/exclusivo-locacao/`,
-				label: 'Ver todos os imóveis exclusivos para alugar'
+				href: `${SITE_URL}/alugar-imovel/`,
+				label: 'Ver todos os imóveis para locação'
 			}}
-			items={featuredProperties.locacao}
+			items={rentedFeaturedProperties}
 		/>
 
 		<Divider />
 
 		<SectionCardList
-			title="Exclusivos para Comprar"
+			title="Imóveis para Comprar"
 			link={{
-				href: `${SITE_URL}/exclusivo-venda/`,
-				label: 'Ver todos os imóveis exclusivos para comprar'
+				href: `${SITE_URL}/comprar-imovel/`,
+				label: 'Ver todos os imóveis para compra.'
 			}}
-			items={featuredProperties.venda}
+			items={featuredSaleProperties}
 		/>
 	</div>
 </Layout>
