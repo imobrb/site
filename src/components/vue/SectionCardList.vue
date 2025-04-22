@@ -1,6 +1,6 @@
 <template>
 	<section class="flex flex-col gap-8 md:gap-16 w-full">
-		<div class="flex w-full justify-between h-fit">
+		<div class="flex flex-col md:flex-row gap-3 w-full justify-between h-fit">
 			<h3 class="text-heading-3 font-bold">
 				{{ props.title }}
 			</h3>
