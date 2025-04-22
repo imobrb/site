@@ -29,7 +29,7 @@
 						:src="image.src"
 						:class="[
 							'object-cover rounded-2xl group-focus-visible:outline-2 group-focus-visible:outline-offset-2 group-focus-visible:outline-secondary group-hover:scale-105 transition-transform duration-300',
-							listMode ? 'w-full h-full' : 'w-full h-48'
+							listMode ? 'w-full h-full' : 'w-full'
 						]"
 						role="presentation"
 					/>
