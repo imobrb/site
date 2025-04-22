@@ -14,7 +14,7 @@
 		<a
 			:href="props.link?.href"
 			:class="[
-				'flex rounded-2xl group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary relative h-full min-h-[460px]',
+				'flex rounded-2xl group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary relative w-full min-h-[460px]',
 				listMode ? 'flex-row gap-6' : 'flex-col gap-4'
 			]"
 		>
