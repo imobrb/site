@@ -14,9 +14,10 @@
 		<a
 			:href="props.link?.href"
 			:class="[
-			'flex rounded-2xl group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary',
-			listMode ? 'flex-row gap-6' : 'flex-col gap-4'
-		]">
+				'flex rounded-2xl group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary relative h-full min-h-[460px]',
+				listMode ? 'flex-row gap-6' : 'flex-col gap-4'
+			]"
+		>
 			<div :class="[
 				'group-hover:ring-4 group-hover:ring-primary-500 rounded-2xl',
 				listMode ? 'w-1/3' : ''
@@ -35,10 +36,12 @@
 				</picture>
 			</div>
 			
-			<div :class="[
-				'flex flex-col',
-				listMode ? 'w-2/3 justify-between' : 'gap-2'
-			]">
+			<div
+				:class="[
+					'flex flex-col',
+					listMode ? 'w-2/3 justify-between' : 'gap-2'
+				]"
+			>
 				<div class="flex flex-col gap-2">
 					<h3 class="text-heading-2 text-primary-600" role="presentation">
 						{{ props.transactionType }} R$ {{ props.price }}
@@ -52,18 +55,34 @@
 					<span class="text-body-1 text-surface-500" role="presentation">
 						{{ props.subtitle }}
 					</span>
-					<ul class="m-0 p-0 flex gap-4" role="presentation">
-						<li
-							 v-for="room in rooms.slice(0,4)"
-							class="flex flex-col gap-2 p-2 text-center justify-center items-center max-w-20" role="presentation"
-						>
-							<i class="pi pi-check text-surface-500 text-sm"></i>
-							<p class="text-xs text-surface-500 font-medium leading-none">
-								{{ room.quantidade }} {{ replaceRoomsName(room.nome) }}
-							</p>
-						</li>
-					</ul>
 				</div>
+
+				
+			</div>
+			<div class="absolute bottom-0 flex flex-col gap-2 w-full">
+				<ul class="m-0 p-0 flex gap-4" role="presentation">
+					<li
+							v-for="room in rooms.slice(0,4)"
+						class="flex flex-col gap-2 p-2 text-center justify-center items-center max-w-20" role="presentation"
+					>
+						<i
+							:class="[
+								room.nome === 'DORMITÓRIO(S)' ? 'pi pi-users' : 'pi pi-verified',
+								room.nome === 'SUÍTE' ? 'pi pi-users' : 'pi pi-verified',
+								room.nome === 'GARAGEM' ? 'pi pi-car' : 'pi pi-verified',
+								room.nome === 'COZINHA' ? 'pi pi-clock' : 'pi pi-verified',
+								room.nome === 'BANHEIRO' ? 'pi pi-cog' : 'pi pi-verified',
+								room.nome === 'LAVABO' ? 'pi pi-cog' : 'pi pi-verified',
+								room.nome === 'SALA' ? 'pi pi-desktop' : 'pi pi-verified'
+							]"
+							class="pi pi-verified text-surface-500 text-sm"
+						>
+						</i>
+						<p class="text-xs text-surface-500 font-medium leading-none">
+							{{ room.quantidade }} {{ replaceRoomsName(room.nome) }}
+						</p>
+					</li>
+				</ul>
 	
 				<hr :class="['border-surface-200', listMode ? 'hidden' : '']"/>
 	

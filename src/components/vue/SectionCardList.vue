@@ -24,23 +24,21 @@
 			class="w-full !m-0 !p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-x-14 md:gap-y-20"
 		>	
 			<template v-for="card in items">
-				<div class="w-full">
-					<CardImovel
-						:title="`${card.dadosBasicos.tipoimovel} ${card.dadosBasicos.condominioresidencialedificio ? `- ` + card.dadosBasicos.condominioresidencialedificio : ''}`"
-						:subtitle="`${card.dadosBasicos.cidade} - ${card.dadosBasicos.bairro} ${card.valorLocacao ? ` - ` + card.dadosBasicos.endereco : ''}`"
-						:price="Number(card.valorLocacao ? card.valorLocacao : card.valorVenda)"
-						:transactionType="card.valorLocacao ? 'Aluguel' : (card.valorVenda ? 'Venda' : '')"
-						:image="{
-							alt:`${card.dadosBasicos.tipoimovel} ${card.dadosBasicos.condominioresidencialedificio ? `- ` + card.dadosBasicos.condominioresidencialedificio : ''}`,
-							src: `${API_URL}/img?id=${card.dadosBasicos.codigo}&tamanho=347x196&imagem=${card.fotos}`
-						}"
-						:link="{
-							label: 'Ver imóvel',
-							href: `/imoveis/${card.dadosBasicos.codigo}`
-						}"
-						:rooms="card.comodos || []"
-					/>
-				</div>
+				<CardImovel
+					:title="`${card.dadosBasicos.tipoimovel} ${card.dadosBasicos.condominioresidencialedificio ? `- ` + card.dadosBasicos.condominioresidencialedificio : ''}`"
+					:subtitle="`${card.dadosBasicos.cidade} - ${card.dadosBasicos.bairro} ${card.valorLocacao ? ` - ` + card.dadosBasicos.endereco : ''}`"
+					:price="Number(card.valorLocacao ? card.valorLocacao : card.valorVenda)"
+					:transactionType="card.valorLocacao ? 'Aluguel' : (card.valorVenda ? 'Venda' : '')"
+					:image="{
+						alt:`${card.dadosBasicos.tipoimovel} ${card.dadosBasicos.condominioresidencialedificio ? `- ` + card.dadosBasicos.condominioresidencialedificio : ''}`,
+						src: `${API_URL}/img?id=${card.dadosBasicos.codigo}&tamanho=347x196&imagem=${card.fotos}`
+					}"
+					:link="{
+						label: 'Ver imóvel',
+						href: `/imoveis/${card.dadosBasicos.codigo}`
+					}"
+					:rooms="card.comodos || []"
+				/>
 			</template>
 		</div>
 	</section>
