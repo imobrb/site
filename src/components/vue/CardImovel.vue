@@ -44,7 +44,7 @@
 			>
 				<div class="flex flex-col gap-2">
 					<h3 class="text-heading-2 text-primary-600" role="presentation">
-						{{ props.transactionType }} R$ {{ props.price }}
+						{{ props.transactionType }} {{ formatReal(props.price) }}
 					</h3>
 					<div class="text-heading-1" role="presentation">
 						{{ props.title }}
@@ -147,5 +147,12 @@
 		name = name.replace('GARAGEM', 'VAGA(s)')
 
 		return name.toLocaleLowerCase()
+	}
+
+	function formatReal(number) {
+		return new Intl.NumberFormat('pt-BR', {
+			style: 'currency',
+			currency: 'BRL'
+		}).format(number);
 	}
 </script>
