@@ -56,9 +56,8 @@
 						{{ props.subtitle }}
 					</span>
 				</div>
-
-				
 			</div>
+			
 			<div class="absolute bottom-0 flex flex-col gap-2 w-full">
 				<ul class="m-0 p-0 flex gap-4" role="presentation">
 					<li
@@ -152,6 +151,6 @@
 		return new Intl.NumberFormat('pt-BR', {
 			style: 'currency',
 			currency: 'BRL'
-		}).format(number);
+		}).format(number)
 	}
 </script>
