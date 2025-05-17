@@ -5,5 +5,9 @@
   "draft": false,
   "image": "/assets/uploads/imobiliaria-rio-branco-presidente-prudente.jpg",
   "slug": "/",
-  "content": {}
+  "sections": {
+    "hero": {
+      "title": "Há 50 anos reimaginando vidas."
+    }
+  }
 }

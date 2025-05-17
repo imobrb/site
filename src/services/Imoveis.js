@@ -70,6 +70,7 @@ class Imovel {
       const result = await response.json()
       return result
     } catch (error) {
+			// IMPROVE ERROR DATA
       console.error('ERROR request:', error)
       return null
     }
@@ -204,11 +205,6 @@ class Imovel {
     return url
   }
 
-  async rentedFeaturedProperties(limit, sortOrder) {
-    const properties = await this.featuredProperties(limit, sortOrder)
-    return properties.locacao
-  }
-
   async exclusiveRentedProperties(limit, sortOrder) {
     const properties = await this.exclusiveProperties(limit, sortOrder)
     const result = this.setExclusiveSingle(properties.locacao)
@@ -219,6 +215,11 @@ class Imovel {
     const properties = await this.exclusiveProperties(limit, sortOrder)
     const result = this.setExclusiveSingle(properties.venda)
     return result
+  }
+
+	async rentedFeaturedProperties(limit, sortOrder) {
+    const properties = await this.featuredProperties(limit, sortOrder)
+    return properties.locacao
   }
 
   async featuredSaleProperties(limit, sortOrder) {

@@ -1,12 +1,4 @@
 ---
-interface Props {
-	draft: boolean;
-  noindex: boolean;
-	title: string;
-	description: string;
-	image: string;
-}
-
 import { getEntry } from 'astro:content'
 
 import { SITE_URL } from '@/consts'
@@ -15,18 +7,8 @@ import Divider from 'primevue/divider';
 import SearchBar from '@components/vue/SearchBar.vue'
 import SectionCardList from '@components/vue/SectionCardList.vue'
 import BannerCarousel from '@components/vue/BannerCarousel.vue'
-import ServiceImoveis from '@services/Imoveis'
 
 const page = await getEntry('institutional', 'home')
-const serviceImoveis = new ServiceImoveis()
-
-// const featuredProperties = await serviceImoveis.featuredProperties(6, 2)
-
-const  exclusiveRentedProperties = await serviceImoveis.exclusiveRentedProperties(6, 2)
-const exclusiveSaleProperties = await serviceImoveis.exclusiveSaleProperties(6, 2)
-
-const rentedFeaturedProperties = await serviceImoveis.rentedFeaturedProperties(6, 2)
-const featuredSaleProperties = await serviceImoveis.featuredSaleProperties(6, 2)
 ---
 
 <Layout
@@ -64,45 +46,50 @@ const featuredSaleProperties = await serviceImoveis.featuredSaleProperties(6, 2)
 
 	<div class="flex flex-col gap-8 md:gap-16 py-4 md:py-16 px-container w-full">
 		<SectionCardList
+			client:load
 			title="Imóveis Exclusivos para Alugar"
 			link={{
 				href: `${SITE_URL}/exclusivo-locacao/`,
 				label: 'Ver todos os imóveis exclusivos para alugar'
 			}}
-			items={exclusiveRentedProperties}
+			type="exclusiveRented"
 		/>
 
 		<Divider />
 
 		<SectionCardList
+			client:load
 			title="Imóveis Exclusivos para Comprar"
 			link={{
 				href: `${SITE_URL}/exclusivo-venda/`,
 				label: 'Ver todos os imóveis exclusivos para comprar'
 			}}
-			items={exclusiveSaleProperties}
+			type="exclusiveSale"
 		/>
 
 		<BannerCarousel client:load />
-
+		
 		<SectionCardList
+			client:load
 			title="Imóveis para Alugar"
 			link={{
 				href: `${SITE_URL}/alugar-imovel/`,
 				label: 'Ver todos os imóveis para locação'
 			}}
-			items={rentedFeaturedProperties}
+			type="rentedFeatured"
 		/>
-
+		
 		<Divider />
 
 		<SectionCardList
+			client:load
 			title="Imóveis para Comprar"
 			link={{
 				href: `${SITE_URL}/comprar-imovel/`,
 				label: 'Ver todos os imóveis para compra.'
 			}}
-			items={featuredSaleProperties}
+			type="featuredSale"
 		/>
+		
 	</div>
 </Layout>

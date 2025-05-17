@@ -11,7 +11,7 @@ const base = z.object({
 const institutional = defineCollection({
 	type: 'data',
 	schema: base.extend({
-		content: z.object({}).optional()
+		sections: z.object({}).optional()
 	})
 })
 

@@ -140,8 +140,7 @@
 
 	function replaceRoomsName (name='')  {
 		name = name.replace('ITÓRIO(S)', '.')
-		// name = name.replace('INHA', '.')
-		name = name.replace('HEIRO', '.')
+		name = name.replace('INHA', '.')
 		name = name.replace('HEIRO', '.')
 		name = name.replace('ENDÊNCIA', '.')
 		name = name.replace('GARAGEM', 'VAGA(s)')
