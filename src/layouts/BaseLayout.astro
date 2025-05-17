@@ -1,17 +1,22 @@
 ---
-import '@/styles/global.css';
-import MenuComponent from '@/components/vue/MenuComponent.vue';
-import Header from '@/components/vue/Header.vue';
-import Footer from '@/components/vue/Footer.vue';
+import '@/styles/global.css'
 
-const isHome = Astro.url.pathname === '/';
+import MenuComponent from '@/components/vue/MenuComponent.vue'
+import Header from '@/components/vue/Header.vue'
+import Footer from '@/components/vue/Footer.vue'
+
+const isHome = Astro.url.pathname === '/'
 ---
-<html dir="ltr" lang="pt-br">
+<html
+	dir="ltr"
+	lang="pt-br"
+>
   <head>
     <slot name="head" />
   </head>
 
-  <body id="app" class="min-h-screen flex flex-col">
+  <!-- <body id="app" class="min-h-screen flex flex-col"> -->
+	<body>
     <Header isHome={isHome}>
       <Fragment slot="menuright">
         <MenuComponent client:load />

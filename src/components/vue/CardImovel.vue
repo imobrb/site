@@ -14,10 +14,11 @@
 		<a
 			:href="props.link?.href"
 			:class="[
-				'flex rounded-2xl group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary relative w-full min-h-[460px]',
-				listMode ? 'flex-row gap-6' : 'flex-col gap-4'
+				'flex rounded-2xl group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary relative w-full',
+				listMode ? 'flex-row gap-6' : 'flex-col gap-4 min-h-[460px]'
 			]"
 		>
+			<!--
 			<div :class="[
 				'group-hover:ring-4 group-hover:ring-primary-500 rounded-2xl',
 				listMode ? 'w-1/3' : ''
@@ -30,6 +31,27 @@
 						:class="[
 							'object-cover rounded-2xl group-focus-visible:outline-2 group-focus-visible:outline-offset-2 group-focus-visible:outline-secondary group-hover:scale-105 transition-transform duration-300',
 							listMode ? 'w-full h-full' : 'w-full'
+						]"
+						role="presentation"
+					/>
+				</picture>
+			</div>
+			-->
+
+			<div
+				:class="[
+					'group-hover:ring-4 group-hover:ring-primary-500 rounded-2xl overflow-hidden transition-all duration-300',
+					listMode ? 'w-1/3' : ''
+				]"
+			>
+				<picture>
+					<img
+						loading="lazy"
+						alt="user header"
+						:src="image.src"
+						:class="[
+							'object-cover w-full h-full',
+							'transition-transform duration-300 group-hover:scale-105'
 						]"
 						role="presentation"
 					/>
@@ -83,7 +105,7 @@
 					</li>
 				</ul>
 	
-				<hr :class="['border-surface-200', listMode ? 'hidden' : '']"/>
+				<hr :class="['border-surface-200', listMode ? 'hidden' : '']" />
 	
 				<div class="flex flex-row justify-between items-center">
 					<div class="flex flex-col text-surface-500 text-sm font-medium">
