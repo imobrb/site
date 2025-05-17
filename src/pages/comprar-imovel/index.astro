@@ -1,9 +1,18 @@
 ---
-import Layout from '@layouts/BaseLayout.astro'
+import Layout from '@layouts/Default.astro'
 import BuscaPage from '@components/vue/BuscaPage.vue'
 
 ---
 
-<Layout>
-    <BuscaPage client:load />
+<Layout
+	draft={false}
+	noindex={false}
+	title="Imóveis Comprar"
+	description=""
+	image=""
+>
+	<BuscaPage
+		client:load
+		type="featuredSale"
+	/>
 </Layout>

@@ -23,11 +23,10 @@
 				</div>
 
 				<span class="text-body-1 text-surface-500 md:flex hidden">
-					271 Imóveis encontrados nessa região. (desktop)
+					{{ imoveis.length }} Imóveis encontrados nessa região.
 				</span>
 			</div>
 
-			<!-- Filtros -->
 			<Transition
 				enter-active-class="transition-all duration-300 ease-in-out"
 				enter-from-class="opacity-0 max-h-0 translate-y-2"
@@ -79,7 +78,7 @@
 					</h1>
 				</div>
 				<span class="text-body-1 text-surface-500 md:hidden flex">
-					271 Imóveis encontrados nessa região. (mobile)
+					{{ imoveis.length }} Imóveis encontrados nessa região.
 				</span>
 
 				<div class="flex gap-2 items-center">
@@ -121,15 +120,21 @@
 			>
 				<CardImovel
 					v-for="imovel in imoveis"
-					:key="imovel.id"
+					:key="imovel.dadosBasicos.codigo"
 					:listMode="isListMode"
-					:title="imovel.title"
-					:subtitle="imovel.subtitle"
-					:price="Number(imovel.price)"
-					:transactionType="imovel.transactionType"
-					:image="imovel.image"
-					:link="imovel.link"
-					:rooms="imovel.rooms || []"
+					:title="`${imovel.dadosBasicos.tipoimovel} ${imovel.dadosBasicos.condominioresidencialedificio ? `- ` + imovel.dadosBasicos.condominioresidencialedificio : ''}`"
+					:subtitle="`${imovel.dadosBasicos.cidade} - ${imovel.dadosBasicos.bairro} ${imovel.valorLocacao ? ` - ` + imovel.dadosBasicos.endereco : ''}`"
+					:price="Number(imovel.valorLocacao ? imovel.valorLocacao : imovel.valorVenda)"
+					:transactionType="imovel.valorLocacao ? 'Aluguel' : (imovel.valorVenda ? 'Venda' : '')"
+					:image="{
+						alt:`${imovel.dadosBasicos.tipoimovel} ${imovel.dadosBasicos.condominioresidencialedificio ? `- ` + imovel.dadosBasicos.condominioresidencialedificio : ''}`,
+						src: `${API_URL}/img?id=${imovel.dadosBasicos.codigo}&tamanho=347x196&imagem=${imovel.fotos}`
+					}"
+					:link="{
+						label: 'Ver imóvel',
+						href: `/imoveis/${imovel.dadosBasicos.codigo}`
+					}"
+					:rooms="imovel.comodos || []"
 				/>
 			</div>
 		</div>
@@ -137,7 +142,7 @@
 </template>
 
 <script setup>
-	import { ref } from 'vue'
+	import { onMounted, ref } from 'vue'
 
 	import Breadcrumb from '@components/vue/Breadcrumb.vue'
 	import CardImovel from '@components/vue/CardImovel.vue'
@@ -148,37 +153,94 @@
 	import IconField from 'primevue/iconfield'
 	import InputIcon from 'primevue/inputicon'
 
-	import { json as highlightsData } from '../../mock/get-highlights.js'
+	import ServiceImoveis from '@services/Imoveis'
+	import { API_URL } from '@/consts'
 
-	// const imoveis = ref([])
+	const props = defineProps({
+		type: {
+			type: String,
+			required: true,
+			options: [
+				'exclusiveRented',
+				'exclusiveSale',
+				'rentedFeatured',
+				'featuredSale'
+			]
+		}
+	})
+
+	const imoveis = ref([])
 	const showFilters = ref(false)
-	const isListMode = ref(true)
+	const isListMode = ref(false)
 	const currentPage = {
 		label: 'Busca de Imóveis',
 		url: '/busca'
 	}
-
-	const imoveis = ref(highlightsData.venda.map(imovel => {
-		return {
-			id: imovel.dadosBasicos.codigo,
-			title: `${imovel.dadosBasicos.tipoimovel} - ${imovel.dadosBasicos.bairro}`,
-			subtitle: `${imovel.dadosBasicos.endereco}, ${imovel.dadosBasicos.numero} - ${imovel.dadosBasicos.cidade}`,
-			price: imovel.valorVenda,
-			transactionType: imovel.dadosBasicos.tiponegocio,
-			image: {
-				src: 'https://o2u4kwbklg.map.azionedge.net/img?id=4182&tamanho=347x196&imagem=010517-002.jpg'
-			},
-			link: {
-				href: `/imovel/${imovel.dadosBasicos.codigo}`,
-				label: 'Ver imóvel'
-			},
-			rooms: imovel.comodos
-		}
-	}))
 
 	const ordem = [
 		{ name: 'Recém cadastrados', code: 'recentes' },
 		{ name: 'Valores crescentes', code: 'valor_crescente' },
 		{ name: 'Valores decrescentes', code: 'valor_decrescente' }
 	]
+
+	const error = ref('')
+	const loading = ref(true)
+
+	const serviceImoveis = new ServiceImoveis()
+	const mapType = {
+		exclusiveRented: async (limit=9999, order=2) => {
+			return await serviceImoveis.exclusiveRentedProperties(limit, order)
+		},
+		exclusiveSale: async (limit=9999, order=2) => {
+			return await serviceImoveis.exclusiveSaleProperties(limit, order)
+		},
+		rentedFeatured: async (limit=9999, order=2) => {
+			return await serviceImoveis.rentedFeaturedProperties(limit, order)
+		},
+		featuredSale: async (limit=9999, order=2) => {
+			return await serviceImoveis.featuredSaleProperties(limit, order)
+		}
+	}
+
+	const getError = () => error.value
+
+	const setError = (errorMessage='') => {
+		error.value = errorMessage
+		return getError()
+	}
+
+	const hasError = () => getError() && getError().length
+
+	const getLoadStatus = () => loading.value
+
+	const setLoadStatus = (status=true) => {
+		loading.value = status
+		return getLoadStatus()
+	}
+
+	const load = async () => {
+		setLoadStatus(true)
+
+		const data = await mapType[props.type]()
+		imoveis.value = data
+
+		setLoadStatus(false)
+	}
+ 
+	const isValidType = () => typeof mapType[props.type] !== 'function'
+	
+	onMounted(async () => {
+		if( isValidType() ) {
+			setLoadStatus(false)
+
+			console.error(
+				`[BuscaPage.vue] Invalid "type" prop: "${props.type}". Expected one of: ${Object.keys(mapType).join(', ')}.`
+			)
+			setError('Não foi possível carregar as informações dos imóveis')
+			
+			return
+		}
+
+		load()
+	})
 </script>
