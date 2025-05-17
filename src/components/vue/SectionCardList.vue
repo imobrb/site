@@ -28,7 +28,7 @@
 				class="w-full !m-0 !p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-x-14 md:gap-y-20"
 			>	
 				<template v-if="getLoadStatus()">
-					<p>Carregando</p>
+					<SectionCardListSkeleton />
 				</template>
 				<template v-else>
 					<template v-for="card in items">
@@ -60,6 +60,7 @@
 <script setup>
 	import { ref, onMounted } from 'vue'
 
+	import SectionCardListSkeleton from '@components/vue/SectionCardListSkeleton.vue'
 	import CardImovel from '@components/vue/CardImovel.vue'
 	import LinkButton from '@components/vue/LinkButton.vue'
 	
