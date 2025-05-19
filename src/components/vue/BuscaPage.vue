@@ -122,19 +122,7 @@
 					v-for="imovel in imoveis"
 					:key="imovel.dadosBasicos.codigo"
 					:listMode="isListMode"
-					:title="`${imovel.dadosBasicos.tipoimovel} ${imovel.dadosBasicos.condominioresidencialedificio ? `- ` + imovel.dadosBasicos.condominioresidencialedificio : ''}`"
-					:subtitle="`${imovel.dadosBasicos.cidade} - ${imovel.dadosBasicos.bairro} ${imovel.valorLocacao ? ` - ` + imovel.dadosBasicos.endereco : ''}`"
-					:price="Number(imovel.valorLocacao ? imovel.valorLocacao : imovel.valorVenda)"
-					:transactionType="imovel.valorLocacao ? 'Aluguel' : (imovel.valorVenda ? 'Venda' : '')"
-					:image="{
-						alt:`${imovel.dadosBasicos.tipoimovel} ${imovel.dadosBasicos.condominioresidencialedificio ? `- ` + imovel.dadosBasicos.condominioresidencialedificio : ''}`,
-						src: `${API_URL}/img?id=${imovel.dadosBasicos.codigo}&tamanho=347x196&imagem=${imovel.fotos}`
-					}"
-					:link="{
-						label: 'Ver imóvel',
-						href: `/imoveis/${imovel.dadosBasicos.codigo}`
-					}"
-					:rooms="imovel.comodos || []"
+					v-bind="parserCardImovelData(imovel)"
 				/>
 			</div>
 		</div>
@@ -154,7 +142,7 @@
 	import InputIcon from 'primevue/inputicon'
 
 	import ServiceImoveis from '@services/Imoveis'
-	import { API_URL } from '@/consts'
+	import parserCardImovelData from '@utils/parserCardImovelData'
 
 	const props = defineProps({
 		type: {

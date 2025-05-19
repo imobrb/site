@@ -18,26 +18,6 @@
 				listMode ? 'flex-row gap-6' : 'flex-col gap-4 min-h-[460px]'
 			]"
 		>
-			<!--
-			<div :class="[
-				'group-hover:ring-4 group-hover:ring-primary-500 rounded-2xl',
-				listMode ? 'w-1/3' : ''
-			]">
-				<picture class="overflow-hidden rounded-2xl">
-					<img
-						loading="lazy"
-						alt="user header"
-						:src="image.src"
-						:class="[
-							'object-cover rounded-2xl group-focus-visible:outline-2 group-focus-visible:outline-offset-2 group-focus-visible:outline-secondary group-hover:scale-105 transition-transform duration-300',
-							listMode ? 'w-full h-full' : 'w-full'
-						]"
-						role="presentation"
-					/>
-				</picture>
-			</div>
-			-->
-
 			<div
 				:class="[
 					'group-hover:ring-4 group-hover:ring-primary-500 rounded-2xl overflow-hidden transition-all duration-300',
@@ -66,7 +46,7 @@
 			>
 				<div class="flex flex-col gap-2">
 					<h3 class="text-heading-2 text-primary-600" role="presentation">
-						{{ props.transactionType }} {{ formatReal(props.price) }}
+						{{ props.transactionType }} {{ props.price }}
 					</h3>
 					<div class="text-heading-1" role="presentation">
 						{{ props.title }}
@@ -167,12 +147,5 @@
 		name = name.replace('GARAGEM', 'VAGA(s)')
 
 		return name.toLocaleLowerCase()
-	}
-
-	function formatReal(number) {
-		return new Intl.NumberFormat('pt-BR', {
-			style: 'currency',
-			currency: 'BRL'
-		}).format(number)
 	}
 </script>

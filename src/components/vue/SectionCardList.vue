@@ -31,23 +31,9 @@
 					<SectionCardListSkeleton />
 				</template>
 				<template v-else>
-					<template v-for="card in items">
+					<template v-for="item in items">
 						<div class="w-full">
-							<CardImovel
-								:title="`${card.dadosBasicos.tipoimovel} ${card.dadosBasicos.condominioresidencialedificio ? `- ` + card.dadosBasicos.condominioresidencialedificio : ''}`"
-								:subtitle="`${card.dadosBasicos.cidade} - ${card.dadosBasicos.bairro} ${card.valorLocacao ? ` - ` + card.dadosBasicos.endereco : ''}`"
-								:price="Number(card.valorLocacao ? card.valorLocacao : card.valorVenda)"
-								:transactionType="card.valorLocacao ? 'Aluguel' : (card.valorVenda ? 'Venda' : '')"
-								:image="{
-									alt:`${card.dadosBasicos.tipoimovel} ${card.dadosBasicos.condominioresidencialedificio ? `- ` + card.dadosBasicos.condominioresidencialedificio : ''}`,
-									src: `${API_URL}/img?id=${card.dadosBasicos.codigo}&tamanho=347x196&imagem=${card.fotos}`
-								}"
-								:link="{
-									label: 'Ver imóvel',
-									href: `/imoveis/${card.dadosBasicos.codigo}`
-								}"
-								:rooms="card.comodos || []"
-							/>
+							<CardImovel v-bind="parserCardImovelData(item)" />
 						</div>
 					</template>
 				</template>
@@ -65,7 +51,7 @@
 	import LinkButton from '@components/vue/LinkButton.vue'
 	
 	import ServiceImoveis from '@services/Imoveis'
-	import { API_URL } from '@/consts'
+	import parserCardImovelData from '@utils/parserCardImovelData'
 
 	const props = defineProps({
 		title: {
