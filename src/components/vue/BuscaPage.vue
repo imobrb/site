@@ -110,21 +110,38 @@
 				</div>
 			</div>
 
-			<div
-				:class="[
-					'm-0 mb-16',
-					isListMode
-						? 'flex flex-col gap-4 md:gap-y-12'
-						: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-x-14 md:gap-y-20'
-				]"
-			>
-				<CardImovel
-					v-for="imovel in imoveis"
-					:key="imovel.dadosBasicos.codigo"
-					:listMode="isListMode"
-					v-bind="parserCardImovelData(imovel)"
-				/>
-			</div>
+			<template v-if="hasError()">
+				<p>{{ getError() }}</p>
+			</template>
+			<template v-if="getLoadStatus()">
+				<div
+					:class="[
+						'm-0 mb-16',
+						isListMode
+							? 'flex flex-col gap-4 md:gap-y-12'
+							: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-x-14 md:gap-y-20'
+					]"
+				>
+					<SectionCardListSkeleton />
+				</div>
+			</template>
+			<template v-else>
+				<div
+					:class="[
+						'm-0 mb-16',
+						isListMode
+							? 'flex flex-col gap-4 md:gap-y-12'
+							: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-x-14 md:gap-y-20'
+					]"
+				>
+					<CardImovel
+						v-for="imovel in imoveis"
+						:key="imovel.dadosBasicos.codigo"
+						:listMode="isListMode"
+						v-bind="parserCardImovelData(imovel)"
+					/>
+				</div>
+			</template>
 		</div>
 	</div>
 </template>
@@ -140,6 +157,7 @@
 	import InputText from 'primevue/inputtext'
 	import IconField from 'primevue/iconfield'
 	import InputIcon from 'primevue/inputicon'
+	import SectionCardListSkeleton from '@components/vue/SectionCardListSkeleton.vue'
 
 	import ServiceImoveis from '@services/Imoveis'
 	import parserCardImovelData from '@utils/parserCardImovelData'
@@ -203,15 +221,18 @@
 
 	const setLoadStatus = (status=true) => {
 		loading.value = status
-		return getLoadStatus()
+	}
+
+	const setImoveis = (data) => {
+		imoveis.value = data
 	}
 
 	const load = async () => {
 		setLoadStatus(true)
 
 		const data = await mapType[props.type]()
-		imoveis.value = data
-
+		
+		setImoveis(data)
 		setLoadStatus(false)
 	}
  
