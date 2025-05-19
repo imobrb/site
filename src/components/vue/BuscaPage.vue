@@ -122,7 +122,7 @@
 							: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-x-14 md:gap-y-20'
 					]"
 				>
-					<SectionCardListSkeleton />
+					<SectionCardListSkeleton :limit="12"/>
 				</div>
 			</template>
 			<template v-else>
