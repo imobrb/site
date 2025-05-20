@@ -1,30 +1,27 @@
 <template>
-	<!--
 	<div class="2xl:-ml-[10%] 2xl:w-[120%] my-4 md:my-8">	
+		<Galleria
+			:value="banners"
+			:showThumbnails="false"
+			:showIndicators="false"
+			:circular="true"
+			:transitionInterval="5000"
+			:autoPlay="true"
+			:showItemNavigators="true"
+			:activeIndex="activeIndex"
+			@update:activeIndex="onActiveIndexChange"
+		>
+			<template #item="slotProps">
+				<picture>
+					<img
+						:src="slotProps.item.url"
+						:alt="slotProps.item.alt"
+						class="2xl:w-[120%]"
+					/>
+				</picture>
+			</template>
+		</Galleria>
 	</div>
-	-->
-
-	<Galleria
-		:value="banners"
-		:showThumbnails="false"
-		:showIndicators="false"
-		:circular="true"
-		:transitionInterval="5000"
-		:autoPlay="true"
-		:showItemNavigators="true"
-		:activeIndex="activeIndex"
-		@update:activeIndex="onActiveIndexChange"
-	>
-		<template #item="slotProps">
-			<picture>
-				<img
-					:src="slotProps.item.url"
-					:alt="slotProps.item.alt"
-					class="2xl:w-[120%]"
-				/>
-			</picture>
-		</template>
-	</Galleria>
 </template>
 
 <script setup>
