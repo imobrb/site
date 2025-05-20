@@ -70,11 +70,13 @@
 		<div class="px-container w-full py-8 min-h-full md:gap-8 gap-4 flex flex-col">
 			<div class="flex md:flex-row flex-col gap-4 md:justify-between md:items-end">
 				<div class="flex flex-col gap-1">
+					<!--
 					<span class="text-body-3 text-surface-600">
 						Imóveis para comprar em
 					</span>
+					-->
 					<h1 class="text-heading-3 text-surface-800">
-						Rio Branco
+						{{ title }}
 					</h1>
 				</div>
 				<span class="text-body-1 text-surface-500 md:hidden flex">
@@ -163,6 +165,9 @@
 	import parserCardImovelData from '@utils/parserCardImovelData'
 
 	const props = defineProps({
+		title: {
+			type: String
+		},
 		type: {
 			type: String,
 			required: true,
