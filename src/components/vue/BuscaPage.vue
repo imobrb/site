@@ -1,7 +1,12 @@
 <template>
 	<div class="w-full px-container flex flex-col gap-4 md:gap-6 p-8">
-		<Breadcrumb :current-page="currentPage" />
-		
+		<Breadcrumb
+			:current-page="{
+				label: 'Busca de Imóveis',
+				url: '/busca/'
+			}"
+		/>
+
 		<div class="w-full flex flex-col gap-4">
 			<div class="flex flex-col gap-4 md:flex-row md:justify-between md:items-end">
 				<div class="flex md:flex-row flex-col gap-2">
@@ -12,7 +17,7 @@
 							class="md:w-96 w-full"
 						/>
 					</IconField>
-					
+
 					<Button
 						:icon="showFilters ? 'pi pi-minus' : 'pi pi-plus'"
 						:label="showFilters ? 'Filtros' : 'Filtros'"
@@ -65,7 +70,7 @@
 	</div>
 
 	<Divider class="m-0 p-0" />
-	
+
 	<div class="flex flex-col gap-8">
 		<div class="px-container w-full py-8 min-h-full md:gap-8 gap-4 flex flex-col">
 			<div class="flex md:flex-row flex-col gap-4 md:justify-between md:items-end">
@@ -87,23 +92,21 @@
 					<div class="flex border rounded-full p-1 gap-1">
 						<Button
 							icon="pi pi-list"
-							:class="[
-								'rounded-full w-8 h-8',
-								isListMode ? 'p-button-primary' : 'p-button-text'
-							]"
+							:class="['rounded-full w-8 h-8', isListMode ? 'p-button-primary' : 'p-button-text']"
 							@click="isListMode = true"
 						/>
 						<Button
 							icon="pi pi-th-large"
-							:class="[
-								'rounded-full w-8 h-8',
-								!isListMode ? 'p-button-primary' : 'p-button-text'
-							]"
+							:class="['rounded-full w-8 h-8', !isListMode ? 'p-button-primary' : 'p-button-text']"
 							@click="isListMode = false"
 						/>
 					</div>
 					<Select
-						:options="ordem"
+						:options="[
+							{ name: 'Recém cadastrados', code: 'recentes' },
+							{ name: 'Valores crescentes', code: 'valor_crescente' },
+							{ name: 'Valores decrescentes', code: 'valor_decrescente' }
+						]"
 						optionLabel="name"
 						optionValue="code"
 						placeholder="Ordenar por"
@@ -171,51 +174,36 @@
 		type: {
 			type: String,
 			required: true,
-			options: [
-				'exclusiveRented',
-				'exclusiveSale',
-				'rentedFeatured',
-				'featuredSale'
-			]
+			options: ['exclusiveRented', 'exclusiveSale', 'rentedFeatured', 'featuredSale']
 		}
 	})
 
 	const imoveis = ref([])
 	const showFilters = ref(false)
 	const isListMode = ref(false)
-	const currentPage = {
-		label: 'Busca de Imóveis',
-		url: '/busca'
-	}
-
-	const ordem = [
-		{ name: 'Recém cadastrados', code: 'recentes' },
-		{ name: 'Valores crescentes', code: 'valor_crescente' },
-		{ name: 'Valores decrescentes', code: 'valor_decrescente' }
-	]
 
 	const error = ref('')
 	const loading = ref(true)
 
 	const serviceImoveis = new ServiceImoveis()
 	const mapType = {
-		exclusiveRented: async (limit=9999, order=2) => {
+		exclusiveRented: async (limit = 9999, order = 2) => {
 			return await serviceImoveis.exclusiveRentedProperties(limit, order)
 		},
-		exclusiveSale: async (limit=9999, order=2) => {
+		exclusiveSale: async (limit = 9999, order = 2) => {
 			return await serviceImoveis.exclusiveSaleProperties(limit, order)
 		},
-		rentedFeatured: async (limit=9999, order=2) => {
+		rentedFeatured: async (limit = 9999, order = 2) => {
 			return await serviceImoveis.rentedFeaturedProperties(limit, order)
 		},
-		featuredSale: async (limit=9999, order=2) => {
+		featuredSale: async (limit = 9999, order = 2) => {
 			return await serviceImoveis.featuredSaleProperties(limit, order)
 		}
 	}
 
 	const getError = () => error.value
 
-	const setError = (errorMessage='') => {
+	const setError = (errorMessage = '') => {
 		error.value = errorMessage
 		return getError()
 	}
@@ -224,7 +212,7 @@
 
 	const getLoadStatus = () => loading.value
 
-	const setLoadStatus = (status=true) => {
+	const setLoadStatus = (status = true) => {
 		loading.value = status
 	}
 
@@ -236,22 +224,22 @@
 		setLoadStatus(true)
 
 		const data = await mapType[props.type]()
-		
+
 		setImoveis(data)
 		setLoadStatus(false)
 	}
- 
+
 	const isValidType = () => typeof mapType[props.type] !== 'function'
-	
+
 	onMounted(async () => {
-		if( isValidType() ) {
+		if (isValidType()) {
 			setLoadStatus(false)
 
 			console.error(
 				`[BuscaPage.vue] Invalid "type" prop: "${props.type}". Expected one of: ${Object.keys(mapType).join(', ')}.`
 			)
 			setError('Não foi possível carregar as informações dos imóveis')
-			
+
 			return
 		}
 

@@ -2,10 +2,10 @@
 <template>
 	<div class="w-full">
 		<!-- Menubar fora do Drawer -->
-		<MenubarCustom 
-			:favoritesCount="favoritesCount" 
-			:menuOpen="menuOpen" 
-			@toggleMenu="toggleMenu" 
+		<MenubarCustom
+			:favoritesCount="favoritesCount"
+			:menuOpen="menuOpen"
+			@toggleMenu="toggleMenu"
 		/>
 
 		<!-- Drawer para conteúdo do menu -->
@@ -17,7 +17,7 @@
 			:showCloseIcon="false"
 			appendTo="body"
 			class="w-full h-full"
-			:pt="{ 
+			:pt="{
 				header: { class: 'hidden' },
 				content: { class: 'p-0' }
 			}"
@@ -25,16 +25,18 @@
 			<div class="w-full flex justify-start h-full">
 				<div class="absolute w-full flex items-center justify-center z-10 mt-6">
 					<div class="w-full px-container">
-						<MenubarCustom 
-							:favoritesCount="favoritesCount" 
-							:menuOpen="menuOpen" 
-							@toggleMenu="toggleMenu" 
+						<MenubarCustom
+							:favoritesCount="favoritesCount"
+							:menuOpen="menuOpen"
+							@toggleMenu="toggleMenu"
 							@openFavorites="openFavorites"
 						/>
 					</div>
 				</div>
 				<div class="bg-secondary w-full h-full hidden lg:flex z-0">
-					<div class="bg-[url('/bg-menu.jpg')] bg-cover bg-center opacity-25 grayscale w-full h-full"></div>
+					<div
+						class="bg-[url('/bg-menu.jpg')] bg-cover bg-center opacity-25 grayscale w-full h-full"
+					></div>
 				</div>
 				<div class="w-full mt-24 px-4">
 					<div class="px-container w-full h-full">
@@ -83,57 +85,61 @@
 </template>
 
 <script>
-import { ref, watch } from 'vue'
-import MenubarCustom from '@/components/vue/MenubarCustom.vue'
-import Button from 'primevue/button'
-import Drawer from 'primevue/drawer'
+	import { ref, watch } from 'vue'
+	import MenubarCustom from '@/components/vue/MenubarCustom.vue'
+	import Button from 'primevue/button'
+	import Drawer from 'primevue/drawer'
 
-export default {
-	name: 'MenuComponent',
-	components: {
-		MenubarCustom,
-		Button,
-		Drawer
-	},
-	setup() {
-		const menuOpen = ref(false)
-		const favoritesCount = ref(12) // Exemplo de contador
+	export default {
+		name: 'MenuComponent',
+		components: {
+			MenubarCustom,
+			Button,
+			Drawer
+		},
+		setup() {
+			const menuOpen = ref(false)
+			const favoritesCount = ref(12) // Exemplo de contador
 
-		const toggleMenu = () => {
-			menuOpen.value = !menuOpen.value
-		}
-
-		// Arrays com os links
-		const section1Items = [
-			{ label: 'Alugar Imóveis', href: '/alugar-imovel' },
-			{ label: 'Comprar Imóveis', href: '/comprar-imovel' },
-			{ label: 'Anunciar Imóveis', href: '/cadastre-seu-imovel' }
-		]
-
-		const section2Items = [
-			{ label: 'Home', href: '/', icon: 'pi pi-arrow-right' },
-			{ label: 'Área do Cliente', href: 'https://riobranco.immobilissistemas.com.br/immobilis/portal/login.php', icon: 'pi pi-arrow-right' },
-			{ label: 'Contato', href: '/contato', icon: 'pi pi-arrow-right' },
-			{ label: 'Blog', href: '/blog', icon: 'pi pi-arrow-right' },
-			{ label: 'Empresa', href: '/empresa', icon: 'pi pi-arrow-right' }
-		]
-
-		// Watcher para adicionar ou remover a classe do body
-		watch(menuOpen, (value) => {
-			if (value) {
-				document.body.classList.add('overflow-hidden')
-			} else {
-				document.body.classList.remove('overflow-hidden')
+			const toggleMenu = () => {
+				menuOpen.value = !menuOpen.value
 			}
-		})
 
-		return {
-			menuOpen,
-			favoritesCount,
-			toggleMenu,
-			section1Items,
-			section2Items
+			// Arrays com os links
+			const section1Items = [
+				{ label: 'Alugar Imóveis', href: '/alugar-imovel' },
+				{ label: 'Comprar Imóveis', href: '/comprar-imovel' },
+				{ label: 'Anunciar Imóveis', href: '/cadastre-seu-imovel' }
+			]
+
+			const section2Items = [
+				{ label: 'Home', href: '/', icon: 'pi pi-arrow-right' },
+				{
+					label: 'Área do Cliente',
+					href: 'https://riobranco.immobilissistemas.com.br/immobilis/portal/login.php',
+					icon: 'pi pi-arrow-right'
+				},
+				{ label: 'Contato', href: '/contato', icon: 'pi pi-arrow-right' },
+				{ label: 'Blog', href: '/blog', icon: 'pi pi-arrow-right' },
+				{ label: 'Empresa', href: '/empresa', icon: 'pi pi-arrow-right' }
+			]
+
+			// Watcher para adicionar ou remover a classe do body
+			watch(menuOpen, (value) => {
+				if (value) {
+					document.body.classList.add('overflow-hidden')
+				} else {
+					document.body.classList.remove('overflow-hidden')
+				}
+			})
+
+			return {
+				menuOpen,
+				favoritesCount,
+				toggleMenu,
+				section1Items,
+				section2Items
+			}
 		}
 	}
-}
 </script>

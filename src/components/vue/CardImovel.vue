@@ -37,34 +37,42 @@
 					/>
 				</picture>
 			</div>
-			
-			<div
-				:class="[
-					'flex flex-col',
-					listMode ? 'w-2/3 justify-between' : 'gap-2'
-				]"
-			>
+
+			<div :class="['flex flex-col', listMode ? 'w-2/3 justify-between' : 'gap-2']">
 				<div class="flex flex-col gap-2">
-					<h3 class="text-heading-2 text-primary-600" role="presentation">
+					<h3
+						class="text-heading-2 text-primary-600"
+						role="presentation"
+					>
 						{{ props.transactionType }} {{ props.price }}
 					</h3>
-					<div class="text-heading-1" role="presentation">
+					<div
+						class="text-heading-1"
+						role="presentation"
+					>
 						{{ props.title }}
 					</div>
 				</div>
-	
+
 				<div class="flex flex-col gap-2">
-					<span class="text-body-1 text-surface-500" role="presentation">
+					<span
+						class="text-body-1 text-surface-500"
+						role="presentation"
+					>
 						{{ props.subtitle }}
 					</span>
 				</div>
 			</div>
-			
+
 			<div class="absolute bottom-0 flex flex-col gap-2 w-full">
-				<ul class="m-0 p-0 flex gap-4" role="presentation">
+				<ul
+					class="m-0 p-0 flex gap-4"
+					role="presentation"
+				>
 					<li
-							v-for="room in rooms.slice(0,4)"
-						class="flex flex-col gap-2 p-2 text-center justify-center items-center max-w-20" role="presentation"
+						v-for="room in rooms.slice(0, 4)"
+						class="flex flex-col gap-2 p-2 text-center justify-center items-center max-w-20"
+						role="presentation"
 					>
 						<i
 							:class="[
@@ -84,15 +92,15 @@
 						</p>
 					</li>
 				</ul>
-	
+
 				<hr :class="['border-surface-200', listMode ? 'hidden' : '']" />
-	
+
 				<div class="flex flex-row justify-between items-center">
 					<div class="flex flex-col text-surface-500 text-sm font-medium">
 						<span>Aluguel + Encargos</span>
 						<span>Exclusivo</span>
 					</div>
-	
+
 					<div class="p-button p-button-primary rounded-full font-medium text-sm">
 						{{ props.link?.label }}
 					</div>
@@ -125,7 +133,7 @@
 			type: Object,
 			default() {
 				return {
-					label: 'Ver imóvel',
+					label: 'Ver imóvel'
 				}
 			}
 		},
@@ -135,11 +143,11 @@
 		},
 		rooms: {
 			type: Array,
-			default : () => []
+			default: () => []
 		}
 	})
 
-	function replaceRoomsName (name='')  {
+	function replaceRoomsName(name = '') {
 		name = name.replace('ITÓRIO(S)', '.')
 		name = name.replace('INHA', '.')
 		name = name.replace('HEIRO', '.')

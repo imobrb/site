@@ -1,22 +1,21 @@
-
 .p-card {
-    @apply flex flex-col rounded-xl
+	@apply flex flex-col rounded-xl
         bg-surface-0
-        text-surface-700
+        text-surface-700;
 }
 
 .p-card-caption {
-    @apply flex flex-col gap-2
+	@apply flex flex-col gap-2;
 }
 
 .p-card-body {
-    @apply p-5 flex flex-col gap-2
+	@apply p-5 flex flex-col gap-2;
 }
 
 .p-card-title {
-    @apply font-medium text-xl
+	@apply font-medium text-xl;
 }
 
 .p-card-subtitle {
-    @apply text-surface-500
+	@apply text-surface-500;
 }

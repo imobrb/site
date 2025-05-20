@@ -26,7 +26,7 @@
 		<template v-else>
 			<div
 				class="w-full !m-0 !p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-x-14 md:gap-y-20"
-			>	
+			>
 				<template v-if="getLoadStatus()">
 					<SectionCardListSkeleton />
 				</template>
@@ -39,7 +39,6 @@
 				</template>
 			</div>
 		</template>
-		
 	</section>
 </template>
 
@@ -49,7 +48,7 @@
 	import SectionCardListSkeleton from '@components/vue/SectionCardListSkeleton.vue'
 	import CardImovel from '@components/vue/CardImovel.vue'
 	import LinkButton from '@components/vue/LinkButton.vue'
-	
+
 	import ServiceImoveis from '@services/Imoveis'
 	import parserCardImovelData from '@utils/parserCardImovelData'
 
@@ -64,12 +63,7 @@
 		type: {
 			type: String,
 			required: true,
-			options: [
-				'exclusiveRented',
-				'exclusiveSale',
-				'rentedFeatured',
-				'featuredSale'
-			]
+			options: ['exclusiveRented', 'exclusiveSale', 'rentedFeatured', 'featuredSale']
 		}
 	})
 	const items = ref([])
@@ -78,23 +72,23 @@
 
 	const serviceImoveis = new ServiceImoveis()
 	const mapType = {
-		exclusiveRented: async (limit=6, order=2) => {
+		exclusiveRented: async (limit = 6, order = 2) => {
 			return await serviceImoveis.exclusiveRentedProperties(limit, order)
 		},
-		exclusiveSale: async (limit=6, order=2) => {
+		exclusiveSale: async (limit = 6, order = 2) => {
 			return await serviceImoveis.exclusiveSaleProperties(limit, order)
 		},
-		rentedFeatured: async (limit=6, order=2) => {
+		rentedFeatured: async (limit = 6, order = 2) => {
 			return await serviceImoveis.rentedFeaturedProperties(limit, order)
 		},
-		featuredSale: async (limit=6, order=2) => {
+		featuredSale: async (limit = 6, order = 2) => {
 			return await serviceImoveis.featuredSaleProperties(limit, order)
 		}
 	}
 
 	const getError = () => error.value
 
-	const setError = (errorMessage='') => {
+	const setError = (errorMessage = '') => {
 		error.value = errorMessage
 		return getError()
 	}
@@ -103,7 +97,7 @@
 
 	const getLoadStatus = () => loading.value
 
-	const setLoadStatus = (status=true) => {
+	const setLoadStatus = (status = true) => {
 		loading.value = status
 		return getLoadStatus()
 	}
@@ -116,18 +110,18 @@
 
 		setLoadStatus(false)
 	}
- 
+
 	const isValidType = () => typeof mapType[props.type] !== 'function'
-	
+
 	onMounted(async () => {
-		if( isValidType() ) {
+		if (isValidType()) {
 			setLoadStatus(false)
 
 			console.error(
 				`[SectionCardList.vue] Invalid "type" prop: "${props.type}". Expected one of: ${Object.keys(mapType).join(', ')}.`
 			)
 			setError('Não foi possível carregar as informações dos imóveis')
-			
+
 			return
 		}
 

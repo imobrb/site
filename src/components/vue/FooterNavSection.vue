@@ -20,19 +20,19 @@
 </template>
 
 <script setup lang="ts">
-import Button from 'primevue/button'
+	import Button from 'primevue/button'
 
-interface NavigationLink {
-	href: string
-	label: string
-	icon: string
-	target?: string
-}
+	interface NavigationLink {
+		href: string
+		label: string
+		icon: string
+		target?: string
+	}
 
-interface Props {
-	title: string
-	links: NavigationLink[]
-}
+	interface Props {
+		title: string
+		links: NavigationLink[]
+	}
 
-defineProps<Props>()
-</script> 
+	defineProps<Props>()
+</script>

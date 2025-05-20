@@ -50,34 +50,34 @@
 </template>
 
 <script>
-import Menubar from 'primevue/menubar'
-import Button from 'primevue/button'
+	import Menubar from 'primevue/menubar'
+	import Button from 'primevue/button'
 
-export default {
-	name: 'MenubarCustom',
-	components: {
-		Menubar,
-		Button
-	},
-	props: {
-		favoritesCount: {
-			type: Number,
-			default: 0
+	export default {
+		name: 'MenubarCustom',
+		components: {
+			Menubar,
+			Button
 		},
-		menuOpen: {
-			type: Boolean,
-			default: false
-		}
-	},
-	methods: {
-		handleLogoClick() {
-			// Se o drawer estiver aberto, emite o evento para fechá-lo
-			if (this.menuOpen) {
-				this.$emit('toggleMenu')
+		props: {
+			favoritesCount: {
+				type: Number,
+				default: 0
+			},
+			menuOpen: {
+				type: Boolean,
+				default: false
 			}
-			// Redireciona para a página inicial
-			window.location.href = '/'
+		},
+		methods: {
+			handleLogoClick() {
+				// Se o drawer estiver aberto, emite o evento para fechá-lo
+				if (this.menuOpen) {
+					this.$emit('toggleMenu')
+				}
+				// Redireciona para a página inicial
+				window.location.href = '/'
+			}
 		}
 	}
-}
 </script>

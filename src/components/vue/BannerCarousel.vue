@@ -28,18 +28,27 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import Galleria from 'primevue/galleria'
+	import { ref } from 'vue'
+	import Galleria from 'primevue/galleria'
 
-const activeIndex = ref(0)
+	const activeIndex = ref(0)
 
-const onActiveIndexChange = (index) => {
-	activeIndex.value = index
-}
+	const onActiveIndexChange = (index) => {
+		activeIndex.value = index
+	}
 
-const banners = ref([
-	{ url: 'https://www.imobiliariariobranco.com.br/wp-content/themes/imobiliariariobranco/assets/images/imoveis_com_exclusividade.png', alt: 'Banner 1' },
-	{ url: 'https://www.imobiliariariobranco.com.br/wp-content/themes/imobiliariariobranco/assets/images/acompanhe_o_contrato.png', alt: 'Banner 2' },
-	{ url: 'https://www.imobiliariariobranco.com.br/wp-content/themes/imobiliariariobranco/assets/images/alo_universitario.png', alt: 'Banner 3' }
-])
+	const banners = ref([
+		{
+			url: 'https://www.imobiliariariobranco.com.br/wp-content/themes/imobiliariariobranco/assets/images/imoveis_com_exclusividade.png',
+			alt: 'Banner 1'
+		},
+		{
+			url: 'https://www.imobiliariariobranco.com.br/wp-content/themes/imobiliariariobranco/assets/images/acompanhe_o_contrato.png',
+			alt: 'Banner 2'
+		},
+		{
+			url: 'https://www.imobiliariariobranco.com.br/wp-content/themes/imobiliariariobranco/assets/images/alo_universitario.png',
+			alt: 'Banner 3'
+		}
+	])
 </script>

@@ -28,12 +28,7 @@
 
 	.skeleton-image,
 	.skeleton-text {
-		background: linear-gradient(
-			90deg,
-			#f2f2f2 25%,
-			#e0e0e0 50%,
-			#f2f2f2 75%
-		);
+		background: linear-gradient(90deg, #f2f2f2 25%, #e0e0e0 50%, #f2f2f2 75%);
 		background-size: 200% 100%;
 		animation: shimmer 1.2s infinite;
 	}
@@ -59,6 +54,6 @@
 		}
 		100% {
 			background-position: 200% 0;
-		}	
+		}
 	}
 </style>

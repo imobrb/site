@@ -15,8 +15,15 @@
 			</div>
 
 			<!-- Nav -->
-			<nav class="flex flex-wrap md:flex-row gap-4 justify-between w-full" aria-label="Navegação do site">
-				<div v-for="section in navigationSections" :key="section.title" class="flex flex-col gap-4">
+			<nav
+				class="flex flex-wrap md:flex-row gap-4 justify-between w-full"
+				aria-label="Navegação do site"
+			>
+				<div
+					v-for="section in navigationSections"
+					:key="section.title"
+					class="flex flex-col gap-4"
+				>
 					<h3 class="text-heading-2 text-left">{{ section.title }}</h3>
 					<div class="flex flex-col gap-1 items-start">
 						<Button
@@ -37,9 +44,7 @@
 			</nav>
 
 			<!-- Logo & Social -->
-			<div
-				class="w-full flex flex-row items-start md:flex-row gap-8 justify-between md:items-end"
-			>
+			<div class="w-full flex flex-row items-start md:flex-row gap-8 justify-between md:items-end">
 				<div class="flex flex-col md:flex-row gap-2 w-fit">
 					<img
 						src="/logo-vertical-white.svg"
@@ -73,18 +78,15 @@
 						aria-label="WhatsApp"
 					/>
 					<div class="flex gap-2">
-						<a 
+						<a
 							v-for="social in socialLinks"
 							:key="social.icon"
 							:href="social.href"
 							:target="social.target"
 							class="flex justify-center"
 						>
-							<div 
-								:class="[
-									'w-10 h-10 rounded-full flex items-center justify-center',
-									social.class
-								]"
+							<div
+								:class="['w-10 h-10 rounded-full flex items-center justify-center', social.class]"
 							>
 								<i :class="social.icon + ' text-white text-xl'"></i>
 							</div>
@@ -106,7 +108,10 @@
 					aria-label="Política de Privacidade"
 				/>
 				<div class="flex flex-col gap-2 md:flex-row">
-					<span>Todos os direitos reservados © {{ currentYear }}. Creci 1056 J | Imobiliária Rio Branco</span>
+					<span
+						>Todos os direitos reservados © {{ currentYear }}. Creci 1056 J | Imobiliária Rio
+						Branco</span
+					>
 					<span>
 						Desenvolvido por
 						<a
@@ -130,104 +135,116 @@
 </template>
 
 <script setup lang="ts">
-import Button from 'primevue/button'
-import Divider from 'primevue/divider'
-import { computed, ref } from 'vue'
+	import Button from 'primevue/button'
+	import Divider from 'primevue/divider'
+	import { computed, ref } from 'vue'
 
-interface NavigationLink {
-	href: string
-	label: string
-	icon: string
-	target?: string
-}
+	interface NavigationLink {
+		href: string
+		label: string
+		icon: string
+		target?: string
+	}
 
-interface NavigationSection {
-	title: string
-	links: NavigationLink[]
-}
+	interface NavigationSection {
+		title: string
+		links: NavigationLink[]
+	}
 
-interface SocialLink {
-	icon: string
-	href?: string
-	target?: string
-	class?: string
-	ariaLabel: string
-}
+	interface SocialLink {
+		icon: string
+		href?: string
+		target?: string
+		class?: string
+		ariaLabel: string
+	}
 
-const navigationSections = ref<NavigationSection[]>([
-	{
-		title: 'Institucional',
-		links: [
-			{ href: '/empresa', label: 'Empresa', icon: 'pi pi-arrow-right' },
-			{ href: '/contato', label: 'Contato', icon: 'pi pi-arrow-right' },
-			{ href: '/duvidas-frequentes', label: 'Duvidas Frequentes', icon: 'pi pi-arrow-right' },
-			{ href: '/servicos-prestados', label: 'Serviços prestados', icon: 'pi pi-arrow-right' },
-		],
-	},
-	{
-		title: 'Ferramentas',
-		links: [
-			{
-				href: 'https://riobranco.immobilissistemas.com.br/immobilis/portal/login.php',
-				label: 'Área do cliente',
-				icon: 'pi pi-arrow-right',
-				target: '_blank',
-			},
-			{ href: '/cadastre-seu-imovel', label: 'Cadastre seu imóvel', icon: 'pi pi-arrow-right' },
-			{ href: '/financiamento', label: 'Financiamento', icon: 'pi pi-arrow-right' },
-		],
-	},
-	{
-		title: 'Aluguel',
-		links: [
-			{ href: '/alugar-imovel/?tipo_imovel=3', label: 'Apartamentos', icon: 'pi pi-arrow-right' },
-			{ href: '/alugar-imovel/?tipo_imovel=1', label: 'Casas', icon: 'pi pi-arrow-right' },
-			{ href: '/alugar-imovel/?tipo_imovel=18', label: 'Salões comerciais', icon: 'pi pi-arrow-right' },
-			{ href: '/alugar-imovel/?tipo_imovel=2', label: 'Sobrados', icon: 'pi pi-arrow-right' },
-		],
-	},
-	{
-		title: 'Vendas',
-		links: [
-			{ href: '/comprar-imovel/?tipo_imovel=3', label: 'Apartamentos', icon: 'pi pi-arrow-right' },
-			{ href: '/comprar-imovel/?tipo_imovel=1', label: 'Casas', icon: 'pi pi-arrow-right' },
-			{ href: '/comprar-imovel/?tipo_imovel=18', label: 'Salões comerciais', icon: 'pi pi-arrow-right' },
-			{ href: '/comprar-imovel/?tipo_imovel=2', label: 'Sobrados', icon: 'pi pi-arrow-right' },
-			{ href: '/comprar-imovel/?tipo_imovel=7', label: 'Terrenos', icon: 'pi pi-arrow-right' },
-		],
-	},
-])
+	const navigationSections = ref<NavigationSection[]>([
+		{
+			title: 'Institucional',
+			links: [
+				{ href: '/empresa', label: 'Empresa', icon: 'pi pi-arrow-right' },
+				{ href: '/contato', label: 'Contato', icon: 'pi pi-arrow-right' },
+				{ href: '/duvidas-frequentes', label: 'Duvidas Frequentes', icon: 'pi pi-arrow-right' },
+				{ href: '/servicos-prestados', label: 'Serviços prestados', icon: 'pi pi-arrow-right' }
+			]
+		},
+		{
+			title: 'Ferramentas',
+			links: [
+				{
+					href: 'https://riobranco.immobilissistemas.com.br/immobilis/portal/login.php',
+					label: 'Área do cliente',
+					icon: 'pi pi-arrow-right',
+					target: '_blank'
+				},
+				{ href: '/cadastre-seu-imovel', label: 'Cadastre seu imóvel', icon: 'pi pi-arrow-right' },
+				{ href: '/financiamento', label: 'Financiamento', icon: 'pi pi-arrow-right' }
+			]
+		},
+		{
+			title: 'Aluguel',
+			links: [
+				{ href: '/alugar-imovel/?tipo_imovel=3', label: 'Apartamentos', icon: 'pi pi-arrow-right' },
+				{ href: '/alugar-imovel/?tipo_imovel=1', label: 'Casas', icon: 'pi pi-arrow-right' },
+				{
+					href: '/alugar-imovel/?tipo_imovel=18',
+					label: 'Salões comerciais',
+					icon: 'pi pi-arrow-right'
+				},
+				{ href: '/alugar-imovel/?tipo_imovel=2', label: 'Sobrados', icon: 'pi pi-arrow-right' }
+			]
+		},
+		{
+			title: 'Vendas',
+			links: [
+				{
+					href: '/comprar-imovel/?tipo_imovel=3',
+					label: 'Apartamentos',
+					icon: 'pi pi-arrow-right'
+				},
+				{ href: '/comprar-imovel/?tipo_imovel=1', label: 'Casas', icon: 'pi pi-arrow-right' },
+				{
+					href: '/comprar-imovel/?tipo_imovel=18',
+					label: 'Salões comerciais',
+					icon: 'pi pi-arrow-right'
+				},
+				{ href: '/comprar-imovel/?tipo_imovel=2', label: 'Sobrados', icon: 'pi pi-arrow-right' },
+				{ href: '/comprar-imovel/?tipo_imovel=7', label: 'Terrenos', icon: 'pi pi-arrow-right' }
+			]
+		}
+	])
 
-const socialLinks = ref<SocialLink[]>([
-	{
-		icon: 'pi pi-facebook',
-		href: 'https://www.facebook.com/imobiliariariobranco/',
-		target: '_blank',
-		class: 'bg-[#1976D2]',
-		ariaLabel: 'Facebook',
-	},
-	{
-		icon: 'pi pi-instagram',
-		href: 'https://www.instagram.com/imobiliariariobranco/',
-		target: '_blank',
-		class: 'bg-gradient-to-r from-[#F99B4A] to-[#DA5CA1]',
-		ariaLabel: 'Instagram',
-	},
-	{
-		icon: 'pi pi-youtube',
-		href: 'https://www.youtube.com/user/imoRioBranco',
-		target: '_blank',
-		class: 'bg-[#FF2D2D]',
-		ariaLabel: 'YouTube',
-	},
-])
+	const socialLinks = ref<SocialLink[]>([
+		{
+			icon: 'pi pi-facebook',
+			href: 'https://www.facebook.com/imobiliariariobranco/',
+			target: '_blank',
+			class: 'bg-[#1976D2]',
+			ariaLabel: 'Facebook'
+		},
+		{
+			icon: 'pi pi-instagram',
+			href: 'https://www.instagram.com/imobiliariariobranco/',
+			target: '_blank',
+			class: 'bg-gradient-to-r from-[#F99B4A] to-[#DA5CA1]',
+			ariaLabel: 'Instagram'
+		},
+		{
+			icon: 'pi pi-youtube',
+			href: 'https://www.youtube.com/user/imoRioBranco',
+			target: '_blank',
+			class: 'bg-[#FF2D2D]',
+			ariaLabel: 'YouTube'
+		}
+	])
 
-const currentYear = computed(() => new Date().getFullYear())
+	const currentYear = computed(() => new Date().getFullYear())
 
-function scrollToTop() {
-	window.scrollTo({
-		top: 0,
-		behavior: 'smooth',
-	})
-}
+	function scrollToTop() {
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth'
+		})
+	}
 </script>
