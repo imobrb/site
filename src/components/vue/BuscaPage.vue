@@ -102,6 +102,7 @@
 						/>
 					</div>
 					<Select
+						:modelValue="selectedOrder"
 						@update:modelValue="handleChange"
 						:options="[
 							{ name: 'Recém cadastrados', code: '1' }, // ?ordenacao=1&pagina=1
@@ -179,6 +180,7 @@
 		}
 	})
 
+	const selectedOrder = ref()
 	const imoveis = ref([])
 	const showFilters = ref(false)
 	const isListMode = ref(false)
@@ -228,6 +230,7 @@
 
 	const load = async (limit, order) => {
 		setLoadStatus(true)
+		selectedOrder.value = order
 
 		const data = await fetchData(limit, order)
 
@@ -238,7 +241,28 @@
 	const isValidType = () => typeof mapType[props.type] !== 'function'
 
 	const handleChange = async (code) => {
-		load(9999, code)
+		setQueryString('ordenacao', code)
+		load(undefined, code)
+	}
+
+	const getQueryString = () => {
+		if (typeof window === 'undefined') return {}
+
+		const params = new URLSearchParams(window.location.search)
+		return Object.fromEntries(params.entries())
+	}
+
+	const setQueryString = (param, value) => {
+		let searchParams = new URLSearchParams(window.location.search);
+    searchParams.set(param, value);
+		window.location.search = searchParams.toString();
+
+		windowHistoryReplaceState()
+	}
+
+	const windowHistoryReplaceState = () => {
+		const url = new URL(window.location.href)
+		window.history.replaceState({}, '', `${url.pathname}${url.search}`)
 	}
 
 	onMounted(async () => {
@@ -253,6 +277,7 @@
 			return
 		}
 
-		load()
+		const params = getQueryString()
+		load(undefined, params.ordenacao)
 	})
 </script>
