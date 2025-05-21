@@ -102,10 +102,11 @@
 						/>
 					</div>
 					<Select
+						@update:modelValue="handleChange"
 						:options="[
-							{ name: 'Recém cadastrados', code: 'recentes' },
-							{ name: 'Valores crescentes', code: 'valor_crescente' },
-							{ name: 'Valores decrescentes', code: 'valor_decrescente' }
+							{ name: 'Recém cadastrados', code: '1' }, // ?ordenacao=1&pagina=1
+							{ name: 'Valores crescentes', code: '2' }, // ?ordenacao=2&pagina=1
+							{ name: 'Valores decrescentes', code: '3' } // ?ordenacao=3&pagina=1
 						]"
 						optionLabel="name"
 						optionValue="code"
@@ -220,16 +221,25 @@
 		imoveis.value = data
 	}
 
-	const load = async () => {
+	const fetchData = async (limit, order) => {
+		const requestData = await mapType[props.type](limit, order)
+		return requestData
+	}
+
+	const load = async (limit, order) => {
 		setLoadStatus(true)
 
-		const data = await mapType[props.type]()
+		const data = await fetchData(limit, order)
 
 		setImoveis(data)
 		setLoadStatus(false)
 	}
 
 	const isValidType = () => typeof mapType[props.type] !== 'function'
+
+	const handleChange = async (code) => {
+		load(9999, code)
+	}
 
 	onMounted(async () => {
 		if (isValidType()) {
