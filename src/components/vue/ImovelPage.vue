@@ -136,6 +136,8 @@
 
 			<div class="rounded-xl p-6 border-1 border-surface-200 flex flex-col gap-4 w-full lg:w-1/3">
 				<span class="text-heading-2 text-primary-700 font-medium mb-1">
+					{{ transationType }}
+					<br>
 					{{ propertyValue }}
 				</span>
 				<div class="flex flex-col">
@@ -269,16 +271,15 @@
 		displayImage.value = true
 	}
 
+	const transationType = computed(() => {
+		const p = getProperty()
+		return p.valorLocacao?.valordoaluguelmaximo ? 'Aluguel' : 'Venda'
+	})
+
 	const propertyValue = computed(() => {
-		// const data = {
-		// 	type: '',
-		// 	price: ''
-		// }
-		const value =
-			property?.dadosBasicos?.tiponegocio === 'VENDA'
-				? property?.valorVenda
-				: property?.valorLocacao
-		return formatReal(value)
+		const p = getProperty()
+		const n = Number(p.valorLocacao?.valordoaluguelmaximo ? p.valorLocacao?.valordoaluguelmaximo : p.valorVenda?.valordevendamaximo)
+		return formatReal(n) || ''
 	})
 
 	const totalValue = computed(() => {
