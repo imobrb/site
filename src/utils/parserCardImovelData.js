@@ -13,7 +13,8 @@ export default (data) => {
 		},
 		link: {
 			label: 'Ver imóvel',
-			href: `/imoveis/${data.dadosBasicos.codigo}`
+			href: `/imoveis/?imovel=${data.dadosBasicos.codigo}`
+			// href: `/imoveis/${data.dadosBasicos.codigo}`
 		},
 		rooms: data.comodos || []
 	}

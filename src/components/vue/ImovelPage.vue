@@ -1,11 +1,8 @@
 <template>
 	<div class="px-container flex flex-col gap-8 py-8">
-		<!-- Breadcrumb inteligente -->
 		<Breadcrumb :property="property" />
 
-		<!-- Carrossel de Imagens com PrimeVue Galleria -->
 		<Galleria
-			v-if="images.length > 0"
 			:value="images"
 			:showThumbnails="false"
 			:showIndicators="false"
@@ -14,20 +11,21 @@
 			@item-click="onImageClick"
 		>
 			<template #item="slotProps">
-				<img
-					:src="slotProps.item.src"
-					alt="Imagem do imóvel"
-				/>
+				<picture>
+					<img
+						:src="slotProps.item.src"
+						alt="Imóvel"
+					/>
+				</picture>
 			</template>
 			<template #thumbnail="slotProps">
 				<img
-					:src="slotProps.item.src"
+					:src="slotProps.item.thumb"
 					alt="Miniatura"
 				/>
 			</template>
 		</Galleria>
 
-		<!-- Dialog para Ampliar a Imagem -->
 		<Dialog
 			v-model:visible="displayImage"
 			modal
@@ -49,9 +47,7 @@
 			</div>
 		</Dialog>
 
-		<!-- Área com Duas Colunas: Detalhes e Card de Valor -->
 		<div class="flex flex-col lg:flex-row w-full gap-8">
-			<!-- Coluna Esquerda: Nome, Descrição, Detalhes e Botões -->
 			<div class="flex flex-col gap-6 w-full">
 				<div class="flex flex-col gap-4">
 					<div class="flex flex-col gap-1">
@@ -85,10 +81,9 @@
 
 				<div class="flex flex-col gap-2">
 					<h3 class="text-heading-1 text-surface-700">Descrição</h3>
-					<!-- Use v-html se a descrição vier em HTML -->
 					<div
 						class="text-body-2 text-surface-700"
-						v-html="property?.dadosBasicos?.anunciolocacao || property?.dadosBasicos?.anunciovenda"
+						v-html="property?.dadosBasicos?.descricaodoanunciolocacao || property?.dadosBasicos?.descricaodoanunciovenda"
 					></div>
 				</div>
 
@@ -98,7 +93,6 @@
 					</p>
 				</div>
 
-				<!-- Aqui exibimos os detalhes, agora incluindo os dados dos comodos -->
 				<div class="flex flex-wrap gap-6">
 					<template v-if="property?.comodos">
 						<div
@@ -162,7 +156,6 @@
 			</div>
 		</div>
 
-		<!-- Seção de Localização -->
 		<div class="flex flex-col gap-4">
 			<h2 class="text-heading-2 text-surface-900 font-medium">Localização</h2>
 			<div class="w-full h-96">
@@ -180,63 +173,103 @@
 </template>
 
 <script setup>
-	import { ref, computed } from 'vue'
+	import { ref, computed, onMounted } from 'vue'
+
 	import Galleria from 'primevue/galleria'
-	import Breadcrumb from '@/components/vue/Breadcrumb.vue'
 	import Dialog from 'primevue/dialog'
 	import Button from 'primevue/button'
+	
+	import Breadcrumb from '@/components/vue/Breadcrumb.vue'
+	import ServiceImoveis from '@/services/Imoveis'
+	import formatReal from '@/utils/formatReal'
+	import { API_URL } from '@/consts'
+	
 
-	const props = defineProps({
-		property: {
-			type: Object,
-			required: true
-		}
-	})
+	const property = ref({})
 
-	// Formatação de valores monetários
-	const formatCurrency = (value) => {
-		if (!value) return '0,00'
-		return new Intl.NumberFormat('pt-BR', {
-			style: 'currency',
-			currency: 'BRL'
-		}).format(value)
+	// const displayImage = ref(false)
+	const selectedImage = ref('')
+	
+	const googleMapSrc = ref(
+		'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d110533.56085027588!2d-51.1770624!3d-30.031872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1747947042272!5m2!1spt-BR!2sbr'
+	)
+	
+	const makeImageUrl = (id, name) => {
+		return `${API_URL}/img?id=${id}&tamanho=1280x720&imagem=${name}`
 	}
 
-	// Cria a array de imagens para o carrossel usando a foto do imóvel
-	const baseImageUrl =
-		'https://riobranco.immobilissistemas.com.br/ws/lib/compress.php?id=1535&tamanho=1280x720&imagem='
-	const images = computed(() => {
-		if (!props.property?.fotos) return []
-		return [{ src: baseImageUrl + props.property.fotos }]
+	const makeImageThumbnailUrl = (id, name) => {
+		return `${API_URL}/img?id=${id}&tamanho=80x60&imagem=${name}`
+	}
+
+ 	const images = computed(() => {
+		const p = getProperty()
+		const imovelId = p?.dadosBasicos?.codigo
+		const photos = p?.fotos
+
+		if (!photos) return []
+
+		const imgs = photos.map(photo => {
+			return {
+				src: makeImageUrl(imovelId, photo.caminho),
+				thumb: makeImageThumbnailUrl(imovelId, photo.caminho),
+			}
+		})
+		
+		return imgs
 	})
 
-	// Estado e handler para o dialog de imagem ampliada
-	const displayImage = ref(false)
-	const selectedImage = ref('')
 	function onImageClick(e) {
 		selectedImage.value = e.item.src
 		displayImage.value = true
 	}
 
-	// URL do Google Maps (substitua a API key conforme necessário)
-	const googleMapSrc = ref(
-		'https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=-22.1261823,-51.3890721'
-	)
-
-	// Computed properties para valores formatados
 	const propertyValue = computed(() => {
 		const value =
-			props.property?.dadosBasicos?.tiponegocio === 'VENDA'
-				? props.property?.valorVenda
-				: props.property?.valorLocacao
-		return formatCurrency(value)
+			property?.dadosBasicos?.tiponegocio === 'VENDA'
+				? property?.valorVenda
+				: property?.valorLocacao
+		return formatReal(value)
 	})
 
 	const totalValue = computed(() => {
 		const value =
-			props.property?.dadosBasicos?.tiponegocio === 'VENDA'
-				? props.property?.valorVenda
-				: props.property?.valorLocacao
-		return formatCurrency(value)
+			property?.dadosBasicos?.tiponegocio === 'VENDA'
+				? property?.valorVenda
+				: property?.valorLocacao
+		return formatReal(value)
 	})
+
+	const getProperty = () => {
+		return property.value
+	}
+
+	const setProperty = (value) => {
+		property.value = value
+	}
+
+	const getQueryString = () => {
+		if (typeof window === 'undefined') return {}
+
+		const params = new URLSearchParams(window.location.search)
+		return Object.fromEntries(params.entries())
+	}
+
+	const fetchData = async (imovelID) => {
+		const serviceImoveis = new ServiceImoveis()
+		const property = await serviceImoveis.getProperty(imovelID)
+		setProperty(property)
+	}
+
+	onMounted(async () => {
+		const queryString = getQueryString()
+		const imovelID = queryString.imovel
+		
+		if (!imovelID) {s
+			console.error('Invalid imovel search param value.')
+			return
+		}
+		
+		await fetchData(imovelID)
+	})	
 </script>

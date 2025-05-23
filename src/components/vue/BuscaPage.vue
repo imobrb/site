@@ -253,9 +253,9 @@
 	}
 
 	const setQueryString = (param, value) => {
-		let searchParams = new URLSearchParams(window.location.search);
-    searchParams.set(param, value);
-		window.location.search = searchParams.toString();
+		let searchParams = new URLSearchParams(window.location.search)
+		searchParams.set(param, value)
+		window.location.search = searchParams.toString()
 
 		windowHistoryReplaceState()
 	}

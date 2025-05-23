@@ -8,6 +8,8 @@ const productionBuild = import.meta.env.PROD
 
 export default defineConfig({
   site: 'https://www.imobiliariariobranco.com.br/',
+	compressHTML: productionBuild ? false : false,
+	trailingSlash: 'always',
   build: {
     inlineStylesheets: 'always',
     assets: '_astro',
@@ -18,8 +20,6 @@ export default defineConfig({
     vue({ appEntrypoint: 'vue.config.js' })
   ],
   markdown: {},
-  compressHTML: productionBuild ? false : false,
-	trailingSlash: 'always',
   vite: {
     ssrBuild: true,
     server: {

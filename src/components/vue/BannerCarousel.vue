@@ -1,5 +1,5 @@
 <template>
-	<div class="2xl:-ml-[10%] 2xl:w-[120%] my-4 md:my-8">	
+	<div class="2xl:-ml-[10%] 2xl:w-[120%] my-4 md:my-8">
 		<Galleria
 			:value="banners"
 			:showThumbnails="false"

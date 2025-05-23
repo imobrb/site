@@ -77,11 +77,13 @@ class Imovel {
 	}
 
 	async getProperty(id) {
+		// https://o2u4kwbklg.map.azionedge.net/imoveis-id/6251
 		const url = this.buildUrl(`/imoveis-id/${id}`)
 		return await this.request('GET', url)
 	}
 
 	async getPropertyByCode(id) {
+		// https://o2u4kwbklg.map.azionedge.net/imoveis-id/6251
 		const url = this.buildUrl(`/imoveis-id/${id}`)
 		const request = await this.request('GET', url)
 
