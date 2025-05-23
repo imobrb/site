@@ -190,10 +190,6 @@
 	// const displayImage = ref(false)
 	const selectedImage = ref('')
 	
-	// const googleMapSrc = ref(
-	// 	'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d110533.56085027588!2d-51.1770624!3d-30.031872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1747947042272!5m2!1spt-BR!2sbr'
-	// )
-	
 	const makeImageUrl = (id, name) => {
 		return `${API_URL}/img?id=${id}&tamanho=1280x720&imagem=${name}`
 	}
@@ -201,7 +197,6 @@
 	const makeImageThumbnailUrl = (id, name) => {
 		return `${API_URL}/img?id=${id}&tamanho=80x60&imagem=${name}`
 	}
-
 
 	const googleMapSrc = computed(() => {
 		const base = property.value?.dadosBasicos || {}
