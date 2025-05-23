@@ -1,5 +1,6 @@
 <template>
-	<div class="px-container flex flex-col gap-8 py-8">
+	<ImovelPageSkeleton v-if="!property?.dadosBasicos" />
+	<div v-else class="px-container flex flex-col gap-8 py-8">
 		<Breadcrumb
 		 	v-if="property?.dadosBasicos"
 			:current-page="{
@@ -207,6 +208,7 @@
 	import Dialog from 'primevue/dialog'
 	import Button from 'primevue/button'
 
+	import ImovelPageSkeleton from '@/components/vue/ImovelPageSkeleton.vue'
 	import Breadcrumb from '@/components/vue/Breadcrumb.vue'
 	import ServiceImoveis from '@/services/Imoveis'
 	import formatReal from '@/utils/formatReal'
@@ -307,7 +309,6 @@
 		const property = await serviceImoveis.getProperty(imovelID)
 		setProperty(property)
 	}
-
 
 	onMounted(async () => {
 		const queryString = getQueryString()
