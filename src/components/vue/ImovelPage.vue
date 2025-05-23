@@ -18,6 +18,7 @@
 					/>
 				</picture>
 			</template>
+			<!-- do not working -->
 			<template #thumbnail="slotProps">
 				<img
 					:src="slotProps.item.thumb"
@@ -25,7 +26,7 @@
 				/>
 			</template>
 		</Galleria>
-
+		<!-- do not working -->
 		<Dialog
 			v-model:visible="displayImage"
 			modal
@@ -83,7 +84,10 @@
 					<h3 class="text-heading-1 text-surface-700">Descrição</h3>
 					<div
 						class="text-body-2 text-surface-700"
-						v-html="property?.dadosBasicos?.descricaodoanunciolocacao || property?.dadosBasicos?.descricaodoanunciovenda"
+						v-html="
+							property?.dadosBasicos?.descricaodoanunciolocacao ||
+							property?.dadosBasicos?.descricaodoanunciovenda
+						"
 					></div>
 				</div>
 
@@ -106,7 +110,7 @@
 					</template>
 					<div
 						class="flex items-start justify-center flex-col text-body-2"
-						v-if="property?.dadosBasicos?.areaterreno"
+						v-if="property?.dadosBasicos?.areaterreno > 0"
 					>
 						<span class="text-surface-700 font-medium text-body-3"
 							>{{ property.dadosBasicos.areaterreno }}m²</span
@@ -116,7 +120,6 @@
 				</div>
 			</div>
 
-			<!-- Coluna Direita: Card com Valor e Botão de Agendar Visita -->
 			<div class="rounded-xl p-6 border-1 border-surface-200 flex flex-col gap-4 w-full lg:w-1/3">
 				<span class="text-heading-2 text-primary-700 font-medium mb-1">
 					{{ propertyValue }}
@@ -178,18 +181,17 @@
 	import Galleria from 'primevue/galleria'
 	import Dialog from 'primevue/dialog'
 	import Button from 'primevue/button'
-	
+
 	import Breadcrumb from '@/components/vue/Breadcrumb.vue'
 	import ServiceImoveis from '@/services/Imoveis'
 	import formatReal from '@/utils/formatReal'
 	import { API_URL } from '@/consts'
-	
 
 	const property = ref({})
 
 	// const displayImage = ref(false)
 	const selectedImage = ref('')
-	
+
 	const makeImageUrl = (id, name) => {
 		return `${API_URL}/img?id=${id}&tamanho=1280x720&imagem=${name}`
 	}
@@ -208,33 +210,34 @@
 		return `https://maps.google.com/maps?q=${query}&t=&z=15&ie=UTF8&iwloc=&output=embed`
 	})
 
- 	const images = computed(() => {
+	const images = computed(() => {
 		const p = getProperty()
 		const imovelId = p?.dadosBasicos?.codigo
 		const photos = p?.fotos
 
 		if (!photos) return []
 
-		const imgs = photos.map(photo => {
+		const imgs = photos.map((photo) => {
 			return {
 				src: makeImageUrl(imovelId, photo.caminho),
-				thumb: makeImageThumbnailUrl(imovelId, photo.caminho),
+				thumb: makeImageThumbnailUrl(imovelId, photo.caminho)
 			}
 		})
-		
+
 		return imgs
 	})
 
 	function onImageClick(e) {
+		// do not working
 		selectedImage.value = e.item.src
 		displayImage.value = true
 	}
 
 	const propertyValue = computed(() => {
-		const data = {
-			type: "",
-			price: ""
-		}
+		// const data = {
+		// 	type: '',
+		// 	price: ''
+		// }
 		const value =
 			property?.dadosBasicos?.tiponegocio === 'VENDA'
 				? property?.valorVenda
@@ -274,12 +277,12 @@
 	onMounted(async () => {
 		const queryString = getQueryString()
 		const imovelID = queryString.imovel
-		
-		if (!imovelID) {s
+
+		if (!imovelID) {
 			console.error('Invalid imovel search param value.')
 			return
 		}
-		
+
 		await fetchData(imovelID)
-	})	
+	})
 </script>
