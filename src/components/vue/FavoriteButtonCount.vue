@@ -4,7 +4,11 @@
 		rounded
 		icon="pi pi-heart"
 		class="bg-white text-black"
-		:class="{ 'opacity-50 pointer-events-none': favorites.length === 0 }"
+		:class="[
+    favorites.length === 0
+      ? 'opacity-50 pointer-events-none'
+      : 'hover:bg-red-100 hover:text-red-600'
+  ]"
 		:label="favorites.length ? String(favorites.length) : '0'"
 		:href="favorites.length ? `/favoritos/?favoritos=[${favorites}]` : 'javascript:void(0)'"
 	/>
