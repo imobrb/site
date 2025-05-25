@@ -1,5 +1,5 @@
 <template>
-	<Menubar class="bg-transparent border-none w-full">		
+	<Menubar class="bg-transparent border-none w-full">
 		<template #start>
 			<img
 				src="/logo-white.svg"
@@ -21,15 +21,7 @@
 					text
 				/>
 				<div class="flex gap-1 bg-black p-2 w-fit rounded-full">
-					<Button
-						class="bg-white text-black"
-						rounded
-						as="a"
-						icon="pi pi-heart"
-						href="/favoritos/?favoritos=[]"
-						:disabled="favorites.length"
-						:label="favorites.length ? String(favorites.length) : '0'"
-					/>
+					<FavoriteButtonCount />
 
 					<Button
 						class="text-white"
@@ -46,13 +38,11 @@
 </template>
 
 <script setup>
-	import { useStore } from '@nanostores/vue'
-
 	import Menubar from 'primevue/menubar'
 	import Button from 'primevue/button'
-
-	import { $favorites } from '@stores/favorite.js'
 	import { defineProps, defineEmits } from 'vue'
+
+	import FavoriteButtonCount from '@components/vue/FavoriteButtonCount.vue'
 
 	const props = defineProps({
 		menuOpen: {
@@ -62,8 +52,6 @@
 	})
 
 	const emit = defineEmits(['toggleMenu'])
-
-	const favorites = useStore($favorites)
 
 	function handleLogoClick() {
 		if (props.menuOpen) {

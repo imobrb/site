@@ -121,7 +121,6 @@
 
 	const isValidType = () => typeof mapType[props.type] !== 'function'
 
-
 	const onFavorite = (obj) => {
 		storeToggleFavorite(obj.code)
 	}
