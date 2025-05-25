@@ -47,8 +47,7 @@
 
 <script setup>
 	import { ref, onMounted } from 'vue'
-	import { useStore } from '@nanostores/vue'
-
+	
 	import SectionCardListSkeleton from '@components/vue/SectionCardListSkeleton.vue'
 	import CardImovel from '@components/vue/CardImovel.vue'
 	import LinkButton from '@components/vue/LinkButton.vue'
@@ -56,7 +55,7 @@
 	import ServiceImoveis from '@services/Imoveis'
 	import parserCardImovelData from '@utils/parserCardImovelData'
 
-	import { storeToggleFavorite, $favorites } from '@stores/favorite.js'
+	import { storeToggleFavorite } from '@stores/favorite.js'
 
 	const props = defineProps({
 		title: {
@@ -75,8 +74,6 @@
 	const items = ref([])
 	const error = ref('')
 	const loading = ref(true)
-
-	const favorites = useStore($favorites)
 
 	const serviceImoveis = new ServiceImoveis()
 	const mapType = {
