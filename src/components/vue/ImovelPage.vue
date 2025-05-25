@@ -1,8 +1,11 @@
 <template>
 	<ImovelPageSkeleton v-if="!property?.dadosBasicos" />
-	<div v-else class="px-container flex flex-col gap-8 py-8">
+	<div
+		v-else
+		class="px-container flex flex-col gap-8 py-8"
+	>
 		<Breadcrumb
-		 	v-if="property?.dadosBasicos"
+			v-if="property?.dadosBasicos"
 			:current-page="{
 				label: `${property?.dadosBasicos?.tipoimovel} - ${property?.dadosBasicos?.endereco}`,
 				url: `/imoveis/?imovel=${imovelID}`
@@ -63,7 +66,8 @@
 							{{ property?.dadosBasicos?.tipoimovel }} - {{ property?.dadosBasicos?.endereco }}
 						</h1>
 						<p class="text-body-2 text-surface-700">
-							{{ property?.dadosBasicos?.bairro }} | {{ property?.dadosBasicos?.cidade }} - {{ property?.dadosBasicos?.uf }}
+							{{ property?.dadosBasicos?.bairro }} | {{ property?.dadosBasicos?.cidade }} -
+							{{ property?.dadosBasicos?.uf }}
 						</p>
 					</div>
 
@@ -87,9 +91,7 @@
 				</div>
 
 				<div class="flex flex-col gap-2">
-					<h3 class="text-heading-1 text-surface-700">
-						Descrição
-					</h3>
+					<h3 class="text-heading-1 text-surface-700">Descrição</h3>
 					<div
 						class="text-body-2 text-surface-700"
 						v-html="
@@ -127,9 +129,7 @@
 						<span class="text-surface-700 font-medium text-body-3">
 							{{ property.dadosBasicos.areaterreno }}m²
 						</span>
-						<span class="text-surface-600">
-							Área do Terreno
-						</span>
+						<span class="text-surface-600"> Área do Terreno </span>
 					</div>
 				</div>
 			</div>
@@ -137,32 +137,26 @@
 			<div class="rounded-xl p-6 border-1 border-surface-200 flex flex-col gap-4 w-full lg:w-1/3">
 				<span class="text-heading-2 text-primary-700 font-medium mb-1">
 					{{ transationType }}
-					<br>
+					<br />
 					{{ propertyValue }}
 				</span>
 				<div class="flex flex-col">
 					<div class="flex flex-row gap-1">
-						<span class="text-surface-700 font-medium text-body-3">
-							Código:
-						</span>
+						<span class="text-surface-700 font-medium text-body-3"> Código: </span>
 						<span class="text-surface-700">
 							{{ property?.dadosBasicos?.codigo }}
 						</span>
 					</div>
 					<div class="flex flex-row gap-1">
-						<span class="text-surface-700 font-medium text-body-3">
-							Valor Total:
-						</span>
+						<span class="text-surface-700 font-medium text-body-3"> Valor Total: </span>
 						<span class="text-surface-700">
 							{{ totalValue }}
 						</span>
 					</div>
 					<div class="flex flex-row gap-1">
-						<span class="text-surface-700 font-medium text-body-3">
-							Exclusivo:
-						</span>
+						<span class="text-surface-700 font-medium text-body-3"> Exclusivo: </span>
 						<span class="text-surface-700">
-							{{property?.dadosBasicos?.tiponegocio === 'VENDA' ? 'Sim' : 'Não'}}
+							{{ property?.dadosBasicos?.tiponegocio === 'VENDA' ? 'Sim' : 'Não' }}
 						</span>
 					</div>
 				</div>
@@ -186,9 +180,7 @@
 		</div>
 
 		<div class="flex flex-col gap-4">
-			<h2 class="text-heading-2 text-surface-900 font-medium">
-				Localização
-			</h2>
+			<h2 class="text-heading-2 text-surface-900 font-medium">Localização</h2>
 			<div class="w-full h-96">
 				<iframe
 					width="100%"
@@ -239,14 +231,12 @@
 		return `https://maps.google.com/maps?q=${query}&t=&z=15&ie=UTF8&iwloc=&output=embed`
 	})
 
-
 	const imovelID = computed(() => {
 		const queryString = getQueryString()
 		const imovelid = queryString.imovel
 
 		return imovelid
 	})
-
 
 	const images = computed(() => {
 		const p = getProperty()
@@ -278,7 +268,11 @@
 
 	const propertyValue = computed(() => {
 		const p = getProperty()
-		const n = Number(p.valorLocacao?.valordoaluguelmaximo ? p.valorLocacao?.valordoaluguelmaximo : p.valorVenda?.valordevendamaximo)
+		const n = Number(
+			p.valorLocacao?.valordoaluguelmaximo
+				? p.valorLocacao?.valordoaluguelmaximo
+				: p.valorVenda?.valordevendamaximo
+		)
 		return formatReal(n) || ''
 	})
 

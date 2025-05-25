@@ -1,14 +1,8 @@
 <template>
 	<div class="relative flex">
-		<Button
-			rounded
-			label="Favoritar"
-			size="small"
-			icon="pi pi-heart"
-			class="w-fit absolute bg-secondary border-none mt-2 ml-2 text-white z-10"
-			@click.stop
-			tabindex="-1"
-			role="presentation"
+		<FavoriteButton
+			:code="code"
+			@click="onFavorite"
 		/>
 
 		<a
@@ -111,10 +105,10 @@
 </template>
 
 <script setup>
-	import Button from 'primevue/button'
+	import FavoriteButton from '@components/vue/FavoriteButton.vue'
 
 	const props = defineProps({
-		transactionType: {
+		code: {
 			type: String
 		},
 		title: {
@@ -126,8 +120,11 @@
 		image: {
 			type: Object
 		},
+		transactionType: {
+			type: String
+		},
 		price: {
-			type: Number
+			type: String
 		},
 		link: {
 			type: Object,
@@ -146,6 +143,12 @@
 			default: () => []
 		}
 	})
+
+	const emit = defineEmits(['onFavorite'])
+
+	const onFavorite = (data) => {
+		emit('onFavorite', data)
+	}
 
 	function replaceRoomsName(name = '') {
 		name = name.replace('ITÓRIO(S)', '.')

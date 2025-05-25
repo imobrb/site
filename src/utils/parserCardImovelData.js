@@ -2,19 +2,26 @@ import { API_URL } from '@/consts'
 import formatReal from '@utils/formatReal'
 
 export default (data) => {
+	const code = data.dadosBasicos.codigo
+	const title = `${data.dadosBasicos.tipoimovel} ${data.dadosBasicos.condominioresidencialedificio ? `- ` + data.dadosBasicos.condominioresidencialedificio : ''}`
+	const subtitle = `${data.dadosBasicos.cidade} - ${data.dadosBasicos.bairro} ${data.valorLocacao ? ` - ` + data.dadosBasicos.endereco : ''}`
+	const price = formatReal(Number(data.valorLocacao ? data.valorLocacao : data.valorVenda))
+	const transactionType = data.valorLocacao ? 'Aluguel' : data.valorVenda ? 'Venda' : ''
+
 	return {
-		title: `${data.dadosBasicos.tipoimovel} ${data.dadosBasicos.condominioresidencialedificio ? `- ` + data.dadosBasicos.condominioresidencialedificio : ''}`,
-		subtitle: `${data.dadosBasicos.cidade} - ${data.dadosBasicos.bairro} ${data.valorLocacao ? ` - ` + data.dadosBasicos.endereco : ''}`,
-		price: formatReal(Number(data.valorLocacao ? data.valorLocacao : data.valorVenda)),
-		transactionType: data.valorLocacao ? 'Aluguel' : data.valorVenda ? 'Venda' : '',
+		code: code,
+		title: title,
+		subtitle: subtitle,
+		price: price,
+		transactionType: transactionType,
 		image: {
-			alt: `${data.dadosBasicos.tipoimovel} ${data.dadosBasicos.condominioresidencialedificio ? `- ` + data.dadosBasicos.condominioresidencialedificio : ''}`,
-			src: `${API_URL}/img?id=${data.dadosBasicos.codigo}&tamanho=347x196&imagem=${data.fotos}`
+			alt: title,
+			src: `${API_URL}/img?id=${code}&tamanho=347x196&imagem=${data.fotos}`
 		},
 		link: {
 			label: 'Ver imóvel',
-			href: `/imoveis/?imovel=${data.dadosBasicos.codigo}`
-			// href: `/imoveis/${data.dadosBasicos.codigo}`
+			href: `/imoveis/?imovel=${code}`
+			// href: `/imoveis/${code}`
 		},
 		rooms: data.comodos || []
 	}
