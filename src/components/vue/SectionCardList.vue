@@ -55,8 +55,8 @@
 	import ServiceImoveis from '@services/Imoveis'
 	import parserCardImovelData from '@utils/parserCardImovelData'
 
-	import { storeSetFavorites, storeToggleFavorite } from '@stores/favorite.js'
-	import { storageToggleFavorite, storageGetFavorites } from '@storage/favorite'
+	import { storeToggleFavorite } from '@stores/favorite'
+	import { storageToggleFavorite } from '@storage/favorite'
 
 	const props = defineProps({
 		title: {
