@@ -1,12 +1,12 @@
 <template>
 	<Button
-		class="bg-white text-black"
-		rounded
 		as="a"
+		rounded
 		icon="pi pi-heart"
-		href="/favoritos/?favoritos=[]"
-		:disabled="favorites.length"
+		class="bg-white text-black"
+		:class="{ 'opacity-50 pointer-events-none': favorites.length === 0 }"
 		:label="favorites.length ? String(favorites.length) : '0'"
+		:href="favorites.length ? `/favoritos/?favoritos=[${favorites}]` : 'javascript:void(0)'"
 	/>
 </template>
 
