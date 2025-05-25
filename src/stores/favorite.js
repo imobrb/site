@@ -3,20 +3,20 @@ import { atom } from 'nanostores'
 export const $favorites = atom([])
 
 export function storeSetFavorites(ids) {
-	$favorites.set(Array.isArray(ids) ? [...new Set(ids)] : [])
+	return $favorites.set(Array.isArray(ids) ? [...new Set(ids)] : [])
 }
 
 export function storeAddFavorite(id) {
 	if (!$favorites.get().includes(id)) {
-		$favorites.set([...$favorites.get(), id])
+		return $favorites.set([...$favorites.get(), id])
 	}
 }
 
 export function storeToggleFavorite(id) {
 	if (!$favorites.get().includes(id)) {
-		$favorites.set([...$favorites.get(), id])
+		return $favorites.set([...$favorites.get(), id])
 	} else {
-		storeRemoveFavorite(id)
+		return storeRemoveFavorite(id)
 	}
 }
 

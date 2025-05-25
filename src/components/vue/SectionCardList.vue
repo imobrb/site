@@ -47,7 +47,7 @@
 
 <script setup>
 	import { ref, onMounted } from 'vue'
-	
+
 	import SectionCardListSkeleton from '@components/vue/SectionCardListSkeleton.vue'
 	import CardImovel from '@components/vue/CardImovel.vue'
 	import LinkButton from '@components/vue/LinkButton.vue'
@@ -55,7 +55,8 @@
 	import ServiceImoveis from '@services/Imoveis'
 	import parserCardImovelData from '@utils/parserCardImovelData'
 
-	import { storeToggleFavorite } from '@stores/favorite.js'
+	import { storeSetFavorites, storeToggleFavorite } from '@stores/favorite.js'
+	import { storageToggleFavorite, storageGetFavorites } from '@storage/favorite'
 
 	const props = defineProps({
 		title: {
@@ -119,7 +120,10 @@
 	const isValidType = () => typeof mapType[props.type] !== 'function'
 
 	const onFavorite = (obj) => {
-		storeToggleFavorite(obj.code)
+		const code = obj.code
+
+		storeToggleFavorite(code)
+		storageToggleFavorite(code)
 	}
 
 	onMounted(async () => {
