@@ -20,7 +20,7 @@
 	import { useStore } from '@nanostores/vue'
 	import Button from 'primevue/button'
 
-	import { $favorites, storeSetFavorites, storeGetFavoriteById } from '@stores/favorite.js'
+	import { $favorites, storeSetFavorites } from '@stores/favorite.js'
 	import { storageGetFavorites } from '@storage/favorite.js'
 
 	const favorites = useStore($favorites)
