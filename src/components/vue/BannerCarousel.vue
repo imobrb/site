@@ -36,15 +36,15 @@
 
 	const banners = ref([
 		{
-			url: 'https://www.imobiliariariobranco.com.br/wp-content/themes/imobiliariariobranco/assets/images/imoveis_com_exclusividade.png',
+			url: '/assets/images/banners/imoveis_com_exclusividade.png',
 			alt: 'Banner 1'
 		},
 		{
-			url: 'https://www.imobiliariariobranco.com.br/wp-content/themes/imobiliariariobranco/assets/images/acompanhe_o_contrato.png',
+			url: '/assets/images/banners/acompanhe_o_contrato.png',
 			alt: 'Banner 2'
 		},
 		{
-			url: 'https://www.imobiliariariobranco.com.br/wp-content/themes/imobiliariariobranco/assets/images/alo_universitario.png',
+			url: '/assets/images/banners/alo_universitario.png',
 			alt: 'Banner 3'
 		}
 	])
