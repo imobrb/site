@@ -145,18 +145,32 @@
 						<span class="text-surface-700 font-medium text-body-3"> Código: </span>
 						<span class="text-surface-700">{{ property?.dadosBasicos?.codigo }}</span>
 					</div>
+					<div
+						v-if="transationType === 'Aluguel'"
+						class="flex flex-row gap-1"
+					>
+						<span class="text-surface-700 font-medium text-body-3"> Mais encargos</span>
+					</div>
 					<div class="flex flex-row gap-1">
 						<span class="text-surface-700 font-medium text-body-3"> Exclusivo: </span>
 						<span class="text-surface-700">{{ isExclusive }}</span>
 					</div>
-					<div class="flex flex-row gap-1">
+					<div
+						v-if="transationType === 'Venda'"
+						class="flex flex-row gap-1"
+					>
 						<span class="text-surface-700 font-medium text-body-3"> Permuta: </span>
 						<span class="text-surface-700">{{ permuta }}</span>
 					</div>
-					<div class="flex flex-row gap-1">
+					<div
+						v-if="transationType === 'Venda'"
+						class="flex flex-row gap-1"
+					>
 						<span class="text-surface-700 font-medium text-body-3"> Financiamento: </span>
 						<span class="text-surface-700">{{ financiamento }}</span>
 					</div>
+					
+					
 				</div>
 				<p class="text-body-2 font-medium text-surface-700">
 					Faça uma visita presencial, basta combinar com o corretor quando ele entrar em contato.
