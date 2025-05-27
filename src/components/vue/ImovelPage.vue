@@ -143,21 +143,19 @@
 				<div class="flex flex-col">
 					<div class="flex flex-row gap-1">
 						<span class="text-surface-700 font-medium text-body-3"> Código: </span>
-						<span class="text-surface-700">
-							{{ property?.dadosBasicos?.codigo }}
-						</span>
-					</div>
-					<div class="flex flex-row gap-1">
-						<span class="text-surface-700 font-medium text-body-3"> Valor Total: </span>
-						<span class="text-surface-700">
-							{{ totalValue }}
-						</span>
+						<span class="text-surface-700">{{ property?.dadosBasicos?.codigo }}</span>
 					</div>
 					<div class="flex flex-row gap-1">
 						<span class="text-surface-700 font-medium text-body-3"> Exclusivo: </span>
-						<span class="text-surface-700">
-							{{ property?.dadosBasicos?.tiponegocio === 'VENDA' ? 'Sim' : 'Não' }}
-						</span>
+						<span class="text-surface-700">{{ isExclusive }}</span>
+					</div>
+					<div class="flex flex-row gap-1">
+						<span class="text-surface-700 font-medium text-body-3"> Permuta: </span>
+						<span class="text-surface-700">{{ permuta }}</span>
+					</div>
+					<div class="flex flex-row gap-1">
+						<span class="text-surface-700 font-medium text-body-3"> Financiamento: </span>
+						<span class="text-surface-700">{{ financiamento }}</span>
 					</div>
 				</div>
 				<p class="text-body-2 font-medium text-surface-700">
@@ -224,11 +222,17 @@
 	const googleMapSrc = computed(() => {
 		const base = property.value?.dadosBasicos || {}
 		const addressParts = [base.endereco, base.numero, base.bairro, base.cidade].filter(Boolean)
+		const latitude = base.latitude
+		const longitude = base.longitude
 
 		if (!addressParts.length) return ''
 
-		const query = encodeURIComponent(addressParts.join(', '))
-		return `https://maps.google.com/maps?q=${query}&t=&z=15&ie=UTF8&iwloc=&output=embed`
+		if (latitude && longitude) {
+			return `https://maps.google.com/maps?q=${latitude},${longitude}&t=&z=15&ie=UTF8&iwloc=&output=embed`
+		} else if(addressParts.length) {
+			const query = encodeURIComponent(addressParts.join(', '))
+			return `https://maps.google.com/maps?q=${query}&t=&z=15&ie=UTF8&iwloc=&output=embed`
+		}
 	})
 
 	const imovelID = computed(() => {
@@ -261,6 +265,21 @@
 		displayImage.value = true
 	}
 
+	const isExclusive = computed(() => {
+		const p = getProperty()
+		return p?.valorLocacao?.exclusivo === 'S' || p?.valorVenda?.exclusivo === 'S' ? 'Sim' : 'Não'
+	})
+
+	const permuta = computed(() => {
+		const p = getProperty()
+		return p.dadosBasicos?.permuta === 'S' ? 'Sim' : 'Não'
+	})
+
+	const financiamento = computed(() => {
+		const p = getProperty()
+		return p.dadosBasicos?.financiamento === 'S' ? 'Sim' : 'Não'
+	})
+
 	const transationType = computed(() => {
 		const p = getProperty()
 		return p.valorLocacao?.valordoaluguelmaximo ? 'Aluguel' : 'Venda'
@@ -274,14 +293,6 @@
 				: p.valorVenda?.valordevendamaximo
 		)
 		return formatReal(n) || ''
-	})
-
-	const totalValue = computed(() => {
-		const value =
-			property?.dadosBasicos?.tiponegocio === 'VENDA'
-				? property?.valorVenda
-				: property?.valorLocacao
-		return formatReal(value)
 	})
 
 	const getProperty = () => {
