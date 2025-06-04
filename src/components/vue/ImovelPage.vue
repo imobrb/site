@@ -11,53 +11,59 @@
 				url: `/imoveis/?imovel=${imovelID}`
 			}"
 		/>
-
-		<Galleria
-			:value="images"
-			:showThumbnails="false"
-			:showIndicators="false"
-			:circular="true"
-			:showItemNavigators="true"
-			@item-click="onImageClick"
-		>
-			<template #item="slotProps">
-				<picture>
+		<div class="relative">
+			<FavoriteButton
+				class="mt-2 ml-2"
+				:code="imovelID"
+				@click="onFavorite"
+			/>
+			
+			<Galleria
+				:value="images"
+				:showThumbnails="false"
+				:showIndicators="false"
+				:circular="true"
+				:showItemNavigators="true"
+				@item-click="onImageClick"
+			>
+				<template #item="slotProps">
+					<picture>
+						<img
+							:src="slotProps.item.src"
+							alt="Imóvel"
+						/>
+					</picture>
+				</template>
+				<!-- do not working -->
+				<template #thumbnail="slotProps">
 					<img
-						:src="slotProps.item.src"
-						alt="Imóvel"
+						:src="slotProps.item.thumb"
+						alt="Miniatura"
 					/>
-				</picture>
-			</template>
+				</template>
+			</Galleria>
 			<!-- do not working -->
-			<template #thumbnail="slotProps">
-				<img
-					:src="slotProps.item.thumb"
-					alt="Miniatura"
-				/>
-			</template>
-		</Galleria>
-		<!-- do not working -->
-		<Dialog
-			v-model:visible="displayImage"
-			modal
-			class="p-0"
-			:closable="false"
-		>
-			<div class="relative">
-				<img
-					:src="selectedImage"
-					alt="Imagem ampliada"
-					class="w-full object-contain"
-					style="max-height: 80vh"
-				/>
-				<Button
-					icon="pi pi-times"
-					class="absolute top-2 right-2 p-button-rounded p-button-danger"
-					@click="displayImage = false"
-				/>
-			</div>
-		</Dialog>
-
+			<Dialog
+				v-model:visible="displayImage"
+				modal
+				class="p-0"
+				:closable="false"
+			>
+				<div class="relative">
+					<img
+						:src="selectedImage"
+						alt="Imagem ampliada"
+						class="w-full object-contain"
+						style="max-height: 80vh"
+					/>
+					<Button
+						icon="pi pi-times"
+						class="absolute top-2 right-2 p-button-rounded p-button-danger"
+						@click="displayImage = false"
+					/>
+				</div>
+			</Dialog>
+		</div>
 		<div class="flex flex-col lg:flex-row w-full gap-8">
 			<div class="flex flex-col gap-6 w-full">
 				<div class="flex flex-col gap-4">
@@ -216,9 +222,13 @@
 
 	import ImovelPageSkeleton from '@/components/vue/ImovelPageSkeleton.vue'
 	import Breadcrumb from '@/components/vue/Breadcrumb.vue'
+	import FavoriteButton from '@components/vue/FavoriteButton.vue'
 	import ServiceImoveis from '@/services/Imoveis'
 	import formatReal from '@/utils/formatReal'
 	import { API_URL } from '@/consts'
+
+	import { storeToggleFavorite } from '@stores/favorite'
+	import { storageToggleFavorite } from '@storage/favorite'
 
 	const property = ref({})
 
@@ -328,6 +338,13 @@
 		const serviceImoveis = new ServiceImoveis()
 		const property = await serviceImoveis.getProperty(imovelID)
 		setProperty(property)
+	}
+
+	const onFavorite = (obj) => {
+		const code = obj.code
+
+		storeToggleFavorite(code)
+		storageToggleFavorite(code)
 	}
 
 	onMounted(async () => {

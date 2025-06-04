@@ -1,6 +1,7 @@
 <template>
 	<div class="relative flex">
 		<FavoriteButton
+			class="mt-2 ml-2"
 			:code="code"
 			@click="onFavorite"
 		/>

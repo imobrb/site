@@ -2,7 +2,7 @@
 	<Button
 		rounded
 		size="small"
-		class="w-fit absolute bg-secondary border-none mt-2 ml-2 text-white z-10"
+		class="w-fit absolute bg-secondary border-none text-white z-10"
 		tabindex="-1"
 		role="presentation"
 		:icon="icon"
