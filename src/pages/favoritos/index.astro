@@ -1,9 +1,23 @@
 ---
-import Layout from '@layouts/BaseLayout.astro'
-import FavoritosPage from '@components/vue/FavoritosPage.vue'
+import { getEntry } from 'astro:content'
 
+import Layout from '@layouts/Default.astro'
+import BuscaPage from '@components/vue/BuscaPage.vue'
+
+const page = await getEntry('institutional', 'favoritos')
+const { draft, noindex, title, description, image} = page.data
 ---
 
-<Layout>
-    <FavoritosPage client:load />
+<Layout
+	draft={draft}
+	noindex={noindex}
+	title={title}
+	description={description}
+	image={image}
+>
+	<BuscaPage
+		client:load
+		type="favorite"
+		title={title}
+	/>
 </Layout>

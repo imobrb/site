@@ -8,7 +8,7 @@
 			!favorites.length ? 'opacity-50 pointer-events-none' : 'hover:bg-red-100 hover:text-red-600'
 		]"
 		:label="favorites.length ? String(favorites.length) : '0'"
-		:href="favorites.length ? `/favoritos/?favoritos=[${favorites}]` : 'javascript:void(0)'"
+		:href="favorites.length ? `/favoritos/?imoveis=[${favorites}]` : 'javascript:void(0)'"
 	/>
 </template>
 

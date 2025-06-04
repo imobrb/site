@@ -5,18 +5,19 @@ import Layout from '@layouts/Default.astro'
 import BuscaPage from '@components/vue/BuscaPage.vue'
 
 const page = await getEntry('institutional', 'alugar-imovel')
+const { draft, noindex, title, description, image} = page.data
 ---
 
 <Layout
-	draft={page.data.draft}
-	noindex={page.data.noindex}
-	title={page.data.title}
-	description={page.data.description}
-	image={page.data.image}
+	draft={draft}
+	noindex={noindex}
+	title={title}
+	description={description}
+	image={image}
 >
 	<BuscaPage
 		client:load
 		type="rentedFeatured"
-		title={page.data.title}
+		title={title}
 	/>
 </Layout>

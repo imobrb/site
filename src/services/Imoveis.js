@@ -125,7 +125,9 @@ class Imovel {
 			const total = request[0]
 			const properties = request.slice(1)
 			const updatedProperties = this.setExclusiveSingle(properties)
+			
 			updatedProperties.unshift(total)
+			
 			return updatedProperties
 		}
 
@@ -134,9 +136,11 @@ class Imovel {
 
 	setExclusiveSingle(data) {
 		if (!Array.isArray(data)) return []
+		
 		data.forEach((exclusiveItem) => {
 			exclusiveItem.exclusive = true
 		})
+		
 		return data
 	}
 
@@ -162,6 +166,7 @@ class Imovel {
 		this.pageQuantity = data.pageQuantity || 20
 		this.sortOrder = data.sortOrder || 2
 		this.exclusives = data.exclusives || null
+		
 		return this
 	}
 
@@ -173,14 +178,15 @@ class Imovel {
 	async exclusiveProperties(limit = 1, sortOrder = 2) {
 		const url = this.buildUrl(`/imoveis/exclusivos?limite=${limit}&ordenacao=${sortOrder}`)
 		const request = await this.request('GET', url)
+		
 		request.sale = this.setExclusiveSingle(request.sale)
 		request.rental = this.setExclusiveSingle(request.rental)
+		
 		return request
 	}
 
-	async favoriteProperties(properties) {
-		const propertiesArray = properties.split(',')
-		return await this.featured(propertiesArray)
+	async favoriteProperties(properties=[]) {
+		return properties.length ? await this.featured(properties) : []
 	}
 
 	async featured(properties) {

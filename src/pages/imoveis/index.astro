@@ -1,7 +1,18 @@
 ---
+import { getEntry } from 'astro:content'
+
 import Layout from '@layouts/Default.astro'
 import ImovelPage from '@/components/vue/ImovelPage.vue'
+
+const page = await getEntry('institutional', 'imoveis')
+const { draft, noindex, title, description, image} = page.data
 ---
-<Layout>
+<Layout
+	draft={draft}
+	noindex={noindex}
+	title={title}
+	description={description}
+	image={image}
+>
   <ImovelPage client:load />
 </Layout>

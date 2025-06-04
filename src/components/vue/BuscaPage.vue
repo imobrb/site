@@ -176,7 +176,13 @@
 		type: {
 			type: String,
 			required: true,
-			options: ['exclusiveRented', 'exclusiveSale', 'rentedFeatured', 'featuredSale']
+			options: [
+				'exclusiveRented',
+				'exclusiveSale',
+				'rentedFeatured',
+				'featuredSale',
+				'favorite'
+			]
 		}
 	})
 
@@ -201,6 +207,12 @@
 		},
 		featuredSale: async (limit = 9999, order = 2) => {
 			return await serviceImoveis.featuredSaleProperties(limit, order)
+		},
+		favorite: async (imovelIdList=[]) => {
+			const qs = getQueryString()
+			const qsImoveis = JSON.parse(qs.imoveis)
+			
+			return await serviceImoveis.favoriteProperties(qsImoveis)
 		}
 	}
 
