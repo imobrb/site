@@ -127,7 +127,6 @@ class Imovel {
 			const updatedProperties = this.setExclusiveSingle(properties)
 			
 			updatedProperties.unshift(total)
-			
 			return updatedProperties
 		}
 
@@ -144,31 +143,31 @@ class Imovel {
 		return data
 	}
 
-	setData(data) {
-		this.operationType = data.operationType || 1
-		this.purpose = data.purpose || null
-		this.propertyType = data.propertyType || null
-		this.city = data.city || null
-		this.neighborhood = data.neighborhood ? data.neighborhood.replace(' ', '%').toUpperCase() : null
-		this.numBedrooms = data.bedrooms || null
-		this.numSuites = data.suites || null
-		this.numGarageSpaces = data.garageSpaces || null
-		this.numBathrooms = data.bathrooms || null
-		this.livableArea = data.livableArea || null
-		this.condoResidential = data.condoResidential || null
-		this.maxValue = data.maxValue || 99999999999
-		this.minValue = data.minValue || 0.0
-		this.propertyCode = data.propertyCode || null
-		this.tradeIn = data.tradeIn || null
-		this.launch = data.launch || null
-		this.video = data.video || null
-		this.page = data.page || null
-		this.pageQuantity = data.pageQuantity || 20
-		this.sortOrder = data.sortOrder || 2
-		this.exclusives = data.exclusives || null
+	// setData(data) {
+	// 	this.operationType = data.operationType || 1
+	// 	this.purpose = data.purpose || null
+	// 	this.propertyType = data.propertyType || null
+	// 	this.city = data.city || null
+	// 	this.neighborhood = data.neighborhood ? data.neighborhood.replace(' ', '%').toUpperCase() : null
+	// 	this.numBedrooms = data.bedrooms || null
+	// 	this.numSuites = data.suites || null
+	// 	this.numGarageSpaces = data.garageSpaces || null
+	// 	this.numBathrooms = data.bathrooms || null
+	// 	this.livableArea = data.livableArea || null
+	// 	this.condoResidential = data.condoResidential || null
+	// 	this.maxValue = data.maxValue || 99999999999
+	// 	this.minValue = data.minValue || 0.0
+	// 	this.propertyCode = data.propertyCode || null
+	// 	this.tradeIn = data.tradeIn || null
+	// 	this.launch = data.launch || null
+	// 	this.video = data.video || null
+	// 	this.page = data.page || null
+	// 	this.pageQuantity = data.pageQuantity || 20
+	// 	this.sortOrder = data.sortOrder || 2
+	// 	this.exclusives = data.exclusives || null
 		
-		return this
-	}
+	// 	return this
+	// }
 
 	async featuredProperties(limit = 1, sortOrder = 2) {
 		const url = this.buildUrl(`/imoveis/destaques?limite=${limit}&ordenacao=${sortOrder}`)

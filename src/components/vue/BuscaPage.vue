@@ -145,6 +145,7 @@
 						v-for="imovel in imoveis"
 						:key="imovel.dadosBasicos.codigo"
 						:listMode="isListMode"
+						@onFavorite="onFavorite"
 						v-bind="parserCardImovelData(imovel)"
 					/>
 				</div>
@@ -168,6 +169,9 @@
 
 	import ServiceImoveis from '@services/Imoveis'
 	import parserCardImovelData from '@utils/parserCardImovelData'
+
+	import { storeToggleFavorite } from '@stores/favorite'
+	import { storageToggleFavorite } from '@storage/favorite'
 
 	const props = defineProps({
 		title: {
@@ -208,11 +212,11 @@
 		featuredSale: async (limit = 9999, order = 2) => {
 			return await serviceImoveis.featuredSaleProperties(limit, order)
 		},
-		favorite: async (imovelIdList=[]) => {
-			const qs = getQueryString()
-			const qsImoveis = JSON.parse(qs.imoveis)
+		favorite: async () => {
+			const querystring = getQueryString()
+			const imovelList = JSON.parse(querystring.imoveis)
 			
-			return await serviceImoveis.favoriteProperties(qsImoveis)
+			return await serviceImoveis.favoriteProperties(imovelList)
 		}
 	}
 
@@ -275,6 +279,13 @@
 	const windowHistoryReplaceState = () => {
 		const url = new URL(window.location.href)
 		window.history.replaceState({}, '', `${url.pathname}${url.search}`)
+	}
+
+	const onFavorite = (obj) => {
+		const code = obj.code
+
+		storeToggleFavorite(code)
+		storageToggleFavorite(code)
 	}
 
 	onMounted(async () => {
