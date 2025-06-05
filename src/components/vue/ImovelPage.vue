@@ -139,59 +139,61 @@
 				</div>
 			</div>
 
-			<div class="rounded-xl p-6 border-1 border-surface-200 flex flex-col gap-4 w-full lg:w-1/3">
-				<span class="text-heading-2 text-primary-700 font-medium mb-1">
-					{{ transationType }}
-					<br />
-					{{ propertyValue }}
-				</span>
-				<div class="flex flex-col">
-					<div class="flex flex-row gap-1">
-						<span class="text-surface-700 font-medium text-body-3"> Código: </span>
-						<span class="text-surface-700">{{ property?.dadosBasicos?.codigo }}</span>
+			<div class="w-full lg:w-1/3">
+				<div class="rounded-xl p-6 border-1 border-surface-200 flex flex-col gap-4">
+					<span class="text-heading-2 text-primary-700 font-medium mb-1">
+						{{ transationType }}
+						<br />
+						{{ propertyValue }}
+					</span>
+					<div class="flex flex-col">
+						<div class="flex flex-row gap-1">
+							<span class="text-surface-700 font-medium text-body-3"> Código: </span>
+							<span class="text-surface-700">{{ property?.dadosBasicos?.codigo }}</span>
+						</div>
+						<div
+							v-if="transationType === 'Aluguel'"
+							class="flex flex-row gap-1"
+						>
+							<span class="text-surface-700 font-medium text-body-3"> Mais encargos</span>
+						</div>
+						<div class="flex flex-row gap-1">
+							<span class="text-surface-700 font-medium text-body-3"> Exclusivo: </span>
+							<span class="text-surface-700">{{ isExclusive }}</span>
+						</div>
+						<div
+							v-if="transationType === 'Venda'"
+							class="flex flex-row gap-1"
+						>
+							<span class="text-surface-700 font-medium text-body-3"> Permuta: </span>
+							<span class="text-surface-700">{{ permuta }}</span>
+						</div>
+						<div
+							v-if="transationType === 'Venda'"
+							class="flex flex-row gap-1"
+						>
+							<span class="text-surface-700 font-medium text-body-3"> Financiamento: </span>
+							<span class="text-surface-700">{{ financiamento }}</span>
+						</div>
+						
+						
 					</div>
-					<div
-						v-if="transationType === 'Aluguel'"
-						class="flex flex-row gap-1"
-					>
-						<span class="text-surface-700 font-medium text-body-3"> Mais encargos</span>
+					<p class="text-body-2 font-medium text-surface-700">
+						Faça uma visita presencial, basta combinar com o corretor quando ele entrar em contato.
+					</p>
+					<div class="flex flex-col gap-4">
+						<Button
+							rounded
+							outlined
+							label="Agendar Visita"
+						/>
+						<Button
+							rounded
+							label="Whatsapp"
+							icon="pi pi-whatsapp"
+							class="bg-green-500 text-white"
+						/>
 					</div>
-					<div class="flex flex-row gap-1">
-						<span class="text-surface-700 font-medium text-body-3"> Exclusivo: </span>
-						<span class="text-surface-700">{{ isExclusive }}</span>
-					</div>
-					<div
-						v-if="transationType === 'Venda'"
-						class="flex flex-row gap-1"
-					>
-						<span class="text-surface-700 font-medium text-body-3"> Permuta: </span>
-						<span class="text-surface-700">{{ permuta }}</span>
-					</div>
-					<div
-						v-if="transationType === 'Venda'"
-						class="flex flex-row gap-1"
-					>
-						<span class="text-surface-700 font-medium text-body-3"> Financiamento: </span>
-						<span class="text-surface-700">{{ financiamento }}</span>
-					</div>
-					
-					
-				</div>
-				<p class="text-body-2 font-medium text-surface-700">
-					Faça uma visita presencial, basta combinar com o corretor quando ele entrar em contato.
-				</p>
-				<div class="flex flex-col gap-4">
-					<Button
-						rounded
-						outlined
-						label="Agendar Visita"
-					/>
-					<Button
-						rounded
-						label="Whatsapp"
-						icon="pi pi-whatsapp"
-						class="bg-green-500 text-white"
-					/>
 				</div>
 			</div>
 		</div>
