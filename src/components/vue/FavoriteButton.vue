@@ -2,7 +2,7 @@
 	<Button
 		rounded
 		size="small"
-		class="w-fit absolute  border-none mt-2 ml-2 text-white z-10"
+		class="w-fit absolute  border-none mt-2 ml-2 z-10"
 		:class="[isFavorite ? 'bg-white text-secondary' : 'bg-secondary text-white']"
 		tabindex="-1"
 		role="presentation"
