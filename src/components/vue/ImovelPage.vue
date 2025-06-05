@@ -15,7 +15,6 @@
 			<FavoriteButton
 				class="mt-2 ml-2"
 				:code="imovelID"
-				@click="onFavorite"
 			/>
 			
 			<Galleria
@@ -260,10 +259,8 @@
 	})
 
 	const imovelID = computed(() => {
-		const queryString = getQueryString()
-		const imovelid = queryString.imovel
-
-		return imovelid
+		const p = getProperty()
+		return p?.dadosBasicos?.codigo
 	})
 
 	const images = computed(() => {
@@ -338,13 +335,6 @@
 		const serviceImoveis = new ServiceImoveis()
 		const property = await serviceImoveis.getProperty(imovelID)
 		setProperty(property)
-	}
-
-	const onFavorite = (obj) => {
-		const code = obj.code
-
-		storeToggleFavorite(code)
-		storageToggleFavorite(code)
 	}
 
 	onMounted(async () => {

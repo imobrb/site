@@ -34,7 +34,6 @@
 					<template v-for="item in items">
 						<div class="w-full">
 							<CardImovel
-								@onFavorite="onFavorite"
 								v-bind="parserCardImovelData(item)"
 							/>
 						</div>
@@ -118,13 +117,6 @@
 	}
 
 	const isValidType = () => typeof mapType[props.type] !== 'function'
-
-	const onFavorite = (obj) => {
-		const code = obj.code
-
-		storeToggleFavorite(code)
-		storageToggleFavorite(code)
-	}
 
 	onMounted(async () => {
 		if (isValidType()) {

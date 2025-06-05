@@ -170,9 +170,6 @@
 	import ServiceImoveis from '@services/Imoveis'
 	import parserCardImovelData from '@utils/parserCardImovelData'
 
-	import { storeToggleFavorite } from '@stores/favorite'
-	import { storageToggleFavorite } from '@storage/favorite'
-
 	const props = defineProps({
 		title: {
 			type: String
@@ -279,13 +276,6 @@
 	const windowHistoryReplaceState = () => {
 		const url = new URL(window.location.href)
 		window.history.replaceState({}, '', `${url.pathname}${url.search}`)
-	}
-
-	const onFavorite = (obj) => {
-		const code = obj.code
-
-		storeToggleFavorite(code)
-		storageToggleFavorite(code)
 	}
 
 	onMounted(async () => {
