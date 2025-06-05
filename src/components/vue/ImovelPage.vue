@@ -226,9 +226,6 @@
 	import formatReal from '@/utils/formatReal'
 	import { API_URL } from '@/consts'
 
-	import { storeToggleFavorite } from '@stores/favorite'
-	import { storageToggleFavorite } from '@storage/favorite'
-
 	const property = ref({})
 
 	// const displayImage = ref(false)
