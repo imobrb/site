@@ -5,6 +5,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
+      "@mock/*": ["src/mock/*"],
       "@utils/*": ["src/utils/*"],
       "@i18n/*": ["src/i18n/*"],
       "@assets/*": ["src/assets/*"],
