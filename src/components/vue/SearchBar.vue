@@ -62,22 +62,30 @@
 			<div class="flex flex-wrap gap-2">
 				<Select
 					placeholder="Tipo de Negócio"
-					:options="[]"
+					:options="businessTypes"
+					optionLabel="name"
+					optionValue="code"
 					class="w-auto p-variant-secondary"
 				/>
 				<Select
 					placeholder="Tipo de Imóvel"
-					:options="[]"
+					:options="propertyTypes"
+					optionLabel="name"
+					optionValue="code"
 					class="w-auto p-variant-secondary"
 				/>
 				<Select
 					placeholder="Cidade"
-					:options="[]"
+					:options="cities"
+					optionLabel="name"
+					optionValue="code"
 					class="w-auto p-variant-secondary"
 				/>
 				<Select
 					placeholder="Detalhes"
-					:options="[]"
+					:options="details"
+					optionLabel="name"
+					optionValue="code"
 					class="w-auto p-variant-secondary"
 				/>
 			</div>
@@ -86,7 +94,7 @@
 		<Button
 			rounded
 			as="a"
-			href="/busca"
+			:href="searchLink"
 			label="Buscar"
 			severity="secondary"
 			icon="pi pi-search"
@@ -97,13 +105,15 @@
 </template>
 
 <script setup>
-	import { ref } from 'vue'
+	import { ref, onMounted, computed } from 'vue'
 	import InputText from 'primevue/inputtext'
 	import Button from 'primevue/button'
 	import Panel from 'primevue/panel'
 	import Select from 'primevue/select'
 	import IconField from 'primevue/iconfield'
 	import InputIcon from 'primevue/inputicon'
+	import ServiceImoveis from '@services/Imoveis'
+	import initialInfoMock from '@/mock/get-indo-inicial.js'
 
 	const panel = ref(null)
 	const expanded = ref(false)
@@ -116,6 +126,24 @@
 		{ name: 'Exclusivo Venda', code: 'exclusivo-venda' }
 	])
 
+	const businessTypes = ref([])
+	const propertyTypes = ref([])
+	const cities = ref([])
+	const details = ref([])
+
+	const service = new ServiceImoveis()
+
+	const searchLink = computed(() => {
+		const map = {
+			locacao: '/alugar-imovel/',
+			venda: '/comprar-imovel/',
+			'exclusivo-locacao': '/exclusivo-locacao/',
+			'exclusivo-venda': '/exclusivo-venda/'
+		}
+
+		return map[selectedOption.value] || '/busca'
+	})
+
 	const onToggle = (e) => {
 		expanded.value = !expanded.value
 	}
@@ -124,4 +152,31 @@
 		event.stopPropagation()
 		panel.value.toggle(event)
 	}
+
+	onMounted(async () => {
+		let info = await service.initialInfo()
+		if (!info) {
+			info = initialInfoMock
+		}
+
+		businessTypes.value = info.finalidadesDoImovel.map((item) => ({
+			name: item.nome,
+			code: item.id
+		}))
+
+		propertyTypes.value = info.tipoDeImovel.map((item) => ({
+			name: item.nome,
+			code: item.id
+		}))
+
+		cities.value = info.cidades.map((item) => ({
+			name: item.nome,
+			code: item.id
+		}))
+
+		details.value = info.comodos.map((item) => ({
+			name: item.nome,
+			code: item.id
+		}))
+	})
 </script>
