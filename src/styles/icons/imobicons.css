@@ -30,15 +30,18 @@
   .ii.ii-car::before {
     content: '\ea04';
   }
-  .ii.ii-house-size::before {
+  .ii.ii-size::before {
     content: '\ea05';
   }
-  .ii.ii-house-sofa::before {
+  .ii.ii-sofa::before {
     content: '\ea06';
   }
-  .ii.ii-house-sink::before {
+  .ii.ii-sink::before {
     content: '\ea07';
   }
-  .ii.ii-house-kitchen::before {
+  .ii.ii-kitchen::before {
     content: '\ea08';
+  }
+  .ii.ii-washer::before {
+    content: '\ea09';
   }

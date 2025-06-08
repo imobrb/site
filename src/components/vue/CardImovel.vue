@@ -78,7 +78,7 @@
 								room.nome === 'BANHEIRO' ? 'ii ii-shower' : 'pi pi-verified',
 								room.nome === 'LAVABO' ? 'ii ii-sink' : 'pi pi-verified',
 								room.nome === 'SALA' ? 'ii ii-sofa' : 'pi pi-verified',
-								room.nome === 'ÁREA DE SERVIÇO' ? 'ii ii-sofa' : 'pi pi-verified'
+								room.nome === 'ÁREA DE SERVIÇO' ? 'ii ii-washer' : 'pi pi-verified'
 							]"
 							class="pi pi-verified text-surface-500 text-lg"
 						>
