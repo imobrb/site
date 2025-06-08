@@ -1,0 +1,22 @@
+---
+import Layout from '@layouts/BaseLayout.astro';
+import BlogPostPage from '@components/vue/BlogPostPage.vue';
+import posts from '../../mock/posts.js';
+
+export async function getStaticPaths() {
+  return posts.map(post => ({
+    params: { slug: post.slug }
+  }));
+}
+
+const { slug } = Astro.params;
+const post = posts.find((p) => p.slug === slug);
+
+if (!post) {
+  throw new Error('Post não encontrado');
+}
+
+---
+<Layout>
+ <BlogPostPage :post="post" client:load />
+</Layout>
