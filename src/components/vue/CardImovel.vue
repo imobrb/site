@@ -66,20 +66,21 @@
 				>
 					<li
 						v-for="room in rooms.slice(0, 4)"
-						class="flex flex-col gap-2 p-2 text-center justify-center items-center max-w-20"
+						class="flex flex-col gap-2 p-2 text-center  justify-center items-center max-w-20"
 						role="presentation"
 					>
 						<i
 							:class="[
-								room.nome === 'DORMITÓRIO(S)' ? 'pi pi-users' : 'pi pi-verified',
-								room.nome === 'SUÍTE' ? 'pi pi-users' : 'pi pi-verified',
-								room.nome === 'GARAGEM' ? 'pi pi-car' : 'pi pi-verified',
-								room.nome === 'COZINHA' ? 'pi pi-clock' : 'pi pi-verified',
-								room.nome === 'BANHEIRO' ? 'pi pi-cog' : 'pi pi-verified',
-								room.nome === 'LAVABO' ? 'pi pi-cog' : 'pi pi-verified',
-								room.nome === 'SALA' ? 'pi pi-desktop' : 'pi pi-verified'
+								room.nome === 'DORMITÓRIO(S)' ? 'ii ii-bed-single' : 'pi pi-verified',
+								room.nome === 'SUÍTE' ? 'ii ii-bed-double' : 'pi pi-verified',
+								room.nome === 'GARAGEM' ? 'ii ii-car' : 'pi pi-verified',
+								room.nome === 'COZINHA' ? 'ii ii-kitchen' : 'pi pi-verified',
+								room.nome === 'BANHEIRO' ? 'ii ii-shower' : 'pi pi-verified',
+								room.nome === 'LAVABO' ? 'ii ii-sink' : 'pi pi-verified',
+								room.nome === 'SALA' ? 'ii ii-sofa' : 'pi pi-verified',
+								room.nome === 'ÁREA DE SERVIÇO' ? 'ii ii-sofa' : 'pi pi-verified'
 							]"
-							class="pi pi-verified text-surface-500 text-sm"
+							class="pi pi-verified text-surface-500 text-lg"
 						>
 						</i>
 						<p class="text-xs text-surface-500 font-medium leading-none">
