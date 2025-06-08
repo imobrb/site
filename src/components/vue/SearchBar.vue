@@ -113,7 +113,7 @@
 	import IconField from 'primevue/iconfield'
 	import InputIcon from 'primevue/inputicon'
 	import ServiceImoveis from '@services/Imoveis'
-	import initialInfoMock from '@/mock/get-indo-inicial.js'
+	import initialInfoMock from '@mock/get-info-inicial'
 
 	const panel = ref(null)
 	const expanded = ref(false)
