@@ -147,7 +147,7 @@ input.p-select-label {
 }
 
 .p-select-empty-message {
-	@apply px-3 py-2;
+	@apply px-3 py-2 !text-surface-400 text-sm;
 }
 
 .p-select-fluid {
