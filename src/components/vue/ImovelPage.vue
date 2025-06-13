@@ -16,7 +16,7 @@
 				class="mt-2 ml-2"
 				:code="imovelID"
 			/>
-			
+
 			<Galleria
 				:value="images"
 				:showThumbnails="false"
@@ -175,8 +175,6 @@
 							<span class="text-surface-700 font-medium text-body-3"> Financiamento: </span>
 							<span class="text-surface-700">{{ financiamento }}</span>
 						</div>
-						
-						
 					</div>
 					<p class="text-body-2 font-medium text-surface-700">
 						Faça uma visita presencial, basta combinar com o corretor quando ele entrar em contato.
@@ -251,7 +249,7 @@
 
 		if (latitude && longitude) {
 			return `https://maps.google.com/maps?q=${latitude},${longitude}&t=&z=15&ie=UTF8&iwloc=&output=embed`
-		} else if(addressParts.length) {
+		} else if (addressParts.length) {
 			const query = encodeURIComponent(addressParts.join(', '))
 			return `https://maps.google.com/maps?q=${query}&t=&z=15&ie=UTF8&iwloc=&output=embed`
 		}
