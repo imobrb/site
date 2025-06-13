@@ -29,7 +29,7 @@
 						<Select
 							optionLabel="name"
 							optionValue="code"
-							:options="options"
+							:options="businessTypes"
 							class="w-fit hidden md:flex"
 							v-model:model-value="selectedOption"
 						/>
@@ -42,13 +42,6 @@
 						</IconField>
 					</div>
 					<div class="flex items-center gap-2 md:w-fit w-full">
-						<Select
-							optionLabel="name"
-							optionValue="code"
-							:options="options"
-							class="w-fit flex md:hidden"
-							v-model:model-value="selectedOption"
-						/>
 						<Button
 							:icon="expanded ? 'pi pi-minus' : 'pi pi-plus'"
 							:label="expanded ? 'Filtros' : 'Filtros'"
@@ -60,13 +53,6 @@
 				</div>
 			</template>
 			<div class="flex flex-wrap gap-2">
-				<Select
-					placeholder="Tipo de Negócio"
-					:options="businessTypes"
-					optionLabel="name"
-					optionValue="code"
-					class="w-auto p-variant-secondary"
-				/>
 				<Select
 					placeholder="Tipo de Imóvel"
 					:options="propertyTypes"
@@ -81,13 +67,13 @@
 					optionValue="code"
 					class="w-auto p-variant-secondary"
 				/>
-				<div class="flex items-center gap-2">
-					<label for="extra-details-switch">Detalhes</label>
-					<InputSwitch
-						id="extra-details-switch"
-						v-model="showExtraDetails"
-					/>
-				</div>
+				<Button
+					:icon="showExtraDetails ? 'pi pi-minus' : 'pi pi-plus'"
+					:label="showExtraDetails ? 'Detalhes' : 'Detalhes'"
+					class="rounded-full w-full md:w-fit"
+					outlined
+					@click.prevent="showExtraDetails = !showExtraDetails"
+				/>
 				<div
 					v-if="showExtraDetails"
 					class="flex flex-wrap gap-2 w-full mt-2"
@@ -156,7 +142,6 @@
 	import Select from 'primevue/select'
 	import IconField from 'primevue/iconfield'
 	import InputIcon from 'primevue/inputicon'
-	import InputSwitch from 'primevue/inputswitch'
 	import Slider from 'primevue/slider'
 	import ServiceImoveis from '@services/Imoveis'
 	import initialInfoMock from '@mock/get-info-inicial'
@@ -165,14 +150,12 @@
 	const expanded = ref(false)
 
 	const selectedOption = ref('locacao')
-	const options = ref([
-		{ name: 'Locação', code: '2' },
-		{ name: 'Venda', code: '1' },
-		{ name: 'Exclusivo Locação', code: '2' },
-		{ name: 'Exclusivo Venda', code: '1' }
+	const businessTypes = ref([
+		{ name: 'Locação', code: 'locacao' },
+		{ name: 'Venda', code: 'venda' },
+		{ name: 'Exclusivo Locação', code: 'exclusivo-locacao' },
+		{ name: 'Exclusivo Venda', code: 'exclusivo-venda' }
 	])
-
-	const businessTypes = ref([])
 	const propertyTypes = ref([])
 	const cities = ref([])
 
@@ -211,14 +194,15 @@
 
 	onMounted(async () => {
 		let info = await service.initialInfo()
+		
 		if (!info) {
 			info = initialInfoMock
 		}
 
-		businessTypes.value = info.finalidadesDoImovel.map((item) => ({
-			name: item.nome,
-			code: item.id
-		}))
+		// businessTypes.value = info.finalidadesDoImovel.map((item) => ({
+		// 	name: item.nome,
+		// 	code: item.id
+		// }))
 
 		propertyTypes.value = info.tipoDeImovel.map((item) => ({
 			name: item.nome,
