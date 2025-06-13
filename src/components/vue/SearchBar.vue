@@ -76,43 +76,43 @@
 				/>
 				<div
 					v-if="showExtraDetails"
-					class="flex flex-wrap gap-2 w-full mt-2"
+					class="flex flex-wrap gap-4 w-full mt-2 px-2"
 				>
-					<div class="flex flex-col gap-1">
-						<label class="pl-2">Dormitórios</label>
+					<div class="flex flex-col gap-2">
+						<label>Dormitórios <span class="min-w-[24px] inline-block">{{ bedrooms }}</span></label>
 						<Slider
 							v-model="bedrooms"
 							:min="0"
 							:max="10"
 							class="w-24 p-variant-secondary"
 						/>
-						<div class="flex justify-between text-xs px-1 text-surface-500">
+						<div class="flex justify-between text-xs text-surface-500">
 							<span>0</span>
 							<span>10</span>
 						</div>
 					</div>
-					<div class="flex flex-col gap-1">
-						<label class="pl-2">Vagas para carro</label>
+					<div class="flex flex-col gap-2">
+						<label>Vagas para carro <span class="min-w-[24px] inline-block">{{ parkingSpots }}</span></label>
 						<Slider
 							v-model="parkingSpots"
 							:min="0"
 							:max="6"
-							class="w-24 p-variant-secondary"
+							class="p-variant-secondary"
 						/>
-						<div class="flex justify-between text-xs px-1 text-surface-500">
+						<div class="flex justify-between text-xs text-surface-500">
 							<span>0</span>
 							<span>6</span>
 						</div>
 					</div>
-					<div class="flex flex-col gap-1">
-						<label class="pl-2">Valor do imóvel</label>
+					<div class="flex flex-col gap-2">
+						<label>Valor do imóvel <span class="min-w-[24px] inline-block">{{ priceRange }}</span></label>
 						<Slider
 							v-model="priceRange"
 							:min="0"
 							:max="maxValue"
 							class="w-64 p-variant-secondary"
 						/>
-						<div class="flex justify-between text-xs px-1 text-surface-500">
+						<div class="flex justify-between text-xs text-surface-500">
 							<span>0</span>
 							<span>{{ maxValue }}</span>
 						</div>
@@ -160,14 +160,14 @@
 	const cities = ref([])
 
 	const showExtraDetails = ref(false)
-	const bedrooms = ref(1)
-	const parkingSpots = ref(1)
-	const priceRange = ref([0, 15000])
+	const bedrooms = ref(0)
+	const parkingSpots = ref(0)
+	const priceRange = ref(0)
 
-	const maxValue = computed(() => (selectedOption.value === '1' ? 2000000 : 15000))
+	const maxValue = computed(() => (selectedOption.value === 'venda' ? 2000000 : 15000))
 
 	watch(selectedOption, () => {
-		priceRange.value = [0, maxValue.value]
+		priceRange.value = 0
 	})
 
 	const service = new ServiceImoveis()
