@@ -84,7 +84,7 @@
 							v-model="bedrooms"
 							:min="0"
 							:max="10"
-							class="w-24 p-variant-secondary"
+							class="w-24"
 						/>
 						<div class="flex justify-between text-xs text-surface-500">
 							<span>0</span>
@@ -97,7 +97,7 @@
 							v-model="parkingSpots"
 							:min="0"
 							:max="6"
-							class="p-variant-secondary"
+							class=""
 						/>
 						<div class="flex justify-between text-xs text-surface-500">
 							<span>0</span>
@@ -105,16 +105,16 @@
 						</div>
 					</div>
 					<div class="flex flex-col gap-2">
-						<label>Valor do imóvel <span class="min-w-[24px] inline-block">{{ priceRange }}</span></label>
+						<label>Valor do imóvel <span class="min-w-[24px] inline-block">{{ formatReal(priceRange) }}</span></label>
 						<Slider
 							v-model="priceRange"
 							:min="0"
 							:max="maxValue"
-							class="w-64 p-variant-secondary"
+							class="w-64"
 						/>
 						<div class="flex justify-between text-xs text-surface-500">
 							<span>0</span>
-							<span>{{ maxValue }}</span>
+							<span>{{ formatReal(maxValue) }}</span>
 						</div>
 					</div>
 				</div>
@@ -145,6 +145,7 @@
 	import Slider from 'primevue/slider'
 	import ServiceImoveis from '@services/Imoveis'
 	import initialInfoMock from '@mock/get-info-inicial'
+	import formatReal from '@utils/formatReal'
 
 	const panel = ref(null)
 	const expanded = ref(false)
