@@ -2,19 +2,31 @@ import { API_URL } from '@/consts'
 import formatReal from '@utils/formatReal'
 
 const parseRentPrice = (data) => {
-	return typeof data.valorLocacao === 'string' ? data.valorLocacao : data.valorLocacao?.valordoaluguelmaximo ? data.valorLocacao?.valordoaluguelmaximo : null
+	return typeof data.valorLocacao === 'string'
+		? data.valorLocacao
+		: data.valorLocacao?.valordoaluguelmaximo
+			? data.valorLocacao?.valordoaluguelmaximo
+			: null
 }
 
 const parseSalePrice = (data) => {
-	return typeof data.valorVenda === 'string' ? data.valorVenda : data.valorVenda.valordevendamaximo ? data.valorVenda.valordevendamaximo : null
+	return typeof data.valorVenda === 'string'
+		? data.valorVenda
+		: data.valorVenda.valordevendamaximo
+			? data.valorVenda.valordevendamaximo
+			: null
 }
 
 const parseTransactionType = (data) => {
-	return typeof data.valorLocacao === 'string' || data.valorLocacao?.valordoaluguelmaximo ? 'Aluguel' : 'Venda'
+	return typeof data.valorLocacao === 'string' || data.valorLocacao?.valordoaluguelmaximo
+		? 'Aluguel'
+		: 'Venda'
 }
 
 const parseImageSrc = (data) => {
-	return typeof data.fotos === 'string' ? data.fotos : data.fotos[parseInt(Math.random() * data.fotos.length)]?.caminho
+	return typeof data.fotos === 'string'
+		? data.fotos
+		: data.fotos[parseInt(Math.random() * data.fotos.length)]?.caminho
 }
 
 const parseTitle = (data) => {

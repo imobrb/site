@@ -33,9 +33,7 @@
 				<template v-else>
 					<template v-for="item in items">
 						<div class="w-full">
-							<CardImovel
-								v-bind="parserCardImovelData(item)"
-							/>
+							<CardImovel v-bind="parserCardImovelData(item)" />
 						</div>
 					</template>
 				</template>

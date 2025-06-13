@@ -177,13 +177,7 @@
 		type: {
 			type: String,
 			required: true,
-			options: [
-				'exclusiveRented',
-				'exclusiveSale',
-				'rentedFeatured',
-				'featuredSale',
-				'favorite'
-			]
+			options: ['exclusiveRented', 'exclusiveSale', 'rentedFeatured', 'featuredSale', 'favorite']
 		}
 	})
 
@@ -212,7 +206,7 @@
 		favorite: async () => {
 			const querystring = getQueryString()
 			const imovelList = JSON.parse(querystring.imoveis)
-			
+
 			return await serviceImoveis.favoriteProperties(imovelList)
 		}
 	}

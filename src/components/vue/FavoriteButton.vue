@@ -4,7 +4,7 @@
 		tabindex="-1"
 		size="small"
 		role="presentation"
-		class="w-fit absolute  border-none mt-2 ml-2 z-10"
+		class="w-fit absolute border-none mt-2 ml-2 z-10"
 		:class="[isFavorite ? 'bg-white text-secondary' : 'bg-secondary text-white']"
 		:icon="icon"
 		:label="label"
@@ -19,7 +19,6 @@
 	import { storeGetFavoriteById, storeToggleFavorite } from '@stores/favorite'
 	import { storageToggleFavorite } from '@storage/favorite'
 
-	
 	const props = defineProps({
 		code: {
 			type: String
@@ -53,7 +52,6 @@
 	const click = () => {
 		onFavorite(getCode())
 	}
-
 
 	onMounted(() => {
 		validation(getCode())
