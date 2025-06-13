@@ -87,7 +87,41 @@
 					optionLabel="name"
 					optionValue="code"
 					class="w-auto p-variant-secondary"
+					@click="showExtraDetails = !showExtraDetails"
 				/>
+				<div
+					v-if="showExtraDetails"
+					class="flex flex-wrap gap-2 w-full mt-2"
+				>
+                                       <div class="flex flex-col gap-1">
+                                               <label class="pl-2">Dormitórios</label>
+                                               <Slider
+                                                       v-model="bedrooms"
+                                                       :min="1"
+                                                       :max="10"
+                                                       class="w-24"
+                                               />
+                                       </div>
+                                       <div class="flex flex-col gap-1">
+                                               <label class="pl-2">Vagas para carro</label>
+                                               <Slider
+                                                       v-model="parkingSpots"
+                                                       :min="1"
+                                                       :max="6"
+                                                       class="w-24"
+                                               />
+					</div>
+					<div class="flex flex-col gap-1">
+						<label class="pl-2">Valor do imóvel</label>
+						<Slider
+							v-model="priceRange"
+							:min="0"
+							:max="maxValue"
+							range
+							class="w-64"
+						/>
+					</div>
+				</div>
 			</div>
 		</Panel>
 
@@ -105,13 +139,14 @@
 </template>
 
 <script setup>
-	import { ref, onMounted, computed } from 'vue'
+	import { ref, onMounted, computed, watch } from 'vue'
 	import InputText from 'primevue/inputtext'
 	import Button from 'primevue/button'
 	import Panel from 'primevue/panel'
 	import Select from 'primevue/select'
 	import IconField from 'primevue/iconfield'
 	import InputIcon from 'primevue/inputicon'
+	import Slider from 'primevue/slider'
 	import ServiceImoveis from '@services/Imoveis'
 	import initialInfoMock from '@mock/get-info-inicial'
 
@@ -130,6 +165,19 @@
 	const propertyTypes = ref([])
 	const cities = ref([])
 	const details = ref([])
+
+	const showExtraDetails = ref(false)
+       const bedrooms = ref(1)
+       const parkingSpots = ref(1)
+	const priceRange = ref([0, 15000])
+
+	const maxValue = computed(() => (selectedOption.value === 'venda' ? 2000000 : 15000))
+
+       watch(selectedOption, () => {
+               priceRange.value = [0, maxValue.value]
+               bedrooms.value = 1
+               parkingSpots.value = 1
+       })
 
 	const service = new ServiceImoveis()
 
