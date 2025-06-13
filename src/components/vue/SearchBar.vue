@@ -199,11 +199,6 @@
 			info = initialInfoMock
 		}
 
-		// businessTypes.value = info.finalidadesDoImovel.map((item) => ({
-		// 	name: item.nome,
-		// 	code: item.id
-		// }))
-
 		propertyTypes.value = info.tipoDeImovel.map((item) => ({
 			name: item.nome,
 			code: item.id
