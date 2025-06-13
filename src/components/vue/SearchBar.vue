@@ -36,6 +36,7 @@
 						<IconField class="w-full border-none shadow-none">
 							<InputIcon class="pi pi-search" />
 							<InputText
+								v-model="searchText"
 								placeholder="Busca por nome, código ou bairro... "
 								class="w-full md:border-none shadow-none p-variant-secondary"
 							/>
@@ -59,6 +60,7 @@
 					optionLabel="name"
 					optionValue="code"
 					class="w-auto p-variant-secondary"
+					v-model="selectedPropertyType"
 				/>
 				<Select
 					placeholder="Cidade"
@@ -66,6 +68,7 @@
 					optionLabel="name"
 					optionValue="code"
 					class="w-auto p-variant-secondary"
+					v-model="selectedCity"
 				/>
 				<Button
 					:icon="showExtraDetails ? 'pi pi-minus' : 'pi pi-plus'"
@@ -79,7 +82,9 @@
 					class="flex flex-wrap gap-4 w-full mt-2 px-2"
 				>
 					<div class="flex flex-col gap-2">
-						<label>Dormitórios <span class="min-w-[24px] inline-block">{{ bedrooms }}</span></label>
+						<label
+							>Dormitórios <span class="min-w-[24px] inline-block">{{ bedrooms }}</span></label
+						>
 						<Slider
 							v-model="bedrooms"
 							:min="0"
@@ -92,7 +97,10 @@
 						</div>
 					</div>
 					<div class="flex flex-col gap-2">
-						<label>Vagas para carro <span class="min-w-[24px] inline-block">{{ parkingSpots }}</span></label>
+						<label
+							>Vagas para carro
+							<span class="min-w-[24px] inline-block">{{ parkingSpots }}</span></label
+						>
 						<Slider
 							v-model="parkingSpots"
 							:min="0"
@@ -105,7 +113,10 @@
 						</div>
 					</div>
 					<div class="flex flex-col gap-2">
-						<label>Valor do imóvel <span class="min-w-[24px] inline-block">{{ formatReal(priceRange) }}</span></label>
+						<label
+							>Valor do imóvel
+							<span class="min-w-[24px] inline-block">{{ formatReal(priceRange) }}</span></label
+						>
 						<Slider
 							v-model="priceRange"
 							:min="0"
@@ -136,7 +147,7 @@
 
 <script setup>
 	// ?qtdPagina=20&tipo_negocio=2&exclusivo=null&tipo_imovel=&cidade=&dormitorio=0&vagas=0&valor_min=0
-	
+
 	import { ref, onMounted, computed, watch } from 'vue'
 	import InputText from 'primevue/inputtext'
 	import Button from 'primevue/button'
@@ -162,6 +173,10 @@
 	const propertyTypes = ref([])
 	const cities = ref([])
 
+	const selectedPropertyType = ref('')
+	const selectedCity = ref('')
+	const searchText = ref('')
+
 	const showExtraDetails = ref(false)
 	const bedrooms = ref(0)
 	const parkingSpots = ref(0)
@@ -176,14 +191,32 @@
 	const service = new ServiceImoveis()
 
 	const searchLink = computed(() => {
-		const map = {
-			locacao: '/alugar-imovel/',
-			venda: '/comprar-imovel/',
-			'exclusivo-locacao': '/exclusivo-locacao/',
-			'exclusivo-venda': '/exclusivo-venda/'
+		const tipoNegocioMap = {
+			locacao: '2',
+			venda: '1',
+			'exclusivo-locacao': '2',
+			'exclusivo-venda': '1'
 		}
 
-		return map[selectedOption.value] || '/busca'
+		const exclusivoMap = {
+			locacao: 'null',
+			venda: 'null',
+			'exclusivo-locacao': 'S',
+			'exclusivo-venda': 'S'
+		}
+
+		const params = new URLSearchParams({
+			qtdPagina: '20',
+			tipo_negocio: tipoNegocioMap[selectedOption.value] || '2',
+			exclusivo: exclusivoMap[selectedOption.value],
+			tipo_imovel: selectedPropertyType.value || '',
+			cidade: selectedCity.value || '',
+			dormitorio: String(bedrooms.value),
+			vagas: String(parkingSpots.value),
+			valor_min: String(priceRange.value)
+		})
+
+		return `/busca?${params.toString()}`
 	})
 
 	const onToggle = (e) => {
@@ -197,7 +230,7 @@
 
 	onMounted(async () => {
 		let info = await service.initialInfo()
-		
+
 		if (!info) {
 			info = initialInfoMock
 		}
