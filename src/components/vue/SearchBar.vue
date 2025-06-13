@@ -96,12 +96,12 @@
 						<label class="pl-2">Dormitórios</label>
 						<Slider
 							v-model="bedrooms"
-							:min="1"
+							:min="0"
 							:max="10"
 							class="w-24 p-variant-secondary"
 						/>
 						<div class="flex justify-between text-xs px-1 text-surface-500">
-							<span>1</span>
+							<span>0</span>
 							<span>10</span>
 						</div>
 					</div>
@@ -109,12 +109,12 @@
 						<label class="pl-2">Vagas para carro</label>
 						<Slider
 							v-model="parkingSpots"
-							:min="1"
+							:min="0"
 							:max="6"
 							class="w-24 p-variant-secondary"
 						/>
 						<div class="flex justify-between text-xs px-1 text-surface-500">
-							<span>1</span>
+							<span>0</span>
 							<span>6</span>
 						</div>
 					</div>
