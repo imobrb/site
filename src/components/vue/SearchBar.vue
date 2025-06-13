@@ -86,8 +86,6 @@
 					<InputSwitch
 						id="extra-details-switch"
 						v-model="showExtraDetails"
-						:trueValue="true"
-						:falseValue="false"
 					/>
 				</div>
 				<div
@@ -168,10 +166,10 @@
 
 	const selectedOption = ref('locacao')
 	const options = ref([
-		{ name: 'Locação', code: 'locacao' },
-		{ name: 'Venda', code: 'venda' },
-		{ name: 'Exclusivo Locação', code: 'exclusivo-locacao' },
-		{ name: 'Exclusivo Venda', code: 'exclusivo-venda' }
+		{ name: 'Locação', code: '2' },
+		{ name: 'Venda', code: '1' },
+		{ name: 'Exclusivo Locação', code: '2' },
+		{ name: 'Exclusivo Venda', code: '1' }
 	])
 
 	const businessTypes = ref([])
@@ -183,7 +181,7 @@
 	const parkingSpots = ref(1)
 	const priceRange = ref([0, 15000])
 
-	const maxValue = computed(() => (selectedOption.value === 'venda' ? 2000000 : 15000))
+	const maxValue = computed(() => (selectedOption.value === '1' ? 2000000 : 15000))
 
 	watch(selectedOption, () => {
 		priceRange.value = [0, maxValue.value]
