@@ -4,9 +4,9 @@ DELETEDE WITH CONFLICT WITH NEW VERSION
 */
 
 @import './primevue/tailwind.css';
-
 @import 'primeflex/primeflex.css';
 @import 'primeicons/primeicons.css';
+@import './icons/imobicons.css';
 
 @tailwind base;
 @tailwind components;
