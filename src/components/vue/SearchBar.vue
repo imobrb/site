@@ -135,6 +135,8 @@
 </template>
 
 <script setup>
+	// ?qtdPagina=20&tipo_negocio=2&exclusivo=null&tipo_imovel=&cidade=&dormitorio=0&vagas=0&valor_min=0
+	
 	import { ref, onMounted, computed, watch } from 'vue'
 	import InputText from 'primevue/inputtext'
 	import Button from 'primevue/button'
