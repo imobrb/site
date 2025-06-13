@@ -37,7 +37,7 @@
 							<InputIcon class="pi pi-search" />
 							<InputText
 								placeholder="Busca por nome, código ou bairro... "
-								class="w-full md:border-none shadow-none"
+								class="w-full md:border-none shadow-none p-variant-secondary"
 							/>
 						</IconField>
 					</div>
@@ -81,12 +81,15 @@
 					optionValue="code"
 					class="w-auto p-variant-secondary"
 				/>
-				<Select
-					placeholder="Detalhes"
-					optionLabel="name"
-					class="w-auto p-variant-secondary"
-					@click="showExtraDetails = !showExtraDetails"
-				/>
+				<div class="flex items-center gap-2">
+					<label for="extra-details-switch">Detalhes</label>
+					<InputSwitch
+						id="extra-details-switch"
+						v-model="showExtraDetails"
+						:trueValue="true"
+						:falseValue="false"
+					/>
+				</div>
 				<div
 					v-if="showExtraDetails"
 					class="flex flex-wrap gap-2 w-full mt-2"
@@ -97,8 +100,12 @@
 							v-model="bedrooms"
 							:min="1"
 							:max="10"
-							class="w-24"
+							class="w-24 p-variant-secondary"
 						/>
+						<div class="flex justify-between text-xs px-1 text-surface-500">
+							<span>1</span>
+							<span>10</span>
+						</div>
 					</div>
 					<div class="flex flex-col gap-1">
 						<label class="pl-2">Vagas para carro</label>
@@ -106,8 +113,12 @@
 							v-model="parkingSpots"
 							:min="1"
 							:max="6"
-							class="w-24"
+							class="w-24 p-variant-secondary"
 						/>
+						<div class="flex justify-between text-xs px-1 text-surface-500">
+							<span>1</span>
+							<span>6</span>
+						</div>
 					</div>
 					<div class="flex flex-col gap-1">
 						<label class="pl-2">Valor do imóvel</label>
@@ -115,8 +126,12 @@
 							v-model="priceRange"
 							:min="0"
 							:max="maxValue"
-							class="w-64"
+							class="w-64 p-variant-secondary"
 						/>
+						<div class="flex justify-between text-xs px-1 text-surface-500">
+							<span>0</span>
+							<span>{{ maxValue }}</span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -143,6 +158,7 @@
 	import Select from 'primevue/select'
 	import IconField from 'primevue/iconfield'
 	import InputIcon from 'primevue/inputicon'
+	import InputSwitch from 'primevue/inputswitch'
 	import Slider from 'primevue/slider'
 	import ServiceImoveis from '@services/Imoveis'
 	import initialInfoMock from '@mock/get-info-inicial'
@@ -161,7 +177,6 @@
 	const businessTypes = ref([])
 	const propertyTypes = ref([])
 	const cities = ref([])
-	// const details = ref([])
 
 	const showExtraDetails = ref(false)
 	const bedrooms = ref(1)
@@ -213,11 +228,6 @@
 		}))
 
 		cities.value = info.cidades.map((item) => ({
-			name: item.nome,
-			code: item.id
-		}))
-
-		details.value = info.comodos.map((item) => ({
 			name: item.nome,
 			code: item.id
 		}))
