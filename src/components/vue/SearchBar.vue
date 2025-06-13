@@ -182,7 +182,7 @@
 	const parkingSpots = ref(0)
 	const priceRange = ref(0)
 
-	const maxValue = computed(() => (selectedOption.value === 'venda' ? 2000000 : 15000))
+	const maxValue = computed(() => (/venda/.test(selectedOption.value) ? 2000000 : 15000))
 
 	watch(selectedOption, () => {
 		priceRange.value = 0
@@ -216,7 +216,7 @@
 			valor_min: String(priceRange.value)
 		})
 
-		return `/busca?${params.toString()}`
+		return `/busca/?${params.toString()}`
 	})
 
 	const onToggle = (e) => {
