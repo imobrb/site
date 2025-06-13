@@ -1,9 +1,22 @@
 ---
-import Layout from '@layouts/BaseLayout.astro'
+import { getEntry } from 'astro:content'
+
+import Layout from '@layouts/Default.astro'
 import BuscaPage from '@components/vue/BuscaPage.vue'
 
+const page = await getEntry('institutional', 'busca')
+const { draft, noindex, title, description, image} = page.data
 ---
 
-<Layout>
-    <BuscaPage client:load />
+<Layout
+	draft={draft}
+	noindex={noindex}
+	title={title}
+	description={description}
+	image={image}
+>
+  <BuscaPage
+		client:load
+		type="search"
+	/>
 </Layout>
