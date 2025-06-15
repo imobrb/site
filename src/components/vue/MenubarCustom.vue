@@ -40,8 +40,6 @@
 <script setup>
 	import Menubar from 'primevue/menubar'
 	import Button from 'primevue/button'
-	import { defineProps, defineEmits } from 'vue'
-
 	import FavoriteButtonCount from '@components/vue/FavoriteButtonCount.vue'
 
 	const props = defineProps({
