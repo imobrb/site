@@ -129,11 +129,12 @@
 							: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-x-14 md:gap-y-20'
 					]"
 				>
-					<SectionCardListSkeleton :limit="12" />
+					<SectionCardListSkeleton :limit="9" />
 				</div>
 			</template>
 			<template v-else>
 				<div
+					v-if="imoveis.length"
 					:class="[
 						'm-0 mb-16',
 						isListMode
@@ -148,6 +149,11 @@
 						@onFavorite="onFavorite"
 						v-bind="parserCardImovelData(imovel)"
 					/>
+				</div>
+				<div v-else class="m-0 mb-16">
+					<p>
+						Nenhum imóvel encontrado.
+					</p>
 				</div>
 			</template>
 		</div>
