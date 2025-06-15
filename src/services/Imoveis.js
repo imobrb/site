@@ -5,28 +5,28 @@ class Imovel {
 		this.url = API_URL
 		this.urlPhoto = API_URL
 
-		this.operationType = 2 // RENTAL
-		this.propertyType = 1 // HOUSE
+		// this.operationType = 2 // RENTAL
+		// this.propertyType = 1 // HOUSE
 
-		this.maxValue = 99999999999
-		this.minValue = 0.0
-		this.page = 1
-		this.purpose = null
-		this.city = null
-		this.neighborhood = null
-		this.numBedrooms = null
-		this.numSuites = null
-		this.numGarageSpaces = null
-		this.numBathrooms = null
-		this.livableArea = null
-		this.condoResidential = null
-		this.propertyCode = null
-		this.tradeIn = null
-		this.launch = null
-		this.video = null
-		this.pageQuantity = null
-		this.sortOrder = 1
-		this.exclusives = null
+		// this.maxValue = 99999999999
+		// this.minValue = 0.0
+		// this.page = 1
+		// this.purpose = null
+		// this.city = null
+		// this.neighborhood = null
+		// this.numBedrooms = null
+		// this.numSuites = null
+		// this.numGarageSpaces = null
+		// this.numBathrooms = null
+		// this.livableArea = null
+		// this.condoResidential = null
+		// this.propertyCode = null
+		// this.tradeIn = null
+		// this.launch = null
+		// this.video = null
+		// this.pageQuantity = null
+		// this.sortOrder = 1
+		// this.exclusives = null
 	}
 
 	getImage(property, image, size = '888x500') {
@@ -110,27 +110,65 @@ class Imovel {
 	}
 
 	async initialInfo() {
+		// https://o2u4kwbklg.map.azionedge.net/info-inicial
 		const url = this.buildUrl('/info-inicial')
 		return await this.request('GET', url)
 	}
 
-	async searchProperties() {
-		const url = this.buildUrl(
-			`/filtro?tipo_operacao=${this.operationType}&finalidade=${this.purpose}&tipo_imovel=${this.propertyType}&cidade=${this.city}&bairro=${this.neighborhood}&qte_quartos=${this.numBedrooms}&qte_suite=${this.numSuites}&qte_vagas_garagem=${this.numGarageSpaces}&qte_banheiros=${this.numBathrooms}&area_util=${this.livableArea}&cond_res_ed=${this.condoResidential}&valor_max=${this.maxValue}&valor_min=${this.minValue}&codigo_imovel=${this.propertyCode}&permuta=${this.tradeIn}&lancamento=${this.launch}&video=${this.video}&pagina=${this.page}&ordenacao=${this.sortOrder}&qtdPagina=${this.pageQuantity}&exclusivo=${this.exclusives}`
-		)
+	getParamsSchema() {
+		return {
+			tipo_operacao: null,
+			finalidade: null,
+			tipo_imovel: null,
+			cidade: null,
+			bairro: null,
+			qte_quartos: null,
+			qte_suite: null,
+			qte_vagas_garagem: null,
+			qte_banheiros: null,
+			area_util: null,
+			cond_res_ed: null,
+			valor_max: null,
+			valor_min: null,
+			codigo_imovel: null,
+			permuta: null,
+			lancamento: null,
+			video: null,
+			pagina: null,
+			ordenacao: null,
+			qtdPagina: null,
+			exclusivo: null
+		}
+	}
+
+	async searchProperties(searchParams) {
+		// https://o2u4kwbklg.map.azionedge.net/filtro?tipo_operacao=1&finalidade=null&tipo_imovel=null&cidade=null&bairro=null&qte_quartos=null&qte_suite=null&qte_vagas_garagem=null&qte_banheiros=null&area_util=null&cond_res_ed=null&valor_max=99999999999&valor_min=0.00&codigo_imovel=null&permuta=null&lancamento=null&video=N&pagina=1&qtdPagina=10&ordenacao=2&exclusivo=null
+
+		const mergeParams = Object.assign(this.getParamsSchema(), searchParams)
+		const urlsearchparams = new URLSearchParams(mergeParams)
+		const url = this.buildUrl(`/filtro?${urlsearchparams.toString()}`)
 
 		const request = await this.request('GET', url)
-
-		if (this.exclusives === 'S' && request) {
-			const total = request[0]
-			const properties = request.slice(1)
-			const updatedProperties = this.setExclusiveSingle(properties)
-
-			updatedProperties.unshift(total)
-			return updatedProperties
+		const data = {
+			total: 0,
+			items: []
 		}
 
-		return request
+		if(request.length) {
+			data.total = request[0].totalimoveis
+			data.items = request.slice(1)
+		}
+
+		// if (this.exclusives === 'S' && request) {
+		// 	const total = request[0]
+		// 	const properties = request.slice(1)
+		// 	const updatedProperties = this.setExclusiveSingle(properties)
+
+		// 	updatedProperties.unshift(total)
+		// 	return updatedProperties
+		// }
+
+		return data
 	}
 
 	setExclusiveSingle(data) {
@@ -203,14 +241,13 @@ class Imovel {
 		return typeof value === 'object' ? Object.values(value)[0] : value
 	}
 
-	// New Methods Added
-	async rentedProperties() {
-		const url = this.setData({
-			operationType: '2',
-			pageQuantity: 'null'
-		}).searchProperties()
-		return url
-	}
+	// async rentedProperties() {
+	// 	const url = this.setData({
+	// 		operationType: '2',
+	// 		pageQuantity: 'null'
+	// 	}).searchProperties()
+	// 	return url
+	// }
 
 	async exclusiveRentedProperties(limit, sortOrder) {
 		const properties = await this.exclusiveProperties(limit, sortOrder)

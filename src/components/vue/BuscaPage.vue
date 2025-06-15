@@ -210,8 +210,9 @@
 			return await serviceImoveis.favoriteProperties(imovelList)
 		},
 		search: async () => {
-			// const querystring = getQueryString()
-			return []
+			const res = await serviceImoveis.searchProperties(getQueryString())
+			console.log('search: res', res)
+			return res.items
 		}
 	}
 
