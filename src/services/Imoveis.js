@@ -4,29 +4,6 @@ class Imovel {
 	constructor() {
 		this.url = API_URL
 		this.urlPhoto = API_URL
-
-		// this.operationType = 2 // RENTAL
-		// this.propertyType = 1 // HOUSE
-
-		// this.maxValue = 99999999999
-		// this.minValue = 0.0
-		// this.page = 1
-		// this.purpose = null
-		// this.city = null
-		// this.neighborhood = null
-		// this.numBedrooms = null
-		// this.numSuites = null
-		// this.numGarageSpaces = null
-		// this.numBathrooms = null
-		// this.livableArea = null
-		// this.condoResidential = null
-		// this.propertyCode = null
-		// this.tradeIn = null
-		// this.launch = null
-		// this.video = null
-		// this.pageQuantity = null
-		// this.sortOrder = 1
-		// this.exclusives = null
 	}
 
 	getImage(property, image, size = '888x500') {
@@ -70,7 +47,6 @@ class Imovel {
 			const result = await response.json()
 			return result
 		} catch (error) {
-			// IMPROVE ERROR DATA
 			console.error('ERROR request:', error)
 			return null
 		}
@@ -78,12 +54,12 @@ class Imovel {
 
 	async getProperty(id) {
 		// https://o2u4kwbklg.map.azionedge.net/imoveis-id/6251
-		const url = this.buildUrl(`/imoveis-id/${id}`)
-		return await this.request('GET', url)
+		return await this.request('GET', this.buildUrl(`/imoveis-id/${id}`))
 	}
 
 	async getPropertyByCode(id) {
 		// https://o2u4kwbklg.map.azionedge.net/imoveis-id/6251
+
 		const url = this.buildUrl(`/imoveis-id/${id}`)
 		const request = await this.request('GET', url)
 
@@ -111,12 +87,21 @@ class Imovel {
 
 	async initialInfo() {
 		// https://o2u4kwbklg.map.azionedge.net/info-inicial
-		const url = this.buildUrl('/info-inicial')
-		return await this.request('GET', url)
+		return await this.request('GET', this.buildUrl('/info-inicial'))
 	}
 
 	getParamsSchema() {
 		return {
+			///////////////////////////
+			// data size management //
+			/////////////////////////
+			pagina: null,
+			ordenacao: null,
+			qtdPagina: null,
+			/////////////////
+			// imovel data //
+			/////////////////
+			codigo_imovel: null,
 			tipo_operacao: null,
 			finalidade: null,
 			tipo_imovel: null,
@@ -130,13 +115,9 @@ class Imovel {
 			cond_res_ed: null,
 			valor_max: null,
 			valor_min: null,
-			codigo_imovel: null,
 			permuta: null,
 			lancamento: null,
 			video: null,
-			pagina: null,
-			ordenacao: null,
-			qtdPagina: null,
 			exclusivo: null
 		}
 	}
@@ -154,7 +135,7 @@ class Imovel {
 			items: []
 		}
 
-		if(request.length) {
+		if (request.length) {
 			data.total = request[0].totalimoveis
 			data.items = request.slice(1)
 		}
@@ -181,32 +162,6 @@ class Imovel {
 		return data
 	}
 
-	// setData(data) {
-	// 	this.operationType = data.operationType || 1
-	// 	this.purpose = data.purpose || null
-	// 	this.propertyType = data.propertyType || null
-	// 	this.city = data.city || null
-	// 	this.neighborhood = data.neighborhood ? data.neighborhood.replace(' ', '%').toUpperCase() : null
-	// 	this.numBedrooms = data.bedrooms || null
-	// 	this.numSuites = data.suites || null
-	// 	this.numGarageSpaces = data.garageSpaces || null
-	// 	this.numBathrooms = data.bathrooms || null
-	// 	this.livableArea = data.livableArea || null
-	// 	this.condoResidential = data.condoResidential || null
-	// 	this.maxValue = data.maxValue || 99999999999
-	// 	this.minValue = data.minValue || 0.0
-	// 	this.propertyCode = data.propertyCode || null
-	// 	this.tradeIn = data.tradeIn || null
-	// 	this.launch = data.launch || null
-	// 	this.video = data.video || null
-	// 	this.page = data.page || null
-	// 	this.pageQuantity = data.pageQuantity || 20
-	// 	this.sortOrder = data.sortOrder || 2
-	// 	this.exclusives = data.exclusives || null
-
-	// 	return this
-	// }
-
 	async featuredProperties(limit = 1, sortOrder = 2) {
 		const url = this.buildUrl(`/imoveis/destaques?limite=${limit}&ordenacao=${sortOrder}`)
 		return await this.request('GET', url)
@@ -222,42 +177,38 @@ class Imovel {
 		return request
 	}
 
-	async favoriteProperties(properties = []) {
-		return properties.length ? await this.featured(properties) : []
-	}
+	// async favoriteProperties(properties = []) {
+	// 	return properties.length ? await this.featured(properties) : []
+	// }
 
-	async featured(properties) {
-		const propertyList = []
-		for (let property of properties) {
-			if (property) {
-				const propertyDetails = await this.getProperty(property)
-				propertyList.push(propertyDetails)
-			}
-		}
-		return propertyList
-	}
+	// async featured(properties) {
+	// 	const propertyList = []
 
-	propertyValue(value) {
-		return typeof value === 'object' ? Object.values(value)[0] : value
-	}
+	// 	for (let property of properties) {
+	// 		if (property) {
+	// 			const propertyDetails = await this.getProperty(property)
+	// 			propertyList.push(propertyDetails)
+	// 		}
+	// 	}
 
-	// async rentedProperties() {
-	// 	const url = this.setData({
-	// 		operationType: '2',
-	// 		pageQuantity: 'null'
-	// 	}).searchProperties()
-	// 	return url
+	// 	return propertyList
+	// }
+
+	// propertyValue(value) {
+	// 	return typeof value === 'object' ? Object.values(value)[0] : value
 	// }
 
 	async exclusiveRentedProperties(limit, sortOrder) {
 		const properties = await this.exclusiveProperties(limit, sortOrder)
 		const result = this.setExclusiveSingle(properties.locacao)
+
 		return result
 	}
 
 	async exclusiveSaleProperties(limit, sortOrder) {
 		const properties = await this.exclusiveProperties(limit, sortOrder)
 		const result = this.setExclusiveSingle(properties.venda)
+
 		return result
 	}
 
@@ -275,32 +226,28 @@ class Imovel {
 		const url = this.buildUrl(
 			`/filtro?tipo_operacao=2&finalidade=null&tipo_imovel=${type}&cidade=null&bairro=null&qte_quartos=null&qte_suite=null&qte_vagas_garagem=null&qte_banheiros=null&area_util=null&cond_res_ed=null&valor_max=99999999999&valor_min=null&codigo_imovel=null&permuta=null&lancamento=null&video=null&exclusivo=S&pagina=${page}&qtdPagina=${pageQuantity}&ordenacao=${sortOrder}`
 		)
-		const request = await this.request('GET', url)
-		return request
+		return await this.request('GET', url)
 	}
 
 	async exclusiveSaleByType(type, pageQuantity, page, sortOrder) {
 		const url = this.buildUrl(
 			`/filtro?tipo_operacao=1&finalidade=null&tipo_imovel=${type}&cidade=null&bairro=null&qte_quartos=null&qte_suite=null&qte_vagas_garagem=null&qte_banheiros=null&area_util=null&cond_res_ed=null&valor_max=99999999999&valor_min=null&codigo_imovel=null&permuta=null&lancamento=null&video=null&exclusivo=S&pagina=${page}&qtdPagina=${pageQuantity}&ordenacao=${sortOrder}`
 		)
-		const request = await this.request('GET', url)
-		return request
+		return await this.request('GET', url)
 	}
 
 	async rentedByType(type, pageQuantity, page, sortOrder) {
 		const url = this.buildUrl(
 			`/filtro?tipo_operacao=2&finalidade=null&tipo_imovel=${type}&cidade=null&bairro=null&qte_quartos=null&qte_suite=null&qte_vagas_garagem=null&qte_banheiros=null&area_util=null&cond_res_ed=null&valor_max=99999999999&valor_min=null&codigo_imovel=null&permuta=null&lancamento=null&video=null&exclusivo=null&pagina=${page}&qtdPagina=${pageQuantity}&ordenacao=${sortOrder}`
 		)
-		const request = await this.request('GET', url)
-		return request
+		return await this.request('GET', url)
 	}
 
 	async saleByType(type, pageQuantity, page, sortOrder) {
 		const url = this.buildUrl(
 			`/filtro?tipo_operacao=1&finalidade=null&tipo_imovel=${type}&cidade=null&bairro=null&qte_quartos=null&qte_suite=null&qte_vagas_garagem=null&qte_banheiros=null&area_util=null&cond_res_ed=null&valor_max=99999999999&valor_min=null&codigo_imovel=null&permuta=null&lancamento=null&video=null&exclusivo=null&pagina=${page}&qtdPagina=${pageQuantity}&ordenacao=${sortOrder}`
 		)
-		const request = await this.request('GET', url)
-		return request
+		return await this.request('GET', url)
 	}
 }
 

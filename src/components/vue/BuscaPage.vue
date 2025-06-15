@@ -177,7 +177,14 @@
 		type: {
 			type: String,
 			required: true,
-			options: ['exclusiveRented', 'exclusiveSale', 'rentedFeatured', 'featuredSale', 'favorite', 'search']
+			options: [
+				'exclusiveRented',
+				'exclusiveSale',
+				'rentedFeatured',
+				'featuredSale',
+				'favorite',
+				'search'
+			]
 		}
 	})
 
@@ -211,7 +218,6 @@
 		},
 		search: async () => {
 			const res = await serviceImoveis.searchProperties(getQueryString())
-			console.log('search: res', res)
 			return res.items
 		}
 	}

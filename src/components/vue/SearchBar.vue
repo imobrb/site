@@ -26,18 +26,12 @@
 					class="flex flex-col md:flex-row md:justify-between w-full items-center gap-2 py-1.5 md:py-0.5"
 				>
 					<div class="flex w-full">
-						<Select
-							optionLabel="name"
-							optionValue="code"
-							:options="businessTypes"
-							class="w-fit hidden md:flex"
-							v-model:model-value="selectedOption"
-						/>
+						<!-- select header -->
 						<IconField class="w-full border-none shadow-none">
 							<InputIcon class="pi pi-search" />
 							<InputText
 								v-model="searchText"
-								placeholder="Busca por nome, código ou bairro... "
+								placeholder="Busca por nome de referência, código ou bairro... "
 								class="w-full md:border-none shadow-none p-variant-secondary"
 							/>
 						</IconField>
@@ -45,7 +39,7 @@
 					<div class="flex items-center gap-2 md:w-fit w-full">
 						<Button
 							:icon="expanded ? 'pi pi-minus' : 'pi pi-plus'"
-							:label="expanded ? 'Filtros' : 'Filtros'"
+							:label="expanded ? 'Avançada' : 'Avançada'"
 							class="rounded-full w-full md:w-fit"
 							outlined
 							@click.prevent="togglePanel"
@@ -54,6 +48,13 @@
 				</div>
 			</template>
 			<div class="flex flex-wrap gap-2">
+				<Select
+					optionLabel="name"
+					optionValue="code"
+					:options="businessTypes"
+					class="w-fit hidden md:flex"
+					v-model:model-value="selectedOption"
+				/>
 				<Select
 					placeholder="Tipo de Imóvel"
 					:options="propertyTypes"
@@ -146,8 +147,6 @@
 </template>
 
 <script setup>
-	// ?qtdPagina=20&tipo_negocio=2&exclusivo=null&tipo_imovel=&cidade=&dormitorio=0&vagas=0&valor_min=0
-
 	import { ref, onMounted, computed, watch } from 'vue'
 	import InputText from 'primevue/inputtext'
 	import Button from 'primevue/button'
@@ -190,6 +189,18 @@
 
 	const service = new ServiceImoveis()
 
+	const parseSearchText = () => {
+		const code = searchText.value.match(/(\d){4,}/)
+		const text = code ? searchText.value.replace(code[0], '') : searchText.value || null
+
+		const data = {
+			text: text ? encodeURI(text.toLocaleUpperCase().trim()) : null,
+			code: code ? code[0] : null
+		}
+
+		return data
+	}
+
 	const searchLink = computed(() => {
 		const tipoNegocioMap = {
 			locacao: '2',
@@ -205,16 +216,26 @@
 			'exclusivo-venda': 'S'
 		}
 
-		const params = new URLSearchParams({
-			qtdPagina: '20',
-			tipo_negocio: tipoNegocioMap[selectedOption.value] || '2',
-			exclusivo: exclusivoMap[selectedOption.value],
-			tipo_imovel: selectedPropertyType.value || '',
-			cidade: selectedCity.value || '',
-			dormitorio: String(bedrooms.value),
-			vagas: String(parkingSpots.value),
-			valor_min: String(priceRange.value)
-		})
+		let params
+		const parsedtext = parseSearchText()
+
+		if (!expanded.value) {
+			params = new URLSearchParams({
+				codigo_imovel: parsedtext.code,
+				bairro: parsedtext.text
+			})
+		} else {
+			params = new URLSearchParams({
+				tipo_operacao: tipoNegocioMap[selectedOption.value] || '2',
+				tipo_imovel: selectedPropertyType.value || null,
+				cidade: selectedCity.value || null,
+				qte_quartos: String(bedrooms.value) || null,
+				qte_vagas_garagem: String(parkingSpots.value) || null,
+				valor_min: String(priceRange.value) || null,
+				qtdPagina: '20' || null,
+				exclusivo: exclusivoMap[selectedOption.value] || null
+			})
+		}
 
 		return `/busca/?${params.toString()}`
 	})

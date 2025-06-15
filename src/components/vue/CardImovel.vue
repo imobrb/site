@@ -66,7 +66,7 @@
 				>
 					<li
 						v-for="room in rooms.slice(0, 4)"
-						class="flex flex-col gap-2 p-2 text-center  justify-center items-center max-w-20"
+						class="flex flex-col gap-2 p-2 text-center justify-center items-center max-w-20"
 						role="presentation"
 					>
 						<i
