@@ -1,47 +1,47 @@
 /* General Settings */
 @font-face {
-    font-family: 'imobicons';
-    src: url('imobicons.woff2') format('woff2');
-  }
-  
-  .ii {
-    font-family: 'imobicons';
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    display: inline-block;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  /* Icons */
-  .ii.ii-shower::before {
-    content: '\ea01';
-  }
-  .ii.ii-bed-double::before {
-    content: '\ea02';
-  }
-  .ii.ii-bed-single::before {
-    content: '\ea03';
-  }
-  .ii.ii-car::before {
-    content: '\ea04';
-  }
-  .ii.ii-size::before {
-    content: '\ea05';
-  }
-  .ii.ii-sofa::before {
-    content: '\ea06';
-  }
-  .ii.ii-sink::before {
-    content: '\ea07';
-  }
-  .ii.ii-kitchen::before {
-    content: '\ea08';
-  }
-  .ii.ii-washer::before {
-    content: '\ea09';
-  }
+	font-family: 'imobicons';
+	src: url('imobicons.woff2') format('woff2');
+}
+
+.ii {
+	font-family: 'imobicons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	display: inline-block;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Icons */
+.ii.ii-shower::before {
+	content: '\ea01';
+}
+.ii.ii-bed-double::before {
+	content: '\ea02';
+}
+.ii.ii-bed-single::before {
+	content: '\ea03';
+}
+.ii.ii-car::before {
+	content: '\ea04';
+}
+.ii.ii-size::before {
+	content: '\ea05';
+}
+.ii.ii-sofa::before {
+	content: '\ea06';
+}
+.ii.ii-sink::before {
+	content: '\ea07';
+}
+.ii.ii-kitchen::before {
+	content: '\ea08';
+}
+.ii.ii-washer::before {
+	content: '\ea09';
+}
