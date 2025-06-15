@@ -1,7 +1,7 @@
 <template>
-	<div class="flex flex-col md:flex-row w-full gap-4 md:gap-2">
-		<Panel
-			ref="panel"
+        <form @submit.prevent="handleSubmit" class="flex flex-col md:flex-row w-full gap-4 md:gap-2">
+                <Panel
+                        ref="panel"
 			:toggleable="true"
 			:collapsed="true"
 			@toggle="onToggle"
@@ -133,17 +133,16 @@
 			</div>
 		</Panel>
 
-		<Button
-			rounded
-			as="a"
-			:href="searchLink"
-			label="Buscar"
-			severity="secondary"
-			icon="pi pi-search"
-			rounded-full
-			class="w-full md:w-[440px] h-16 md:h-auto"
-		/>
-	</div>
+                <Button
+                        rounded
+                        type="submit"
+                        label="Buscar"
+                        severity="secondary"
+                        icon="pi pi-search"
+                        rounded-full
+                        class="w-full md:w-[440px] h-16 md:h-auto"
+                />
+        </form>
 </template>
 
 <script setup>
@@ -244,13 +243,17 @@
 		expanded.value = !expanded.value
 	}
 
-	const togglePanel = (event) => {
-		event.stopPropagation()
-		panel.value.toggle(event)
-	}
+        const togglePanel = (event) => {
+                event.stopPropagation()
+                panel.value.toggle(event)
+        }
 
-	onMounted(async () => {
-		let info = await service.initialInfo()
+        const handleSubmit = () => {
+                window.location.href = searchLink.value
+        }
+
+        onMounted(async () => {
+                let info = await service.initialInfo()
 
 		if (!info) {
 			info = initialInfoMock
